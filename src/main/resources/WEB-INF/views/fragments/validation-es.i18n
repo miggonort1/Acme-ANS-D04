@@ -1,0 +1,15 @@
+# footer-es.i18n
+#
+# Copyright (C) 2012-2025 Rafael Corchuelo.
+#
+# In keeping with the traditional purpose of furthering education and research, it is
+# the policy of the copyright owner to permit non-commercial use and redistribution of
+# this software. It has been tested carefully, but it is not guaranteed for any particular
+# purposes.  The copyright owner does not offer any warranties or representations, nor do
+# they accept any liabilities with respect to them.
+
+acme.validation.flightAssignment.duty = Cada tramo solo puede tener un piloto y un copiloto
+acme.validation.flightAssignment.leg.moment = La asignación no puede vincularse a tramos que ya hayan ocurrido
+acme.validation.flightAssignment.flightCrewMember.available = El tripulante no está disponible para ser asignado
+acme.validation.flightAssignment.flightCrewMember.multipleLegs = El tripulante ya está asignado a otro tramo
+acme.validation.authorisation=No estás autorizado para realizar esta operación.

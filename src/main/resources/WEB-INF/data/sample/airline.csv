@@ -1,0 +1,60 @@
+key,name,iataCode,website,type,foundationMoment,emailAdress,phoneNumber,key:administrator
+#base entity
+airline-01,Lorem ipsum dolor sit ame,DGX,http://lorem.com/ipsum,STANDARD,2012/07/02 0:00,acme@lorem-ipsum.org,123456,administrator-01
+#name standard variations
+airline-02,L,VZX,http://lorem.com/ipsum,STANDARD,2012/07/02 0:00,acme@lorem-ipsum.org,123456,administrator-01
+airline-03,Lo,ABB,http://lorem.com/ipsum,STANDARD,2012/07/02 0:00,acme@lorem-ipsum.org,123456,administrator-01
+airline-04,Lorem ipsum dolor sit amet consectetur adipiscin,ABD,http://lorem.com/ipsum,STANDARD,2012/07/02 0:00,acme@lorem-ipsum.org,123456,administrator-01
+airline-05,Lorem ipsum dolor sit amet consectetur adipiscing,ABE,http://lorem.com/ipsum,STANDARD,2012/07/02 0:00,acme@lorem-ipsum.org,123456,administrator-01
+#website standard variations
+airline-06,Lorem ipsum dolor sit ame,ABF,ftp://a,STANDARD,2012/07/02 0:00,acme@lorem-ipsum.org,123456,administrator-01
+airline-07,Lorem ipsum dolor sit ame,ABG,ftp://a.b,STANDARD,2012/07/02 0:00,acme@lorem-ipsum.org,123456,administrator-01
+airline-08,Lorem ipsum dolor sit ame,ABH,http://www.lorem-ipsum.org/dolor/sit/amet/consectetur/adipiscing/elit/sed/do/eiusmod/tempor/incididunt/ut/labore/et/dolore/magna/aliqua/Ut/enim/ad/minim/veniam/quis/nostrud/exercitation/ullamco/laboris/nisi/ut/aliquip/ex/ea/commodo/consequat/duis/aute/,STANDARD,2012/07/02 0:00,acme@lorem-ipsum.org,123456,administrator-01
+airline-09,Lorem ipsum dolor sit ame,ABI,http://www.lorem-ipsum.org/dolor/sit/amet/consectetur/adipiscing/elit/sed/do/eiusmod/tempor/incididunt/ut/labore/et/dolore/magna/aliqua/Ut/enim/ad/minim/veniam/quis/nostrud/exercitation/ullamco/laboris/nisi/ut/aliquip/ex/ea/commodo/consequat/duis/aute/X,STANDARD,2012/07/02 0:00,acme@lorem-ipsum.org,123456,administrator-01
+airline-10,Lorem ipsum dolor sit ame,ABJ,https://www.lorem-ipsum.org,STANDARD,2012/07/02 0:00,acme@lorem-ipsum.org,123456,administrator-01
+airline-11,Lorem ipsum dolor sit ame,ABK,ftp://www.lorem-ipsum.org,STANDARD,2012/07/02 0:00,acme@lorem-ipsum.org,123456,administrator-01
+airline-12,Lorem ipsum dolor sit ame,JKL,http://www.lorem-ipsum.org/dolor/sit.html,STANDARD,2012/07/02 0:00,acme@lorem-ipsum.org,123456,administrator-01
+airline-13,Lorem ipsum dolor sit ame,ABM,http://www.lorem-ipsum.org/dolor/sit.html#dolor,STANDARD,2012/07/02 0:00,acme@lorem-ipsum.org,123456,administrator-01
+airline-14,Lorem ipsum dolor sit ame,ABN,http://example.org?a=1&b=2,STANDARD,2012/07/02 0:00,acme@lorem-ipsum.org,123456,administrator-01
+airline-15,Lorem ipsum dolor sit ame,ABO,http://example.org?,STANDARD,2012/07/02 0:00,acme@lorem-ipsum.org,123456,administrator-01
+airline-16,Lorem ipsum dolor sit ame,ABP,http://example.org?a,STANDARD,2012/07/02 0:00,acme@lorem-ipsum.org,123456,administrator-01
+airline-17,Lorem ipsum dolor sit ame,ABQ,http://example.org?a&b,STANDARD,2012/07/02 0:00,acme@lorem-ipsum.org,123456,administrator-01
+airline-18,Lorem ipsum dolor sit ame,ABR,http://example.org/,STANDARD,2012/07/02 0:00,acme@lorem-ipsum.org,123456,administrator-01
+airline-19,Lorem ipsum dolor sit ame,ABS,http://example.org/a,STANDARD,2012/07/02 0:00,acme@lorem-ipsum.org,123456,administrator-01
+airline-20,Lorem ipsum dolor sit ame,ABT,http://example.org/a/b,STANDARD,2012/07/02 0:00,acme@lorem-ipsum.org,123456,administrator-01
+airline-21,Lorem ipsum dolor sit ame,ABU,http://example.org/a/b?,STANDARD,2012/07/02 0:00,acme@lorem-ipsum.org,123456,administrator-01
+airline-22,Lorem ipsum dolor sit ame,ABV,http://example.org/a/b?a&b,STANDARD,2012/07/02 0:00,acme@lorem-ipsum.org,123456,administrator-01
+#type standard variations
+airline-23,Lorem ipsum dolor sit ame,ABW,http://lorem.com/ipsum,LUXURY,2012/07/02 0:00,acme@lorem-ipsum.org,123456,administrator-01
+airline-24,Lorem ipsum dolor sit ame,ABX,http://lorem.com/ipsum,LOW_COST,2012/07/02 0:00,acme@lorem-ipsum.org,123456,administrator-01
+#foundationMoment standard variations
+airline-25,Lorem ipsum dolor sit ame,ABY,http://lorem.com/ipsum,STANDARD,2000/01/01 0:00,acme@lorem-ipsum.org,123456,administrator-01
+airline-26,Lorem ipsum dolor sit ame,ABZ,http://lorem.com/ipsum,STANDARD,2000/01/01 0:01,acme@lorem-ipsum.org,123456,administrator-01
+airline-27,Lorem ipsum dolor sit ame,BBC,http://lorem.com/ipsum,STANDARD,2024/12/31 23:59,acme@lorem-ipsum.org,123456,administrator-01
+airline-28,Lorem ipsum dolor sit ame,CBC,http://lorem.com/ipsum,STANDARD,2025/01/01 0:00,acme@lorem-ipsum.org,123456,administrator-01
+#emailAdress -standard variations
+airline-29,Lorem ipsum dolor sit ame,DBC,http://lorem.com/ipsum,STANDARD,2012/07/02 0:00,acmepassword@lorem-ipsum.org,123456,administrator-01
+airline-30,Lorem ipsum dolor sit ame,EBC,http://lorem.com/ipsum,STANDARD,2012/07/02 0:00,a@b.e,123456,administrator-01
+airline-31,Lorem ipsum dolor sit ame,FBC,http://lorem.com/ipsum,STANDARD,2012/07/02 0:00,a@b.es,123456,administrator-01
+airline-32,Lorem ipsum dolor sit ame,GBC,http://lorem.com/ipsum,STANDARD,2012/07/02 0:00,a@b.esx,123456,administrator-01
+airline-33,Lorem ipsum dolor sit ame,HBC,http://lorem.com/ipsum,STANDARD,2012/07/02 0:00,lorem-ipsum@dolor.sit.amet.consectetur.adipiscing.elit.sed.do.eiusmod.tempor.incididunt.ut.labore.et.dolore.magna.aliqua.Ut.enim.ad.minim.veniam.quis.nostrud.exercitation.ullamco.laboris.nisi.ut.aliquip.ex.ea.commodo.consequat.duis.aute.irure.doloris.edu,123456,administrator-01
+airline-34,Lorem ipsum dolor sit ame,IBC,http://lorem.com/ipsum,STANDARD,2012/07/02 0:00,lorem-ipsum@dolor.sit.amet.consectetur.adipiscing.elit.sed.do.eiusmod.tempor.incididunt.ut.labore.et.dolore.magna.aliqua.Ut.enim.ad.minim.veniam.quis.nostrud.exercitation.ullamco.laboris.nisi.ut.aliquip.ex.ea.commodo.consequat.duis.aute.irure.dolor.es.org,123456,administrator-01
+#phoneNumber - standard variations
+airline-35,Lorem ipsum dolor sit ame,JBC,http://lorem.com/ipsum,STANDARD,2012/07/02 0:00,acme@lorem-ipsum.org,+123456,administrator-01
+airline-36,Lorem ipsum dolor sit ame,KBC,http://lorem.com/ipsum,STANDARD,2012/07/02 0:00,acme@lorem-ipsum.org,1234567,administrator-01
+airline-37,Lorem ipsum dolor sit ame,LBC,http://lorem.com/ipsum,STANDARD,2012/07/02 0:00,acme@lorem-ipsum.org,+1234567,administrator-01
+airline-38,Lorem ipsum dolor sit ame,MBC,http://lorem.com/ipsum,STANDARD,2012/07/02 0:00,acme@lorem-ipsum.org,12345678,administrator-01
+airline-39,Lorem ipsum dolor sit ame,NBC,http://lorem.com/ipsum,STANDARD,2012/07/02 0:00,acme@lorem-ipsum.org,+12345678,administrator-01
+airline-40,Lorem ipsum dolor sit ame,OBC,http://lorem.com/ipsum,STANDARD,2012/07/02 0:00,acme@lorem-ipsum.org,123456789,administrator-01
+airline-41,Lorem ipsum dolor sit ame,PBC,http://lorem.com/ipsum,STANDARD,2012/07/02 0:00,acme@lorem-ipsum.org,+123456789,administrator-01
+airline-42,Lorem ipsum dolor sit ame,QBC,http://lorem.com/ipsum,STANDARD,2012/07/02 0:00,acme@lorem-ipsum.org,123467891,administrator-01
+airline-43,Lorem ipsum dolor sit ame,RBC,http://lorem.com/ipsum,STANDARD,2012/07/02 0:00,acme@lorem-ipsum.org,+1234567891,administrator-01
+airline-44,Lorem ipsum dolor sit ame,SBC,http://lorem.com/ipsum,STANDARD,2012/07/02 0:00,acme@lorem-ipsum.org,12345678912,administrator-01
+airline-45,Lorem ipsum dolor sit ame,TBC,http://lorem.com/ipsum,STANDARD,2012/07/02 0:00,acme@lorem-ipsum.org,+12345678912,administrator-01
+airline-46,Lorem ipsum dolor sit ame,UBC,http://lorem.com/ipsum,STANDARD,2012/07/02 0:00,acme@lorem-ipsum.org,123456789123,administrator-01
+airline-47,Lorem ipsum dolor sit ame,VBC,http://lorem.com/ipsum,STANDARD,2012/07/02 0:00,acme@lorem-ipsum.org,+123456789123,administrator-01
+airline-48,Lorem ipsum dolor sit ame,WBC,http://lorem.com/ipsum,STANDARD,2012/07/02 0:00,acme@lorem-ipsum.org,1234567891234,administrator-01
+airline-49,Lorem ipsum dolor sit ame,XBC,http://lorem.com/ipsum,STANDARD,2012/07/02 0:00,acme@lorem-ipsum.org,+1234567891234,administrator-01
+airline-50,Lorem ipsum dolor sit ame,YBC,http://lorem.com/ipsum,STANDARD,2012/07/02 0:00,acme@lorem-ipsum.org,12345678912345,administrator-01
+airline-51,Lorem ipsum dolor sit ame,ZBC,http://lorem.com/ipsum,STANDARD,2012/07/02 0:00,acme@lorem-ipsum.org,+12345678912345,administrator-01
+airline-52,Lorem ipsum dolor sit ame,ACC,http://lorem.com/ipsum,STANDARD,2012/07/02 0:00,acme@lorem-ipsum.org,123456789123456,administrator-01

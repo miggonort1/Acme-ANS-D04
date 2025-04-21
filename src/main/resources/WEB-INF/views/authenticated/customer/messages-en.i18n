@@ -1,0 +1,19 @@
+# messages-en.i18n
+#
+# Copyright (C) 2012-2025 Rafael Corchuelo.
+#
+# In keeping with the traditional purpose of furthering education and research, it is
+# the policy of the copyright owner to permit non-commercial use and redistribution of
+# this software. It has been tested carefully, but it is not guaranteed for any particular
+# purposes.  The copyright owner does not offer any warranties or representations, nor do
+# they accept any liabilities with respect to them.
+
+authenticated.technician.form.title= Technician form
+authenticated.technician.form.label.licenseNumber= License number
+authenticated.technician.form.label.phoneNumber= Phone Number
+authenticated.technician.form.label.specialisation= Specialisation
+authenticated.technician.form.label.annualHealthTest= Anual health test
+authenticated.technician.form.label.yearsOfExperience= Years of experience
+authenticated.technician.form.label.certifications= Certifications
+authenticated.technician.form.button.create= Create
+authenticated.technician.form.button.update= Update

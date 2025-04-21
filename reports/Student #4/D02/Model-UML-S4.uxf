@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="15.1">
+  <zoom_level>8</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>400</x>
+      <y>416</y>
+      <w>448</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Entity&gt;&gt;
+TrackingLog
+--
++ lastUpdateMoment {Mandatory, Temporal(TIMESTAMP), ValidMoment(Past = True)}
++ step: String {Mandatory, ValidString(min = 1, max = 50), Automapped}
++ resolutionPercentage: double {Mandatory, ValidScore, Automapped}
++ status: Status {Mandatory, Valid, Automapped}
++ resolution: String {Mandatory, ValidLongText, Automapped}
++ draftMode: Boolean {Mandatory,Automapped}
+
+
+
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>64</x>
+      <y>400</y>
+      <w>176</w>
+      <h>88</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Enum&gt;&gt;
+ClaimType
+--
+FLIGHT_ISSUES,
+LUGGAGE_ISSUES, 
+SECURITY_INCIDENT, 
+OTHER_ISSUES
+bg=yellow</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>608</x>
+      <y>344</y>
+      <w>32</w>
+      <h>88</h>
+    </coordinates>
+    <panel_attributes>lt=x-&gt;
+m1=*
+m2=1
+</panel_attributes>
+    <additional_attributes>10.0;90.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>400</x>
+      <y>232</y>
+      <w>448</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Entity&gt;&gt;
+Claim
+--
++ registrationMoment {Mandatory, Temporal(TIMESTAMP), ValidMoment(Past = True)}
++ passengerEmail: String {Mandatory, ValidEmail,Automapped}
++ description: String {Mandatory,ValidLongText,Automapped}
++ type: Type {mandatory,Valid,Automapped}
++ indicator: Boolean {Mandatory,Automapped}
++ draftMode: Boolean {Mandatory,Automapped}
+
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>400</x>
+      <y>64</y>
+      <w>448</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Role&gt;&gt;
+Agent
+--
++ employeeCode: String {Mandatory, Pattern("^[A-Z]{2,3}\\d{6}$"), Unique}
++ spokenLanguages: String {Mandatory, ValidLongText, Automapped}
++ moment {Mandatory, Temporal(TIMESTAMP), ValidMoment(Past = True)}
++ briefBio: String {Optional, ValidLongText, Automapped}
++ salary: Money {Optional, ValidMoney, Automapped}
++ photo: String {Optional, ValidUrl, Automapped}
+
+
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>40</x>
+      <y>24</y>
+      <w>296</w>
+      <h>208</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Form&gt;&gt;
+AgentDashboard
+--
++ topMonthsWithHighestNumberOfClaims: Map&lt;String, Integer&gt;
++ ratioOfClaimsResolved: Double
++ ratioOfClaimsRejected: Double
+
++ averageNumberOfLogsTheirClaimsHave: Double
++ minimumNumberOfLogsTheirClaimsHave: Double
++ maximumNumberOfLogsTheirClaimsHave: Double
++ deviationNumberOfLogsTheirClaimsHave: Double
+
++ averageNumberOfClaimsTheyAssisted: Double
++ minimumNumberOfClaimsTheyAssisted: Double
++ maximumNumberOfClaimsTheyAssisted: Double
++ deviationNumberOfClaimsTheyAssisted: Double
+  
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>608</x>
+      <y>176</y>
+      <w>32</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>lt=x-&gt;
+m1=*
+m2=1
+</panel_attributes>
+    <additional_attributes>10.0;70.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>64</x>
+      <y>312</y>
+      <w>176</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Enum&gt;&gt;
+Status
+--
+PENDING,
+ACCEPTED, 
+REJECTED
+
+bg=yellow</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>

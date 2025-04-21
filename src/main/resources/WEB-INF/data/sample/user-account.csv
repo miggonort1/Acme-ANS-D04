@@ -1,0 +1,57 @@
+key,enabled,identity,password,username
+user-account-consumer-01,true,"UserIdentity{name: 'Peter', surname: 'Consumer', email: 'peter@acme.com'}",consumer1,consumer1
+user-account-consumer-02,true,"UserIdentity{name: 'Mary', surname: '貸んい建濯よ芝弾テソ Λορεμ ιπσθμ', email: 'mary@acme.com'}",consumer2,consumer2
+user-account-consumer-03,true,"UserIdentity{name: 'Manolo', surname: '之乎路可良 ᏥᏲᏎᎭ', email: 'manolo@acme.com'}",consumer3,consumer3
+user-account-provider-01,true,"UserIdentity{name: 'Laurel', surname: 'Provider', email: 'laurel@acme.com'}",provider1,provider1
+user-account-provider-02,true,"UserIdentity{name: 'Martina', surname: 'коза თხა', email: 'martina@acme.com'}",provider2,provider2
+user-account-provider-03,true,"UserIdentity{name: 'Antonia', surname: 'אבטיח Æløzå', email: 'antonia@acme.com'}",provider3,provider3
+user-account-technician-01,true,"UserIdentity{name: 'Pelo', surname: 'корова ძროხა', email: 'pelo@acme.com'}",technician1,technician1
+user-account-technician-02,true,"UserIdentity{name: 'Pico', surname: 'свинья ღორი', email: 'pico@acme.com'}",technician2,technician2
+user-account-technician-03,true,"UserIdentity{name: 'Pata', surname: 'собака ძაღლი', email: 'pata@acme.com'}",technician3,technician3
+user-account-customer-01,true,"UserIdentity{name: 'Javier', surname: 'Clavijo', email: 'javclamar@acme.com'}",customer1,customer1
+user-account-customer-02,true,"UserIdentity{name: 'Will', surname: 'Smith', email:'will@acme.com'}",customer2,customer2
+user-account-customer-03,true,"UserIdentity{name: 'John', surname: 'Doe', email:'jhon@acme.com'}",customer3,customer3
+user-account-agent-01,true,"UserIdentity{name: 'Elden', surname: 'Lხა Æløzå', email: 'elden@acme.com'}",agent1,agent1
+user-account-agent-02,true,"UserIdentity{name: 'Ring', surname: 'Iხაძროხა коза', email: 'ring@acme.com'}",agent2,agent2
+user-account-agent-03,true,"UserIdentity{name: 'Alberto', surname: 'თხაсобака козаძაღლი', email: 'alberto@acme.com'}",agent3,agent3
+user-account-manager-01,true,"UserIdentity{name: 'Alejandro', surname: 'Manager', email: 'alejandro@acme.com'}",manager1,manager1
+user-account-manager-02,true,"UserIdentity{name: 'Dalia', surname: 'Hernandez', email: 'dalia@acme.com'}",manager2,manager2
+user-account-manager-03,true,"UserIdentity{name: 'Frank', surname: 'Ocean', email: 'frank@acme.com'}",manager3,manager3
+user-account-administrator-02,true,"UserIdentity{name: 'Pepe', surname: 'Admin', email: 'pepeadmin@acme.com'}",administrator1,administrator1
+user-account-administrator-03,true,"UserIdentity{name: 'Antonio', surname: 'Admin', email: 'antonioadmin@acme.com'}",administrator2,administrator2
+user-account-member-01,true,"UserIdentity{name: 'Jose', surname: 'Esteve', email: 'joseesteve@acme.com'}",member1,member1
+user-account-member-02,true,"UserIdentity{name: 'Carlos', surname: 'Diaz', email: 'carlosdiaz@acme.com'}",member2,member2
+user-account-member-03,true,"UserIdentity{name: 'Monica', surname: 'Regidor', email: 'monicaregidor@acme.com'}",member3,member3
+user-account-member-04,true,"UserIdentity{name: 'Carolina', surname: 'Maduro', email: 'carolinamaduro@acme.com'}",member4,member4
+user-account-member-05,true,"UserIdentity{name: 'Lidia', surname: 'Segura', email: 'lidiasegura@acme.com'}",member,member
+user-account-member-06,true,"UserIdentity{name: 'Lidia', surname: 'Segura', email: 'lidiasegura@acme.com'}",member6,member6
+user-account-member-07,true,"UserIdentity{name: 'Lidia', surname: 'Segura', email: 'lidiasegura@acme.com'}",member7,member7
+user-account-member-08,true,"UserIdentity{name: 'Lidia', surname: 'Segura', email: 'lidiasegura@acme.com'}",member8,member8
+user-account-member-09,true,"UserIdentity{name: 'Lidia', surname: 'Segura', email: 'lidiasegura@acme.com'}",member9,member9
+user-account-member-10,true,"UserIdentity{name: 'Lidia', surname: 'Segura', email: 'lidiasegura@acme.com'}",member10,member10
+user-account-member-11,true,"UserIdentity{name: 'Lidia', surname: 'Segura', email: 'lidiasegura@acme.com'}",member11,member11
+user-account-member-12,true,"UserIdentity{name: 'Lidia', surname: 'Segura', email: 'lidiasegura@acme.com'}",member12,member12
+user-account-member-13,true,"UserIdentity{name: 'Lidia', surname: 'Segura', email: 'lidiasegura@acme.com'}",member13,member13
+user-account-member-14,true,"UserIdentity{name: 'Lidia', surname: 'Segura', email: 'lidiasegura@acme.com'}",member14,member14
+user-account-member-15,true,"UserIdentity{name: 'Lidia', surname: 'Segura', email: 'lidiasegura@acme.com'}",member15,member15
+user-account-member-16,true,"UserIdentity{name: 'Lidia', surname: 'Segura', email: 'lidiasegura@acme.com'}",member16,member16
+user-account-member-17,true,"UserIdentity{name: 'Lidia', surname: 'Segura', email: 'lidiasegura@acme.com'}",member17,member17
+user-account-member-18,true,"UserIdentity{name: 'Lidia', surname: 'Segura', email: 'lidiasegura@acme.com'}",member18,member18
+user-account-member-19,true,"UserIdentity{name: 'Lidia', surname: 'Segura', email: 'lidiasegura@acme.com'}",member19,member19
+user-account-member-20,true,"UserIdentity{name: 'Lidia', surname: 'Segura', email: 'lidiasegura@acme.com'}",member20,member20
+user-account-member-21,true,"UserIdentity{name: 'Lidia', surname: 'Segura', email: 'lidiasegura@acme.com'}",member21,member21
+user-account-member-22,true,"UserIdentity{name: 'Lidia', surname: 'Segura', email: 'lidiasegura@acme.com'}",member22,member22
+user-account-member-23,true,"UserIdentity{name: 'Lidia', surname: 'Segura', email: 'lidiasegura@acme.com'}",member23,member23
+user-account-member-24,true,"UserIdentity{name: 'Lidia', surname: 'Segura', email: 'lidiasegura@acme.com'}",member24,member24
+user-account-member-25,true,"UserIdentity{name: 'Lidia', surname: 'Segura', email: 'lidiasegura@acme.com'}",member25,member25
+user-account-member-26,true,"UserIdentity{name: 'Lidia', surname: 'Segura', email: 'lidiasegura@acme.com'}",member26,member26
+user-account-member-27,true,"UserIdentity{name: 'Lidia', surname: 'Segura', email: 'lidiasegura@acme.com'}",member27,member27
+user-account-member-28,true,"UserIdentity{name: 'Lidia', surname: 'Segura', email: 'lidiasegura@acme.com'}",member28,member28
+user-account-member-29,true,"UserIdentity{name: 'Lidia', surname: 'Segura', email: 'lidiasegura@acme.com'}",member29,member29
+user-account-member-30,true,"UserIdentity{name: 'Lidia', surname: 'Segura', email: 'lidiasegura@acme.com'}",member30,member30
+user-account-member-31,true,"UserIdentity{name: 'Lidia', surname: 'Segura', email: 'lidiasegura@acme.com'}",member31,member31
+user-account-member-32,true,"UserIdentity{name: 'Lidia', surname: 'Segura', email: 'lidiasegura@acme.com'}",member32,member32
+user-account-member-33,true,"UserIdentity{name: 'Lidia', surname: 'Segura', email: 'lidiasegura@acme.com'}",member33,member33
+user-account-member-34,true,"UserIdentity{name: 'Lidia', surname: 'Segura', email: 'lidiasegura@acme.com'}",member34,member34
+user-account-member-35,true,"UserIdentity{name: 'Lidia', surname: 'Segura', email: 'lidiasegura@acme.com'}",member35,member35
+user-account-member-36,true,"UserIdentity{name: 'Lidia', surname: 'Segura', email: 'lidiasegura@acme.com'}",member36,member36

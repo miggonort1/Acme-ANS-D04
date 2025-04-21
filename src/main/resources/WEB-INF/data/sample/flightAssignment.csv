@@ -1,0 +1,32 @@
+key,duty,moment,currentStatus,remarks,key:crewMember,key:leg
+#base entity
+flightAssignment-01,CABIN_ATTENDANT,2012/07/02 00:00,CONFIRMED,Lorem ipsum dolor sit amet  consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*,member-01,leg-01
+#Student 3 testing requirements (duty and CrewMember variations)
+flightAssignment-02,LEAD_ATTENDANT,2012/07/02 00:00,CONFIRMED,Lorem ipsum dolor sit amet  consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*,member-02,leg-01
+flightAssignment-03,CO_PILOT,2012/07/02 00:00,CONFIRMED,Lorem ipsum dolor sit amet  consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*,member-03,leg-01
+flightAssignment-04,PILOT,2012/07/02 00:00,CONFIRMED,Lorem ipsum dolor sit amet  consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*,member-04,leg-01
+#moment variations
+flightAssignment-05,CABIN_ATTENDANT,2000/01/01 00:00,CONFIRMED,Lorem ipsum dolor sit amet  consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*,member-01,leg-01
+flightAssignment-06,CABIN_ATTENDANT,2000/01/01 00:01,CONFIRMED,Lorem ipsum dolor sit amet  consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*,member-01,leg-01
+flightAssignment-07,CABIN_ATTENDANT,2024/12/31 23:59,CONFIRMED,Lorem ipsum dolor sit amet  consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*,member-01,leg-01
+#currentStatus variations
+flightAssignment-09,CABIN_ATTENDANT,2012/07/02 00:00,PENDING,Lorem ipsum dolor sit amet  consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*,member-01,leg-01
+flightAssignment-10,CABIN_ATTENDANT,2012/07/02 00:00,CANCELLED,Lorem ipsum dolor sit amet  consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*,member-01,leg-01
+#remarks variations
+assignment-11,CABIN_ATTENDANT,2012/07/02 00:00,CONFIRMED,,member-01,leg-01
+assignment-12,CABIN_ATTENDANT,2012/07/02 00:00,CONFIRMED,"",member-01,leg-01
+flightAssignment-13,CABIN_ATTENDANT,2012/07/02 00:00,CONFIRMED,L,member-01,leg-01
+flightAssignment-14,CABIN_ATTENDANT,2012/07/02 00:00,CONFIRMED,Lorem ipsum dolor sit amet  consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut enim ad minim veniam? Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor,member-01,leg-01
+flightAssignment-15,CABIN_ATTENDANT,2012/07/02 00:00,CONFIRMED,Lorem ipsum dolor sit amet  consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut enim ad minim veniam? Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor*,member-01,leg-01
+flightAssignment-16,CABIN_ATTENDANT,2012/07/02 00:00,CONFIRMED,โลเร็ม อิปซัม,member-01,leg-01
+flightAssignment-17,CABIN_ATTENDANT,2012/07/02 00:00,CONFIRMED,لوريم إيبسوم,member-01,leg-01
+flightAssignment-18,CABIN_ATTENDANT,2012/07/02 00:00,CONFIRMED,洛伦·伊普森,member-01,leg-01
+flightAssignment-19,CABIN_ATTENDANT,2012/07/02 00:00,CONFIRMED,<marquee>Hacked</marquee>,member-01,leg-01
+flightAssignment-20,CABIN_ATTENDANT,2012/07/02 00:00,CONFIRMED,<script>alert(‘Hacked!’);</script>,member-01,leg-01
+flightAssignment-21,CABIN_ATTENDANT,2012/07/02 00:00,CONFIRMED,' or 'A' = 'A,member-01,leg-01
+#leg variations
+flightAssignment-22,CABIN_ATTENDANT,2012/07/02 00:00,CONFIRMED,Lorem ipsum dolor sit amet  consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*,member-01,leg-01
+flightAssignment-23,CABIN_ATTENDANT,2012/07/02 00:00,CONFIRMED,Lorem ipsum dolor sit amet  consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*,member-01,leg-02
+flightAssignment-24,CABIN_ATTENDANT,2012/07/02 00:00,CONFIRMED,Lorem ipsum dolor sit amet  consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*,member-01,leg-03
+flightAssignment-25,CABIN_ATTENDANT,2012/07/02 00:00,CONFIRMED,Lorem ipsum dolor sit amet  consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*,member-01,leg-04
+flightAssignment-26,CABIN_ATTENDANT,2012/07/02 00:00,CONFIRMED,Lorem ipsum dolor sit amet  consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*,member-01,leg-05

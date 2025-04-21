@@ -1,0 +1,3 @@
+key,name,iataCode,scope,city,country,website,email,phoneNumber
+airport-01,Madrid Airport,MAD,INTERNATIONAL,Madrid,Spain,http://madrid-airport.com,info@madrid-airport.com,+34901234567
+airport-02,Rome Airport,ROM,INTERNATIONAL,Rome,Italy,http://rome-airport.com,info@rome-airport.com,+390612345678

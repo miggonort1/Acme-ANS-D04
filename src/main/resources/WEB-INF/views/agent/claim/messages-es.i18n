@@ -1,0 +1,30 @@
+# messages-es.i18n
+#
+# Copyright (C) 2012-2025 Rafael Corchuelo.
+#
+# In keeping with the traditional purpose of furthering education and research, it is
+# the policy of the copyright owner to permit non-commercial use and redistribution of
+# this software. It has been tested carefully, but it is not guaranteed for any particular
+# purposes.  The copyright owner does not offer any warranties or representations, nor do
+# they accept any liabilities with respect to them.
+
+agent.claim.list.label.passengerEmail=Correo del pasajero
+agent.trackingLog.list.title=Registro de seguimiento
+agent.claim.list.title= Incidencias
+agent.claim.list.button.create=Crear
+agent.claim.list.label.description=Descripción
+agent.claim.list.label.status=Progreso
+agent.claim.list.label.type=Tipo
+agent.claim.list.label.registrationMoment=Momento de registro
+agent.claim.form.label.type=Tipo
+agent.claim.form.label.status=Progreso
+agent.claim.form.title=Incidencia
+agent.claim.form.label.description=Descripción
+agent.claim.form.label.indicator=Progreso
+agent.claim.form.label.passengerEmail=Correo del pasajero
+agent.claim.form.label.registrationMoment=Momento de registro
+agent.claim.form.label.leg=Tramo
+agent.claim.form.button.update=Actualizar
+agent.claim.form.button.create=Crear
+agent.claim.form.button.delete=Borrar
+agent.claim.form.button.publish=Publicar

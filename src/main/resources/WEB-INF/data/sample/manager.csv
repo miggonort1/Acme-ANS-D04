@@ -1,0 +1,4 @@
+key,key:userAccount,identifierNumber,years,dateOfBirth,link,key:airline
+manager-01,user-account-manager-01,"AM184737",7,2000/06/18 00:00,"http://lorem.com/ipsum",airline-01
+manager-02,user-account-manager-02,"DH458796",12,2000/05/17 00:00,"http://example.org/a/b?”",airline-01
+manager-03,user-account-manager-03,"FO454396",6,2001/04/16 00:00,"ftp://a.b",airline-01

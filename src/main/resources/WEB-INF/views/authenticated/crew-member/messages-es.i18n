@@ -1,0 +1,21 @@
+# messages-es.i18n
+#
+# Copyright (C) 2012-2025 Rafael Corchuelo.
+#
+# In keeping with the traditional purpose of furthering education and research, it is
+# the policy of the copyright owner to permit non-commercial use and redistribution of
+# this software. It has been tested carefully, but it is not guaranteed for any particular
+# purposes.  The copyright owner does not offer any warranties or representations, nor do
+# they accept any liabilities with respect to them.
+
+
+authenticated.crew-member.form.title=Detalles del tripulante:
+authenticated.crew-member.form.label.employeeCode=Código de empleado:
+authenticated.crew-member.form.label.phoneNumber=Número de teléfono:
+authenticated.crew-member.form.label.languageSkills= Habilidades lingüísticas:
+authenticated.crew-member.form.label.availabilityStatus=Disponibilidad:
+authenticated.crew-member.form.label.airline= Aerolínea para la que trabajas:
+authenticated.crew-member.form.label.yearsOfExperience=Años de experiencia:
+authenticated.crew-member.form.label.salary=Salario:
+authenticated.crew-member.form.button.create=Registrarse
+authenticated.crew-member.form.button.update=Actualizar

@@ -1,0 +1,4 @@
+# menu-en.i18n
+
+acme.constraints.ValidCustomerIdentifier.message = duplicated
+

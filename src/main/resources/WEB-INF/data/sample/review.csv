@@ -1,0 +1,36 @@
+key,name,moment,subject,text,score,recommended
+# base entity
+review-01,Lorem ipsum dolor sit ame,2012/07/02 00:00,Lorem ipsum dolor sit ame,Lorem ipsum dolor sit amet  consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*,5,TRUE
+#name variations
+review-02,L,2012/07/02 00:00,Lorem ipsum dolor sit ame,Lorem ipsum dolor sit amet  consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*,5,TRUE
+review-03,Lo,2012/07/02 00:00,Lorem ipsum dolor sit ame,Lorem ipsum dolor sit amet  consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*,5,TRUE
+review-04,Lorem ipsum dolor sit amet  consectetur adipiscin,2012/07/02 00:00,Lorem ipsum dolor sit ame,Lorem ipsum dolor sit amet  consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*,5,TRUE
+review-05,Lorem ipsum dolor sit amet  consectetur adipiscing,2012/07/02 00:00,Lorem ipsum dolor sit ame,Lorem ipsum dolor sit amet  consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*,5,TRUE
+review-06,โลเร็ม อิปซัม,2012/07/02 00:00,Lorem ipsum dolor sit ame,Lorem ipsum dolor sit amet  consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*,5,TRUE
+review-07,<marquee>Hacked</marquee>,2012/07/02 00:00,Lorem ipsum dolor sit ame,Lorem ipsum dolor sit amet  consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*,5,TRUE
+#moment variations
+review-08,Lorem ipsum dolor sit ame,2000/01/01 00:00,Lorem ipsum dolor sit ame,Lorem ipsum dolor sit amet  consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*,5,TRUE
+review-09,Lorem ipsum dolor sit ame,2000/01/01 00:01,Lorem ipsum dolor sit ame,Lorem ipsum dolor sit amet  consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*,5,TRUE
+review-10,Lorem ipsum dolor sit ame,2022/07/29 23:59,Lorem ipsum dolor sit ame,Lorem ipsum dolor sit amet  consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*,5,TRUE
+review-11,Lorem ipsum dolor sit ame,2022/07/30 00:00,Lorem ipsum dolor sit ame,Lorem ipsum dolor sit amet  consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*,5,TRUE
+#subject variations
+review-12,Lorem ipsum dolor sit ame,2012/07/02 00:00,L,Lorem ipsum dolor sit amet  consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*,5,TRUE
+review-13,Lorem ipsum dolor sit ame,2012/07/02 00:00,Lo,Lorem ipsum dolor sit amet  consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*,5,TRUE
+review-14,Lorem ipsum dolor sit ame,2012/07/02 00:00,Lorem ipsum dolor sit amet  consectetur adipiscin,Lorem ipsum dolor sit amet  consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*,5,TRUE
+review-15,Lorem ipsum dolor sit ame,2012/07/02 00:00,Lorem ipsum dolor sit amet  consectetur adipiscing,Lorem ipsum dolor sit amet  consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*,5,TRUE
+review-16,Lorem ipsum dolor sit ame,2012/07/02 00:00,لوريم إيبسوم,Lorem ipsum dolor sit amet  consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*,5,TRUE
+review-17,Lorem ipsum dolor sit ame,2012/07/02 00:00,<script>alert(‘Hacked!’);</script>,Lorem ipsum dolor sit amet  consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*,5,TRUE
+	#text variations
+review-18,Lorem ipsum dolor sit ame,2012/07/02 00:00,Lorem ipsum dolor sit ame,L,5,TRUE
+review-19,Lorem ipsum dolor sit ame,2012/07/02 00:00,Lorem ipsum dolor sit ame,Lo,5,TRUE
+review-20,Lorem ipsum dolor sit ame,2012/07/02 00:00,Lorem ipsum dolor sit ame,Lorem ipsum dolor sit amet  consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut enim ad minim veniam? Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor,5,TRUE
+review-21,Lorem ipsum dolor sit ame,2012/07/02 00:00,Lorem ipsum dolor sit ame,Lorem ipsum dolor sit amet  consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut enim ad minim veniam? Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolore,5,TRUE
+review-22,Lorem ipsum dolor sit ame,2012/07/02 00:00,Lorem ipsum dolor sit ame,洛伦·伊普森,5,TRUE
+review-23,Lorem ipsum dolor sit ame,2012/07/02 00:00,Lorem ipsum dolor sit ame,' or 'A' = 'A ,5,TRUE
+#score variations
+review-24,Lorem ipsum dolor sit ame,2012/07/02 00:00,Lorem ipsum dolor sit ame,Lorem ipsum dolor sit amet  consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*,0,TRUE
+review-25,Lorem ipsum dolor sit ame,2012/07/02 00:00,Lorem ipsum dolor sit ame,Lorem ipsum dolor sit amet  consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*,1,TRUE
+review-26,Lorem ipsum dolor sit ame,2012/07/02 00:00,Lorem ipsum dolor sit ame,Lorem ipsum dolor sit amet  consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*,9,TRUE
+review-27,Lorem ipsum dolor sit ame,2012/07/02 00:00,Lorem ipsum dolor sit ame,Lorem ipsum dolor sit amet  consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*,10,TRUE
+#recommended variations
+review-28,Lorem ipsum dolor sit ame,2012/07/02 00:00,Lorem ipsum dolor sit ame,Lorem ipsum dolor sit amet  consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*,5,FALSE

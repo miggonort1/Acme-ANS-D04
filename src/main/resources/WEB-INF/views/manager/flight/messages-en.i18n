@@ -1,0 +1,28 @@
+# messages-en.i18n
+#
+# Copyright (C) 2012-2025 Rafael Corchuelo.
+#
+# In keeping with the traditional purpose of furthering education and research, it is
+# the policy of the copyright owner to permit non-commercial use and redistribution of
+# this software. It has been tested carefully, but it is not guaranteed for any particular
+# purposes.  The copyright owner does not offer any warranties or representations, nor do
+# they accept any liabilities with respect to them.
+
+
+
+manager.flight.list.title= Flight
+manager.flight.form.title= Flight
+
+
+manager.flight.list.label.tag= Tag
+manager.flight.list.label.selfTransfer= Self Transfer
+manager.flight.list.label.cost= Cost
+manager.flight.list.button.create= Create
+
+manager.flight.form.label.tag= Tag
+manager.flight.form.label.selfTransfer= Self Transfer
+manager.flight.form.label.cost= Cost
+manager.flight.form.label.description= Description
+manager.flight.form.label.draftMode= Draft Mode
+manager.flight.form.button.create= Create
+
