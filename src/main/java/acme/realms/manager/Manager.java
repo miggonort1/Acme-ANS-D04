@@ -49,7 +49,7 @@ public class Manager extends AbstractRole {
 	private Date				dateOfBirth;
 
 	@Optional
-	@ValidUrl
+	@ValidUrl(remote = false)
 	@Automapped
 	private String				link;
 

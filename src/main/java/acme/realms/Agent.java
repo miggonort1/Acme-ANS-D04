@@ -61,7 +61,7 @@ public class Agent extends AbstractRole {
 	private Money				salary;
 
 	@Optional
-	@ValidUrl
+	@ValidUrl(remote = false)
 	@Automapped
 	private String				photo;
 
