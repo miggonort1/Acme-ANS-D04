@@ -11,6 +11,7 @@ import acme.client.helpers.MomentHelper;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.claim.Claim;
+import acme.entities.claim.ClaimStatus;
 import acme.entities.claim.TrackinLogStatus;
 import acme.entities.claim.TrackingLog;
 import acme.realms.Agent;
@@ -34,15 +35,6 @@ public class AgentTrackingLogCreateService extends AbstractGuiService<Agent, Tra
 		Claim claim = this.repository.findClaimById(masterId);
 		Date currentMoment;
 		currentMoment = MomentHelper.getCurrentMoment();
-
-		//		boolean isCustomerDissatisfied = this.repository.isCustomerDissatisfied(claimId);
-		//		boolean hasFullResolutionLog = this.repository.existsTrackingLogWithFullResolution(claimId);
-		//
-		//		if (hasFullResolutionLog && !isCustomerDissatisfied) {
-		//			super.getResponse().setAuthorised(false);
-		//			return;
-		//		}
-
 		TrackingLog trackingLog = new TrackingLog();
 		trackingLog.setClaim(claim);
 		trackingLog.setLastUpdateMoment(currentMoment);
@@ -68,6 +60,12 @@ public class AgentTrackingLogCreateService extends AbstractGuiService<Agent, Tra
 
 	@Override
 	public void perform(final TrackingLog object) {
+		if (object.getStatus() == TrackinLogStatus.ACCEPTED)
+			object.getClaim().setStatus(ClaimStatus.ACCEPTED);
+
+		if (object.getStatus() == TrackinLogStatus.REJECTED)
+			object.getClaim().setStatus(ClaimStatus.DENIED);
+
 		this.repository.save(object);
 	}
 
