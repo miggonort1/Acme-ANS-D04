@@ -60,7 +60,7 @@ public class CrewMemberFlightAssignmentPublishService extends AbstractGuiService
 			boolean isAvailable = object.getCrewMember().getAvailabilityStatus().equals(AvailabilityStatus.AVAILABLE);
 			super.state(isAvailable, "crewMember", "acme.validation.flightAssignment.crewMember.available");
 
-			boolean isAlreadyAssigned = this.repository.hasFlightCrewMemberLegAssociated(object.getCrewMember().getId(), MomentHelper.getCurrentMoment());
+			boolean isAlreadyAssigned = this.repository.hasFlightCrewMemberLegAssociated(object.getCrewMember().getId(), object.getMoment());
 			super.state(!isAlreadyAssigned, "crewMember", "acme.validation.flightAssignment.crewMember.multipleLegs");
 		}
 

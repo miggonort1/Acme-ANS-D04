@@ -30,7 +30,7 @@ crew-member.activity-log.list.label.draftMode = Draft mode:
 crew-member.activity-log.form.button.create = Create
 crew-member.activity-log.form.button.update = Update
 crew-member.activity-log.form.button.delete = Delete
-crew-member.activity-log.form.button.publish = Publish
+crew-member.activity-log.form.button.publish = Publish Activity Log
 
 # List Buttons
-crew-member.activity-log.list.button.create = Create
+crew-member.activity-log.list.button.create = Create Activity Log
