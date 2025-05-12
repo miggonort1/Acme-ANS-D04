@@ -20,7 +20,7 @@ crew-member.flight-assignment.form.label.leg = Leg code:
 crew-member.flight-assignment.form.label.crewMember= Flight crew member:
 
 # List Labels
-crew-member.flight-assignment.list.label.leg=Flight Number:
+crew-member.flight-assignment.list.label.leg=Flight Leg Number:
 crew-member.flight-assignment.list.label.duty=Duty:
 crew-member.flight-assignment.list.label.moment=Assignment Date
 crew-member.flight-assignment.list.label.status=Status:
@@ -35,3 +35,7 @@ crew-member.flight-assignment.form.button.delete= Delete Assignment
 crew-member.flight-assignment.form.button.publish= Publish Assignment
 crew-members.flight-assignment.list.button.create = Create
 crew-member.flight-assignment.form.button.activity-log = Show activity logs
+
+
+# List Buttons
+crew-member.flight-assignment.list.button.create= Create Assignment

@@ -10,6 +10,11 @@
 
 acme.validation.flightAssignment.duty = Cada tramo solo puede tener un piloto y un copiloto
 acme.validation.flightAssignment.leg.moment = La asignación no puede vincularse a tramos que ya hayan ocurrido
-acme.validation.flightAssignment.flightCrewMember.available = El tripulante no está disponible para ser asignado
-acme.validation.flightAssignment.flightCrewMember.multipleLegs = El tripulante ya está asignado a otro tramo
+acme.validation.flightAssignment.crewMember.available = El tripulante no está disponible para ser asignado
+acme.validation.flightAssignment.crewMember.multipleLegs = El tripulante ya está asignado a otro tramo
 acme.validation.authorisation=No estás autorizado para realizar esta operación.
+acme.validation.activityLog.beforeLeg = No puede asignarse un Activity Log a un tramo que aún no ha sucedido
+acme.validation.activityLog.severityLevelOutOfRange = El nivel de severidad debe ser entre 0 y 10
+
+acme.validation.header.message  	= Debe tener entre 1 y 75 caracteres
+acme.validation.text.message   		= Debe tener entre 1 y 255 caracteres 
