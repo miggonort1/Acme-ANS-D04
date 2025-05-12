@@ -51,7 +51,6 @@ public class Flight extends AbstractEntity {
 	private String				description;
 
 	@Mandatory
-	// HINT: @Valid by default.
 	@Automapped
 	private boolean				draftMode;
 
