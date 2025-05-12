@@ -37,11 +37,6 @@ public class CrewMemberFlightAssignmentCompletedListService extends AbstractGuiS
 	}
 	@Override
 	public void unbind(final FlightAssignment object) {
-		System.out.println("FlightAssignment id: " + object.getId());
-		System.out.println("Leg: " + object.getLeg());
-		System.out.println("CrewMember: " + object.getCrewMember());
-		System.out.println("Moment: " + object.getMoment());
-
 		Dataset dataset = super.unbindObject(object, "duty", "moment", "currentStatus", "remarks", "draftMode", "leg");
 
 		dataset.put("leg", object.getLeg().getFlightNumber());

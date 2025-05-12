@@ -47,7 +47,7 @@ public interface CrewMemberFlightAssignmentRepository extends AbstractRepository
 	@Query("SELECT COUNT(fa) > 0 FROM FlightAssignment fa WHERE fa.leg.id = :legId AND fa.duty IN ('PILOT', 'CO_PILOT') AND fa.duty = :duty AND fa.id != :id")
 	Boolean hasDutyAssigned(int legId, Duty duty, int id);
 
-	@Query("SELECT COUNT(fa) > 0 FROM FlightAssignment fa WHERE fa.crewMember.id = :crewMemberId AND fa.moment = :moment")
+	@Query("SELECT COUNT(fa) > 0 FROM FlightAssignment fa WHERE fa.crewMember.id = :crewMemberId AND fa.moment = :moment AND fa.draftMode = false")
 	Boolean hasFlightCrewMemberLegAssociated(int crewMemberId, Date moment);
 
 }

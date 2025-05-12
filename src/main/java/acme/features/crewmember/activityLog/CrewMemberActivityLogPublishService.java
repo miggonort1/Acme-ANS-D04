@@ -47,6 +47,7 @@ public class CrewMemberActivityLogPublishService extends AbstractGuiService<Crew
 	public void validate(final ActivityLog object) {
 		if (object.getFlightAssignment() != null && object.getFlightAssignment().getDraftMode())
 			super.state(false, "flightAssignment", "acme.validation.activityLog.flightAssignment-not-published");
+
 	}
 
 	@Override

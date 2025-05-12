@@ -60,6 +60,7 @@ master.menu.customer.passengers = Passengers
 master.menu.crew-member = Crew Member
 master.menu.crew-member.flight-assignments-completed= Flight Assignments Completed
 master.menu.crew-member.flight-assignments-planned= Flight Assignments Planned
+master.menu.dashboards.crew-member-dashboard = Crew Member Dashboard
 
 # master.menu.agent ####################################################
 
