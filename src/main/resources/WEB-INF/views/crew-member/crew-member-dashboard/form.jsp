@@ -22,10 +22,10 @@
 
 	<tr>
         <th scope="row">
-            <acme:print code="crew-member.crew-member-dashboard.form.label.lastFiveDestinationsAssignedAssignedAssignedAssigned"/>
+            <acme:print code="crew-member.crew-member-dashboard.form.label.lastFiveDestinationsAssigned"/>
         </th>
     </tr>
-    <c:forEach var="item" items="${lastFiveDestinationsAssignedAssignedAssigned}">
+    <c:forEach var="item" items="${lastFiveDestinationsAssigned}">
         <tr>
             <td><acme:print value = "${item}"/></td>
         </tr>
