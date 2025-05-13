@@ -21,6 +21,6 @@
     <acme:list-column code="manager.flight.list.label.cost" path="cost" width="10%"/>
 </acme:list>
 
-<jstl:if test="${_command == 'list-mine'}">
+<jstl:if test="${_command == 'list'}">
     <acme:button code="manager.flight.list.button.create" action="/manager/flight/create"/>
 </jstl:if>

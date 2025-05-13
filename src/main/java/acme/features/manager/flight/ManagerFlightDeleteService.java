@@ -25,17 +25,11 @@ public class ManagerFlightDeleteService extends AbstractGuiService<Manager, Flig
 
 	@Override
 	public void authorise() {
-		boolean status;
-		int flightId;
-		Flight flight;
-		Manager manager;
+		int masterId = super.getRequest().getData("id", int.class);
+		Flight flight = this.repository.findFlightById(masterId);
 
-		flightId = super.getRequest().getData("id", int.class);
-		flight = this.repository.findFlightById(flightId);
-		manager = flight == null ? null : flight.getManager();
-
-		// El vuelo solo se puede eliminar si está en modo borrador y el usuario es su creador
-		status = flight != null && flight.isDraftMode() && super.getRequest().getPrincipal().hasRealm(manager);
+		Manager current = (Manager) super.getRequest().getPrincipal().getActiveRealm();
+		boolean status = flight != null && flight.getManager().equals(current) && flight.isDraftMode();
 
 		super.getResponse().setAuthorised(status);
 	}
@@ -53,33 +47,28 @@ public class ManagerFlightDeleteService extends AbstractGuiService<Manager, Flig
 
 	@Override
 	public void bind(final Flight flight) {
-		assert flight != null;
 		super.bindObject(flight, "tag", "selfTransfer", "cost", "description");
 	}
 
 	@Override
 	public void validate(final Flight flight) {
-		assert flight != null;
+		int assignmentCount = this.repository.countAssignmentsByFlightId(flight.getId());
+
+		if (assignmentCount > 0)
+			super.state(false, "*", "acme.validation.manager.flight.delete-has-assignments");
 	}
 
 	@Override
 	public void perform(final Flight flight) {
-		assert flight != null;
-
 		Collection<Leg> legs;
 
-		// Eliminar primero los legs asociados al vuelo
 		legs = this.repository.findAllLegsByFlightId(flight.getId());
 		this.repository.deleteAll(legs);
-
-		// Luego eliminar el vuelo
 		this.repository.delete(flight);
 	}
 
 	@Override
 	public void unbind(final Flight flight) {
-		assert flight != null;
-
 		Dataset dataset;
 		dataset = super.unbindObject(flight, "tag", "selfTransfer", "cost", "description");
 
