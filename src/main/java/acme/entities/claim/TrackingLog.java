@@ -47,17 +47,17 @@ public class TrackingLog extends AbstractEntity {
 	@Mandatory
 	@Valid
 	@Automapped
-	private TrackinLogStatus				status;
+	private TrackinLogStatus	status;
 
 	@Optional
 	@ValidLongText
 	@Automapped
 	private String				resolution;
 
-	@Mandatory
-	// HINT: @Valid by default.
-	@Automapped
-	private boolean				draftMode;
+	//	@Mandatory
+	//	// HINT: @Valid by default.
+	//	@Automapped
+	//	private boolean				draftMode;
 
 	// Relationships ----------------------------------------------------------
 	@Mandatory
