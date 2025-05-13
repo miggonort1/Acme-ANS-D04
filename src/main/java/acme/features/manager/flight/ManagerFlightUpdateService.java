@@ -18,19 +18,12 @@ public class ManagerFlightUpdateService extends AbstractGuiService<Manager, Flig
 
 	@Override
 	public void authorise() {
-		boolean status;
-		int flightId;
-		int managerId;
-		Flight flight;
-		Manager manager;
+		int id = super.getRequest().getData("id", int.class);
+		Flight flight = this.repository.findFlightById(id);
 
-		flightId = super.getRequest().getData("id", int.class);
-		flight = this.repository.findFlightById(flightId);
+		Manager current = (Manager) super.getRequest().getPrincipal().getActiveRealm();
+		boolean status = flight != null && flight.getManager().equals(current) && flight.isDraftMode();
 
-		managerId = super.getRequest().getPrincipal().getAccountId();
-		manager = this.repository.findManagerById(managerId);
-
-		status = flight != null && flight.isDraftMode() && super.getRequest().getPrincipal().hasRealm(manager);
 		super.getResponse().setAuthorised(status);
 	}
 
@@ -47,19 +40,16 @@ public class ManagerFlightUpdateService extends AbstractGuiService<Manager, Flig
 
 	@Override
 	public void bind(final Flight flight) {
-		Integer managerId;
-		Manager manager;
-
-		managerId = super.getRequest().getPrincipal().getAccountId();
-		manager = this.repository.findManagerById(managerId);
-
 		super.bindObject(flight, "tag", "selfTransfer", "cost", "description");
-		flight.setManager(manager);
 	}
 
 	@Override
 	public void validate(final Flight flight) {
-		// Add any necessary validation logic
+		if (!super.getBuffer().getErrors().hasErrors("selfTransfer")) {
+			Integer layovers = flight.getLayovers();
+			if (flight.getSelfTransfer() == false && layovers > 0)
+				super.state(false, "selfTransfer", "acme.validation.manager.flight.invalid-selfTransfer-layovers");
+		}
 	}
 
 	@Override
@@ -69,15 +59,8 @@ public class ManagerFlightUpdateService extends AbstractGuiService<Manager, Flig
 
 	@Override
 	public void unbind(final Flight flight) {
-		Integer managerId;
-		Manager manager;
 		Dataset dataset;
-
-		managerId = super.getRequest().getPrincipal().getAccountId();
-		manager = this.repository.findManagerById(managerId);
-
-		dataset = super.unbindObject(flight, "tag", "selfTransfer", "cost", "description");
-		dataset.put("manager", manager);
+		dataset = super.unbindObject(flight, "tag", "selfTransfer", "cost", "description", "draftMode");
 
 		super.getResponse().addData(dataset);
 	}

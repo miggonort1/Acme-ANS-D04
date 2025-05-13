@@ -1,15 +1,12 @@
 
 package acme.features.manager.flight;
 
-import java.util.Collection;
-
 import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.flight.Flight;
-import acme.entities.flight.Leg;
 import acme.realms.manager.Manager;
 
 @GuiService
@@ -21,7 +18,13 @@ public class ManagerFlightShowService extends AbstractGuiService<Manager, Flight
 
 	@Override
 	public void authorise() {
-		super.getResponse().setAuthorised(true);
+		int masterId = super.getRequest().getData("id", int.class);
+		Flight flight = this.repository.findFlightById(masterId);
+
+		Manager current = (Manager) super.getRequest().getPrincipal().getActiveRealm();
+		boolean status = flight != null && flight.getManager().equals(current);
+
+		super.getResponse().setAuthorised(status);
 	}
 
 	@Override
@@ -38,16 +41,10 @@ public class ManagerFlightShowService extends AbstractGuiService<Manager, Flight
 	@Override
 	public void unbind(final Flight flight) {
 		Dataset dataset;
-		Collection<Leg> legs;
-		boolean canBePublished;
 
-		legs = this.repository.findAllLegsByFlightId(flight.getId());
-		canBePublished = !legs.isEmpty() && this.repository.areAllLegsPublished(flight.getId());
+		dataset = super.unbindObject(flight, "tag", "selfTransfer", "cost", "description", "draftMode");
 
-		dataset = super.unbindObject(flight, "tag", "selfTransfer", "cost", "description", "manager");
-		dataset.put("legs", legs);
-		dataset.put("canBePublished", canBePublished);
-
+		dataset.put("id", flight.getId());
 		super.getResponse().addData(dataset);
 	}
 }

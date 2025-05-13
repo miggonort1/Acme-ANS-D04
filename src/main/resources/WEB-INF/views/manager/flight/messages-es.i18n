@@ -8,24 +8,22 @@
 # purposes.  The copyright owner does not offer any warranties or representations, nor do
 # they accept any liabilities with respect to them.
 
-technician.maintenance-record.list.title= Informe de mantenimiento
-technician.maintenance-record.list.button.create= Crear
-technician.maintenance-record.list.label.inspectionDueDate= Fecha de inspección límite
-technician.maintenance-record.list.label.notes=Notas
-technician.maintenance-record.form.label.aircraft= Aeronave
-technician.maintenance-record.form.label.status= Estado
-technician.maintenance-record.form.label.inspectionDueDate= Fecha de inspección límite
-technician.maintenance-record.form.label.estimatedCost= Coste estimado
-technician.maintenance-record.form.label.notes= Notas
+manager.flight.list.title= Vuelo
+manager.flight.form.title= Vuelo
 
-technician.maintenance-record.form.label.execution= Momento de ejecución
 
-technician.maintenance-record.form.title= Informe de mantenimiento
+manager.flight.list.label.tag= Tag
+manager.flight.list.label.selfTransfer= Self Transfer
+manager.flight.list.label.cost= Cost
+manager.flight.list.button.create= Create
 
-technician.maintenance-record.form.button.update= Actualizar
-technician.maintenance-record.form.button.create= Crear
-technician.maintenance-record.form.button.delete= Borrar
-technician.maintenance-record.form.button.publish= Publicar
+manager.flight.form.label.tag= Etiqueta
+manager.flight.form.label.selfTransfer= Autotransbordo
+manager.flight.form.label.cost= Coste
+manager.flight.form.label.description= Descripción
 
-technician.maintenance-record.form.button.task= Detalle de las tareas
-technician.maintenance-record.form.button.maintenance-record-task= Añade o elimina tareas
+manager.flight.form.button.legs = Mis tramos
+manager.flight.form.button.create= Crear
+manager.flight.form.button.update = Actualizar
+manager.flight.form.button.publish = Publicar
+manager.flight.form.button.delete = Eliinar

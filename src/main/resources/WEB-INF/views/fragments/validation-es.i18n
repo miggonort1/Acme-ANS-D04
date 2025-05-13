@@ -16,5 +16,11 @@ acme.validation.authorisation=No estás autorizado para realizar esta operación
 acme.validation.activityLog.beforeLeg = No puede asignarse un Activity Log a un tramo que aún no ha sucedido
 acme.validation.activityLog.severityLevelOutOfRange = El nivel de severidad debe ser entre 0 y 10
 
+acme.validation.manager.flight.delete-has-assignments			   = El vuelo no se puede eliminar porque hay tripulantes asignados a sus tramos.
+acme.validation.manager.flight.no-legs							   = No se puede publicar un vuelo sin tramos.
+acme.validation.manager.flight.legs-not-published				   = Deben publicarse todos los tramos antes de publicar el vuelo.
+acme.validation.manager.flight.invalid-selfTransfer-layovers	   = No se puede establecer a false cuando el vuelo tiene escalas.
+
+
 acme.validation.header.message  	= Debe tener entre 1 y 75 caracteres
 acme.validation.text.message   		= Debe tener entre 1 y 255 caracteres 

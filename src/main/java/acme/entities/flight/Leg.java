@@ -40,6 +40,11 @@ public class Leg extends AbstractEntity {
 	private String				flightNumber;
 
 	@Mandatory
+	@Valid
+	@Automapped
+	private Status				status;
+
+	@Mandatory
 	@ValidMoment
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date				scheduledDeparture;
@@ -50,9 +55,8 @@ public class Leg extends AbstractEntity {
 	private Date				scheduledArrival;
 
 	@Mandatory
-	@Valid
 	@Automapped
-	private Status				status;
+	private boolean				draftMode;
 
 
 	// Derived attributes

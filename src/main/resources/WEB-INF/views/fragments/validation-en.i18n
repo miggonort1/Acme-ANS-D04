@@ -16,5 +16,11 @@ acme.validation.authorisation = You are not authorised to perform this operation
 acme.validation.activityLog.beforeLeg = You can't assigned an activity log to a leg that has not already occured
 acme.validation.activityLog.severityLevelOutOfRange = Severity Level must be between 0 and 10
 
+acme.validation.manager.flight.delete-has-assignments			   = The flight cannot be deleted because there are crew members assigned to its legs.
+acme.validation.manager.flight.no-legs							   = A flight cannot be published without legs.
+acme.validation.manager.flight.legs-not-published				   = All legs must be published before publishing the flight.
+acme.validation.manager.flight.invalid-selfTransfer-layovers	   = Cannot set to false when the flight has layovers.
+
+
 acme.validation.header.message  	= Must have from 1 to 75 characters
 acme.validation.text.message   		= Must have from 1 to 255 characters
