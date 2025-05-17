@@ -52,7 +52,7 @@ public class BookingValidator extends AbstractValidator<ValidBooking, Booking> {
 				Flight flight;
 
 				flight = booking.getFlight();
-				flightInDraftMode = flight != null ? flight.isDraftMode() : true;
+				flightInDraftMode = flight != null ? !flight.isDraftMode() : false;
 
 				super.state(context, flightInDraftMode, "flight", "acme.validation.booking.flight-in-draft-mode.message");
 			}

@@ -1,0 +1,28 @@
+# messages-es.i18n
+#
+#
+# In keeping with the traditional purpose of furthering education and research, it is
+# the policy of the copyright owner to permit non-commercial use and redistribution of
+# this software. It has been tested carefully, but it is not guaranteed for any particular
+# purposes.  The copyright owner does not offer any warranties or representations, nor do
+# they accept any liabilities with respect to them.
+
+administrator.booking.list.title = Lista de reservas
+administrator.booking.form.title = Formulario de reservas
+
+administrator.booking.list.label.locatorCode = Codigo Localizador
+administrator.booking.list.label.purchaseMoment = Fecha Compra
+administrator.booking.list.label.travelClass = Clase vuelo
+administrator.booking.list.label.price = Precio
+administrator.booking.list.label.draftMode = Modo borrador
+
+administrator.booking.form.label.locatorCode = Codigo Localizador
+administrator.booking.form.label.purchaseMoment = Fecha Compra
+administrator.booking.form.label.travelClass = Clase vuelo
+administrator.booking.form.label.flight = Vuelo
+administrator.booking.form.label.price = Precio
+administrator.booking.form.label.lastNibble = Ult Digitos Tarjeta
+administrator.booking.form.label.customer.identity.fullName = Nombre Cliente
+
+administrator.booking.form.button.passengers = Pasajeros
+
