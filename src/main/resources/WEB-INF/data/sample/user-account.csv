@@ -11,8 +11,8 @@ user-account-technician-03,true,"UserIdentity{name: 'Pata', surname: 'собак
 user-account-customer-01,true,"UserIdentity{name: 'Javier', surname: 'Clavijo', email: 'javclamar@acme.com'}",customer1,customer1
 user-account-customer-02,true,"UserIdentity{name: 'Will', surname: 'Smith', email:'will@acme.com'}",customer2,customer2
 user-account-customer-03,true,"UserIdentity{name: 'John', surname: 'Doe', email:'jhon@acme.com'}",customer3,customer3
-user-account-agent-01,true,"UserIdentity{name: 'Elden', surname: 'Lხა Æløzå', email: 'elden@acme.com'}",agent1,agent1
-user-account-agent-02,true,"UserIdentity{name: 'Ring', surname: 'Iხაძროხა коза', email: 'ring@acme.com'}",agent2,agent2
+user-account-agent-01,true,"UserIdentity{name: 'Elden', surname: 'Lხა Fløzå', email: 'elden@acme.com'}",agent1,agent1
+user-account-agent-02,true,"UserIdentity{name: 'Ring', surname: 'Iხაძროხა Nоза', email: 'ring@acme.com'}",agent2,agent2
 user-account-agent-03,true,"UserIdentity{name: 'Alberto', surname: 'თხაсобака козаძაღლი', email: 'alberto@acme.com'}",agent3,agent3
 user-account-manager-01,true,"UserIdentity{name: 'Alejandro', surname: 'Manager', email: 'alejandro@acme.com'}",manager1,manager1
 user-account-manager-02,true,"UserIdentity{name: 'Dalia', surname: 'Hernandez', email: 'dalia@acme.com'}",manager2,manager2

@@ -12,9 +12,9 @@ import javax.validation.Valid;
 import acme.client.components.basis.AbstractEntity;
 import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
-import acme.client.components.validation.Optional;
 import acme.client.components.validation.ValidEmail;
 import acme.client.components.validation.ValidMoment;
+import acme.constraints.ValidClaim;
 import acme.constraints.ValidLongText;
 import acme.entities.flight.Leg;
 import acme.realms.Agent;
@@ -24,6 +24,7 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
+@ValidClaim
 public class Claim extends AbstractEntity {
 
 	// Serialisation version --------------------------------------------------
@@ -59,11 +60,6 @@ public class Claim extends AbstractEntity {
 	// HINT: @Valid by default.
 	@Automapped
 	private boolean				draftMode;
-
-	@Optional
-	// HINT: @Valid by default.
-	@Automapped
-	private boolean				dissatisfied;
 
 	// Relationships ----------------------------------------------------------
 	@Mandatory
