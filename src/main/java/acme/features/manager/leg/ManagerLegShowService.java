@@ -68,7 +68,7 @@ public class ManagerLegShowService extends AbstractGuiService<Manager, Leg> {
 
 		dataset.put("aircraft", aircraftChoices.getSelected().getKey());
 		dataset.put("aircraftChoices", aircraftChoices);
-		dataset.put("durationHours", leg.getDurationInHours());
+		dataset.put("durationHours", leg.getDurationHours());
 		dataset.put("masterId", leg.getFlight().getId());
 		dataset.put("draftMode", leg.isDraftMode());
 

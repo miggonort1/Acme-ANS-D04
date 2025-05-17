@@ -1,49 +1,48 @@
-key,flightNumber,scheduledDeparture,scheduledArrival,status,key:flight,key:departureAirport,key:arrivalAirport,key:aircraft
-#flightNumber variations
-leg-01,AAA1234,2012/07/02 00:00,2012/07/02 04:30,LANDED,flight-01,airport-01,airport-02,aircraft-01
-leg-02,ZZZ5432,2012/07/02 00:00,2012/07/02 04:30,LANDED,flight-01,airport-01,airport-02,aircraft-01
-leg-03,AAF0000,2012/07/02 00:00,2012/07/02 04:30,LANDED,flight-01,airport-01,airport-02,aircraft-01
-leg-04,ZZZ9999,2012/07/02 00:00,2012/07/02 04:30,LANDED,flight-01,airport-01,airport-02,aircraft-01
-leg-05,AAA0000,2012/07/02 00:00,2012/07/02 04:30,LANDED,flight-01,airport-01,airport-02,aircraft-01
-leg-06,ZZF9999,2012/07/02 00:00,2012/07/02 04:30,LANDED,flight-01,airport-01,airport-02,aircraft-01
-#scheduledDeparture variations
-leg-07,AAA0001,2012/07/02 00:00,2012/07/02 04:30,LANDED,flight-01,airport-01,airport-02,aircraft-01
-leg-08,AAA0002,2000/01/01 00:00,2012/07/02 04:30,LANDED,flight-01,airport-01,airport-02,aircraft-01
-leg-09,AAA0003,2000/01/01 00:01,2012/07/02 04:30,LANDED,flight-01,airport-01,airport-02,aircraft-01
-leg-10,AAA0004,2022/07/29 23:59,2012/07/02 04:30,LANDED,flight-01,airport-01,airport-02,aircraft-01
-leg-11,AAA0005,2022/07/30 00:00,2012/07/02 04:30,LANDED,flight-01,airport-01,airport-02,aircraft-01
-#scheduledArrival variations
-leg-12,AAA0006,2012/07/02 00:00,2012/07/02 04:30,LANDED,flight-01,airport-01,airport-02,aircraft-01
-leg-13,AAA0007,2012/07/02 00:00,2000/01/01 00:00,LANDED,flight-01,airport-01,airport-02,aircraft-01
-leg-14,AAA0008,2012/07/02 00:00,2000/01/01 00:01,LANDED,flight-01,airport-01,airport-02,aircraft-01
-leg-15,AAA0009,2012/07/02 00:00,2022/07/29 23:59,LANDED,flight-01,airport-01,airport-02,aircraft-01
-leg-16,AAA0010,2012/07/02 00:00,2022/07/30 00:00,LANDED,flight-01,airport-01,airport-02,aircraft-01
-#status variations
-leg-17,AAA0011,2012/07/02 00:00,2012/07/02 04:30,ON_TIME,flight-01,airport-01,airport-02,aircraft-01
-leg-18,AAA0012,2012/07/02 00:00,2012/07/02 04:30,DELAYED,flight-01,airport-01,airport-02,aircraft-01
-leg-19,AAA0013,2012/07/02 00:00,2012/07/02 04:30,CANCELLED,flight-01,airport-01,airport-02,aircraft-01
-leg-20,AAA0014,2012/07/02 00:00,2012/07/02 04:30,LANDED,flight-01,airport-01,airport-02,aircraft-01
-#flight variations
-leg-21,AAA0015,2012/07/02 00:00,2012/07/02 04:30,LANDED,flight-01,airport-01,airport-02,aircraft-01
-leg-22,AAA0016,2012/07/02 00:00,2012/07/02 04:30,LANDED,flight-02,airport-01,airport-02,aircraft-01
-leg-23,AAA0017,2012/07/02 00:00,2012/07/02 04:30,LANDED,flight-01,airport-01,airport-02,aircraft-01
-leg-24,AAA0018,2012/07/02 00:00,2012/07/02 04:30,LANDED,flight-02,airport-01,airport-02,aircraft-01
-leg-25,AAA0019,2012/07/02 00:00,2012/07/02 04:30,LANDED,flight-01,airport-01,airport-02,aircraft-01
-#departureAirport variations
-leg-26,AAA0020,2012/07/02 00:00,2012/07/02 04:30,LANDED,flight-01,airport-01,airport-02,aircraft-01
-leg-27,AAA0021,2012/07/02 00:00,2012/07/02 04:30,LANDED,flight-01,airport-02,airport-02,aircraft-01
-leg-28,AAA0022,2012/07/02 00:00,2012/07/02 04:30,LANDED,flight-01,airport-01,airport-02,aircraft-01
-leg-29,AAA0023,2012/07/02 00:00,2012/07/02 04:30,LANDED,flight-01,airport-02,airport-02,aircraft-01
-leg-30,AAA0024,2012/07/02 00:00,2012/07/02 04:30,LANDED,flight-01,airport-01,airport-02,aircraft-01
-#arrivalAirport variations
-leg-31,AAA0025,2012/07/02 00:00,2012/07/02 04:30,LANDED,flight-01,airport-01,airport-02,aircraft-01
-leg-32,AAA0026,2012/07/02 00:00,2012/07/02 04:30,LANDED,flight-01,airport-01,airport-01,aircraft-01
-leg-33,AAA0027,2012/07/02 00:00,2012/07/02 04:30,LANDED,flight-01,airport-01,airport-02,aircraft-01
-leg-34,AAA0028,2012/07/02 00:00,2012/07/02 04:30,LANDED,flight-01,airport-01,airport-01,aircraft-01
-leg-35,AAA0029,2012/07/02 00:00,2012/07/02 04:30,LANDED,flight-01,airport-01,airport-02,aircraft-01
-#key:aircraft variations
-leg-36,AAA0030,2012/07/02 00:00,2012/07/02 04:30,LANDED,flight-01,airport-01,airport-02,aircraft-01
-leg-37,AAA0031,2012/07/02 00:00,2012/07/02 04:30,LANDED,flight-01,airport-01,airport-02,aircraft-02
-leg-38,AAA0032,2012/07/02 00:00,2012/07/02 04:30,LANDED,flight-01,airport-01,airport-02,aircraft-03
-leg-39,AAA0033,2012/07/02 00:00,2012/07/02 04:30,LANDED,flight-01,airport-01,airport-02,aircraft-04
-leg-40,AAA0034,2012/07/02 00:00,2012/07/02 04:30,LANDED,flight-01,airport-01,airport-02,aircraft-05
+key,flightNumber,scheduledDeparture,scheduledArrival,status,draftMode,key:departureAirport,key:arrivalAirport,key:aircraft,key:flight
+# base entity
+leg-00,DGX5450,2010/09/01 10:00,2010/09/01 12:00,ON_TIME,TRUE,airport-00,airport-01,aircraft-01,flight-00
+# flightNumber - standard variations
+leg-01,DGX0000,2010/09/01 10:00,2010/09/01 12:00,ON_TIME,TRUE,airport-00,airport-01,aircraft-01,flight-01
+leg-02,DGX0001,2010/09/01 10:00,2010/09/01 12:00,ON_TIME,TRUE,airport-00,airport-01,aircraft-01,flight-02
+leg-03,DGX9999,2010/09/01 10:00,2010/09/01 12:00,ON_TIME,TRUE,airport-00,airport-01,aircraft-01,flight-03
+leg-04,DGX9998,2010/09/01 10:00,2010/09/01 12:00,ON_TIME,TRUE,airport-00,airport-01,aircraft-01,flight-04
+leg-05,VZX4151,2010/09/01 10:00,2010/09/01 12:00,ON_TIME,TRUE,airport-00,airport-02,aircraft-01,flight-27
+# scheduledDeparture - standard variations
+leg-06,DGX0002,2010/01/01 00:00,2010/09/01 12:00,ON_TIME,TRUE,airport-00,airport-01,aircraft-01,flight-05
+leg-07,DGX0003,2010/01/01 00:01,2010/09/01 12:00,ON_TIME,TRUE,airport-00,airport-01,aircraft-01,flight-06
+leg-08,DGX0004,2200/12/31 23:59,2201/01/01 00:00,ON_TIME,TRUE,airport-00,airport-01,aircraft-01,flight-07
+# scheduledArrival - standard variations
+leg-09,DGX0005,2010/01/01 00:01,2010/01/01 00:02,ON_TIME,TRUE,airport-00,airport-01,aircraft-01,flight-08
+leg-10,DGX0006,2010/01/01 00:02,2010/01/01 00:03,ON_TIME,TRUE,airport-00,airport-01,aircraft-01,flight-09
+leg-11,DGX0007,2010/09/01 10:00,2200/12/31 23:59,ON_TIME,TRUE,airport-00,airport-01,aircraft-01,flight-10
+leg-12,DGX0008,2010/09/01 10:00,2201/01/01 00:00,ON_TIME,TRUE,airport-00,airport-01,aircraft-01,flight-11
+# status - standard variations
+leg-13,DGX0009,2010/09/01 10:00,2010/09/01 12:00,DELAYED,TRUE,airport-00,airport-01,aircraft-01,flight-12
+leg-14,DGX0010,2010/09/01 10:00,2010/09/01 12:00,CANCELLED,TRUE,airport-00,airport-01,aircraft-01,flight-13
+leg-15,DGX0011,2010/09/01 10:00,2010/09/01 12:00,LANDED,TRUE,airport-00,airport-01,aircraft-01,flight-14
+# departureAirport arrivalAirport aircraft flight- standard variations
+leg-16,DGX0012,2010/09/01 10:00,2010/09/01 12:00,ON_TIME,TRUE,airport-01,airport-02,aircraft-01,flight-15
+leg-17,DGX0013,2010/09/01 10:00,2010/09/01 12:00,ON_TIME,TRUE,airport-02,airport-03,aircraft-02,flight-16
+leg-18,DGX0014,2010/09/01 10:00,2010/09/01 12:00,ON_TIME,TRUE,airport-03,airport-04,aircraft-03,flight-17
+leg-19,DGX0015,2010/09/01 10:00,2010/09/01 12:00,ON_TIME,TRUE,airport-04,airport-05,aircraft-04,flight-18
+leg-20,DGX0016,2010/09/01 10:00,2010/09/01 12:00,ON_TIME,TRUE,airport-05,airport-06,aircraft-05,flight-19
+leg-21,DGX0017,2010/09/01 10:00,2010/09/01 12:00,ON_TIME,TRUE,airport-06,airport-07,aircraft-06,flight-20
+# order by their moments in service - standard variations
+leg-22,DGX0018,2010/09/01 10:00,2010/09/01 12:00,ON_TIME,TRUE,airport-00,airport-01,aircraft-01,flight-21
+leg-23,DGX0019,2010/09/01 12:10,2010/09/01 12:20,ON_TIME,TRUE,airport-00,airport-01,aircraft-01,flight-21
+leg-24,DGX0020,2010/09/01 12:30,2010/09/01 12:50,ON_TIME,TRUE,airport-00,airport-01,aircraft-01,flight-21
+# more legs - standard variations
+leg-25,DGX0021,2010/09/01 10:00,2010/09/01 12:00,ON_TIME,TRUE,airport-00,airport-01,aircraft-01,flight-22
+leg-26,DGX0022,2010/09/01 10:00,2010/09/01 12:00,ON_TIME,TRUE,airport-00,airport-01,aircraft-01,flight-23
+leg-27,DGX0023,2010/09/01 10:00,2010/09/01 12:00,ON_TIME,TRUE,airport-00,airport-01,aircraft-01,flight-24
+# draft-mode - standard variations
+leg-28,DGX0024,2010/09/01 10:00,2010/09/01 12:00,ON_TIME,FALSE,airport-00,airport-01,aircraft-01,flight-25
+leg-29,DGX0025,2010/09/01 10:00,2010/09/01 12:00,ON_TIME,FALSE,airport-00,airport-01,aircraft-01,flight-26
+leg-30,DGX0026,2010/09/01 10:00,2010/09/01 12:00,ON_TIME,FALSE,airport-00,airport-01,aircraft-01,flight-28
+leg-31,DGX0027,2010/09/01 10:00,2010/09/01 12:00,ON_TIME,FALSE,airport-00,airport-01,aircraft-01,flight-29
+leg-32,DGX0028,2010/09/01 10:00,2010/09/01 12:00,ON_TIME,FALSE,airport-00,airport-01,aircraft-01,flight-30
+leg-33,DGX0029,2010/09/01 10:00,2010/09/01 12:00,ON_TIME,FALSE,airport-00,airport-01,aircraft-01,flight-31
+# draft-mode in false for claims
+leg-34,DGX0030,2010/09/01 10:00,2010/09/01 12:00,ON_TIME,TRUE,airport-00,airport-01,aircraft-01,flight-33
+leg-35,DGX0031,2010/09/01 10:00,2010/09/01 12:00,ON_TIME,TRUE,airport-00,airport-01,aircraft-01,flight-34
+leg-36,DGX0032,2010/09/01 10:00,2010/09/01 12:00,ON_TIME,TRUE,airport-00,airport-01,aircraft-01,flight-35
