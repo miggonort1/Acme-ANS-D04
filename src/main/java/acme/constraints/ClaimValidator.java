@@ -50,7 +50,7 @@ public class ClaimValidator extends AbstractValidator<ValidClaim, Claim> {
 			return false;
 		}
 
-		boolean validLegStatus = claim.getRegistrationMoment().after(claim.getLeg().getScheduledArrival());
+		boolean validLegStatus = claim.getRegistrationMoment().after(claim.getLeg().getScheduledDeparture());
 		super.state(context, validLegStatus, "leg", "assistanceAgent.claim.form.error.badLeg");
 
 		return validLegStatus;
