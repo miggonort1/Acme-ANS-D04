@@ -61,6 +61,7 @@ master.menu.manager.my-flights = Mis vuelos
 master.menu.crew-member = Tripulante
 master.menu.crew-member.flight-assignments-completed= Asignaciones de vuelo completadas
 master.menu.crew-member.flight-assignments-planned= Asignaciones de vuelo pendientes
+master.menu.dashboards.crew-member-dashboard = Panel de control
 
 # master.menu.agent ####################################################
 

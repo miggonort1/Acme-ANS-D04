@@ -50,7 +50,7 @@ public class CrewMemberActivityLogShowService extends AbstractGuiService<CrewMem
 			super.getResponse().addGlobal("showAction", true);
 
 		boolean draftModeFlightAssignment = this.flightAssignmentRepository.findFlightAssignmentById(object.getFlightAssignment().getId()).getDraftMode();
-		dataset.put("draftModeFlightAssignment", draftModeFlightAssignment);
+		super.getResponse().addGlobal("draftModeFlightAssignment", draftModeFlightAssignment);
 
 		super.getResponse().addData(dataset);
 	}

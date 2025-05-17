@@ -20,4 +20,7 @@ public interface CrewMemberRepository extends AbstractRepository {
 	@Query("select cm from CrewMember cm where cm.id = :memberId")
 	CrewMember findCrewMemberById(int memberId);
 
+	@Query("select cm from CrewMember cm where cm.id = :memberId")
+	CrewMember findCrewMemberByName(int memberId);
+
 }

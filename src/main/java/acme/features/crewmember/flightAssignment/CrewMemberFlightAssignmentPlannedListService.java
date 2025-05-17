@@ -38,15 +38,12 @@ public class CrewMemberFlightAssignmentPlannedListService extends AbstractGuiSer
 
 	@Override
 	public void unbind(final FlightAssignment object) {
-		assert object != null;
-
-		Date currentMoment = MomentHelper.getCurrentMoment();
 		// String legStatus = object.getLeg().getScheduledDeparture().after(currentMoment) ? "PLANNED FLIGHT LEG" : "COMPLETED FLIGHT LEG";
 
 		Dataset dataset;
 
 		dataset = super.unbindObject(object, "duty", "moment", "currentStatus", "remarks", "crewMember", "draftMode", "leg");
-		dataset.put("legFlightNumber", object.getLeg().getFlightNumber());
+		dataset.put("leg", object.getLeg().getFlightNumber());
 		dataset.put("legScheduledDeparture", object.getLeg().getScheduledDeparture());
 		dataset.put("legScheduledArrival", object.getLeg().getScheduledArrival());
 		dataset.put("crewMemberEmployeeCode", object.getCrewMember().getEmployeeCode());

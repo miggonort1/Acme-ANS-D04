@@ -18,26 +18,29 @@ public class ManagerFlightCreateService extends AbstractGuiService<Manager, Flig
 
 	@Override
 	public void authorise() {
-		super.getResponse().setAuthorised(true);
+		Manager current = (Manager) super.getRequest().getPrincipal().getActiveRealm();
+		boolean status = current != null;
+		super.getResponse().setAuthorised(status);
 	}
 
 	@Override
 	public void load() {
-		Flight flight = new Flight();
-		int managerId = super.getRequest().getPrincipal().getActiveRealm().getId();
-		Manager manager = this.repository.findManagerById(managerId);
-		flight.setManager(manager);
+		Flight flight;
+		Manager manager;
+
+		manager = (Manager) super.getRequest().getPrincipal().getActiveRealm();
+
+		flight = new Flight();
 		flight.setDraftMode(true);
+		flight.setManager(manager);
+		flight.setSelfTransfer(true);
+
 		super.getBuffer().addData(flight);
 	}
 
 	@Override
 	public void bind(final Flight flight) {
-		int managerId = super.getRequest().getPrincipal().getActiveRealm().getId();
-		Manager manager = this.repository.findManagerById(managerId);
-
-		super.bindObject(flight, "tag", "selfTransfer", "cost", "description", "manager");
-		flight.setManager(manager);
+		super.bindObject(flight, "tag", "selfTransfer", "cost", "description");
 	}
 
 	@Override
@@ -51,14 +54,8 @@ public class ManagerFlightCreateService extends AbstractGuiService<Manager, Flig
 
 	@Override
 	public void unbind(final Flight flight) {
-		Integer managerId;
-		Manager manager;
-
-		managerId = super.getRequest().getPrincipal().getActiveRealm().getId();
-		manager = this.repository.findManagerById(managerId);
-
-		Dataset dataset = super.unbindObject(flight, "tag", "selfTransfer", "cost", "description");
-		dataset.put("manager", manager);
+		Dataset dataset;
+		dataset = super.unbindObject(flight, "tag", "selfTransfer", "cost", "description", "draftMode");
 
 		super.getResponse().addData(dataset);
 	}
