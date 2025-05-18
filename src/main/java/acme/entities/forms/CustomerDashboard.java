@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Map;
 
 import acme.client.components.basis.AbstractForm;
-import acme.client.components.datatypes.Money;
 import acme.entities.booking.TravelClass;
 import lombok.Getter;
 import lombok.Setter;
@@ -21,10 +20,10 @@ public class CustomerDashboard extends AbstractForm {
 	// Attributes -------------------------------------------------------------
 
 	List<String>				lastFiveDestination;
-	Money						moneySpentBookingsLastYear;
+	Double						moneySpentBookingsLastYear;
 	Map<TravelClass, Integer>	topMonthsWithHighestNumberOfClaims;
 
-	Double						countNumberOfCostBookingsLastFiveYears;
+	Integer						countNumberOfCostBookingsLastFiveYears;
 	Double						averageNumberOfCostBookingsLastFiveYears;
 	Double						minimumNumberOfCostBookingsLastFiveYears;
 	Double						maximumNumberOfCostBookingsLastFiveYears;

@@ -16,3 +16,5 @@ customer.booking-passenger.form.label.special-needs = Special needs:
 
 customer.booking-passenger.form.button.add = Add
 customer.booking-passenger.form.button.delete = Delete
+acme.validation.booking-passenger.invalid-date-of-birth=The passenger's date of birth must be earlier than the booking's purchase moment
+acme.validation.booking-passenger.duplicate-passenger=The same passenger cannot be assigned more than once to a booking

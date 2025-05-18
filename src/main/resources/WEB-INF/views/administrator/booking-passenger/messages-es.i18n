@@ -1,0 +1,26 @@
+# messages-es.i18n
+#
+#
+# In keeping with the traditional purpose of furthering education and research, it is
+# the policy of the copyright owner to permit non-commercial use and redistribution of
+# this software. It has been tested carefully, but it is not guaranteed for any particular
+# purposes.  The copyright owner does not offer any warranties or representations, nor do
+# they accept any liabilities with respect to them.
+
+administrator.booking-passenger.form.title = Detalles de pasajero en reserva
+administrator.booking-passenger.list.title = Lista de pasajeros en reserva
+
+administrator.booking-passenger.form.label.passenger = Pasajero
+administrator.booking-passenger.form.label.locatorCode = Codigo Localizador de Reserva
+
+administrator.booking-passenger.passenger.form.label.fullName = Nombre completo
+
+administrator.booking-passenger.passenger.list.label.fullName = Nombre Completo
+administrator.booking-passenger.passenger.list.label.email = Email
+administrator.booking-passenger.passenger.list.label.passportNumber = Número de pasaporte
+
+administrator.booking-passenger.form.label.full-name = Nombre Completo
+administrator.booking-passenger.form.label.passport-number = Número de Pasaporte
+administrator.booking-passenger.form.label.email = Email
+administrator.booking-passenger.form.label.date-of-birth = Fecha Nacimiento
+administrator.booking-passenger.form.label.special-needs = Necesidades Especiales
