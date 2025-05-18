@@ -2,7 +2,6 @@
 package acme.features.customer.bookingPassenger;
 
 import java.util.Collection;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -79,15 +78,7 @@ public class CustomerBookingPassengerCreateService extends AbstractGuiService<Cu
 			passengerPublished = !BookingPassenger.getPassenger().isDraftMode();
 			super.state(passengerPublished, "passenger", "acme.validation.BookingPassenger.passenger.draftMode.message");
 		}
-		{
-			boolean alreadyAssigned;
 
-			List<BookingPassenger> BookingPassengers = this.repository.findAssignationFromBookingIdAndPassengerId(BookingPassenger.getBooking().getId(), BookingPassenger.getPassenger().getId()).stream().toList();
-
-			alreadyAssigned = BookingPassengers.isEmpty();
-
-			super.state(alreadyAssigned, "passenger", "acme.validation.BookingPassenger.alreadyAssigned.message");
-		}
 	}
 
 	@Override
