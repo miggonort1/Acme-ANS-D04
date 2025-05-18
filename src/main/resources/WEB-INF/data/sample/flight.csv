@@ -20,7 +20,7 @@ flight-13,Lorem,TRUE,EUR 0.01,"Lorem ipsum dolor sit amet, consectetur adipiscin
 flight-14,Lorem i,TRUE,EUR 999999.99,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",TRUE,manager1
 flight-15,Lorem ip,TRUE,EUR 1000000.00,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",TRUE,manager1
 # description - standard variations
-#flight-16,Lorem ips,TRUE,EUR 500000.00,"",TRUE,manager1
+flight-16,Lorem ips,TRUE,EUR 500000.00,"",TRUE,manager1
 flight-17,Lorem ipsu,TRUE,EUR 500000.00,L,TRUE,manager1
 flight-18,Lorem ipsum,TRUE,EUR 500000.00,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut enim ad minim veniam? Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor",TRUE,manager1
 flight-19,Lorem ipsum d,TRUE,EUR 500000.00,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut enim ad minim veniam? Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor*",TRUE,manager1

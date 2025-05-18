@@ -1,5 +1,5 @@
 key,duty,moment,currentStatus,remarks,key:crewMember,key:leg
-#base entity
+#base entity,"","","","","",""
 flightAssignment-01,CABIN_ATTENDANT,2012/07/02 00:00,CONFIRMED,Lorem ipsum dolor sit amet  consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*,member-01,leg-01
 #Student 3 testing requirements (duty and CrewMember variations)
 flightAssignment-02,LEAD_ATTENDANT,2012/07/02 00:00,CONFIRMED,Lorem ipsum dolor sit amet  consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*,member-02,leg-01
