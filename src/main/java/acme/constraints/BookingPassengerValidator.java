@@ -28,6 +28,10 @@ public class BookingPassengerValidator extends AbstractValidator<ValidBookingPas
 			super.state(context, false, "*", "javax.validation.constraints.NotNull.message");
 			return false;
 		}
+		// Validación 0: Passenger debe estar publicado
+		final boolean isPublished = !bookingPassenger.getPassenger().isDraftMode();
+		super.state(context, isPublished, "passenger", "acme.validation.booking-passenger.unpublished-passenger");
+		result = result && isPublished;
 
 		// Validación 1: Fecha de nacimiento < fecha de compra
 		final Date dateOfBirth = bookingPassenger.getPassenger().getDateOfBirth();

@@ -45,7 +45,7 @@ public class CustomerPassengerListService extends AbstractGuiService<Customer, P
 		String fullname = passenger.getFullName().length() > 50 ? passenger.getFullName().substring(0, 50) + "..." : passenger.getFullName();
 		String email = passenger.getEmail().length() > 50 ? passenger.getEmail().substring(0, 50) + "..." : passenger.getEmail();
 
-		dataset = super.unbindObject(passenger, "passportNumber");
+		dataset = super.unbindObject(passenger, "passportNumber", "draftMode");
 		dataset.put("fullName", fullname);
 		dataset.put("email", email);
 

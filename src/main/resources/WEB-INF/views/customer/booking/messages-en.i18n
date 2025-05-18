@@ -12,6 +12,7 @@ customer.booking.form.button.create = Create
 customer.booking.form.button.update = Update
 customer.booking.form.button.delete = Delete
 customer.booking.form.button.publish = Publish
+customer.booking.list.label.draft-mode = Draft Mode
 
 customer.booking.list.title = Listing of bookings
 
