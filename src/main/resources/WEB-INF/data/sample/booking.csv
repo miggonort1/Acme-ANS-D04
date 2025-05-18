@@ -1,29 +1,30 @@
 key,locatorCode,purchaseMoment,travelClass,lastNibble,draftMode,key:customer,key:flight
 # base entity
-booking-00,AAAAAAA,2012/07/02 0:00,ECONOMY,1111,true,customer-01,flight-26
-# locatorCode - standard variations
-booking-01,AAAAAA,2012/07/02 0:00,ECONOMY,1111,true,customer-01,flight-26
-booking-02,AAAAAAAA,2012/07/02 0:00,ECONOMY,1111,true,customer-01,flight-26
-booking-03,111111,2012/07/02 0:00,ECONOMY,1111,true,customer-01,flight-26
-booking-04,11111111,2012/07/02 0:00,ECONOMY,1111,true,customer-01,flight-26
-booking-05,A1B2C3,2012/07/02 0:00,ECONOMY,1111,true,customer-01,flight-26
-booking-06,A1B2C3D4,2012/07/02 0:00,ECONOMY,1111,true,customer-01,flight-26
-# purchaseMoment - standard variations
-booking-07,AAAAAAB,2000/01/01 0:00,ECONOMY,1111,true,customer-01,flight-26
-booking-08,AAAAAAC,2000/01/01 0:01,ECONOMY,1111,true,customer-01,flight-26
-booking-09,AAAAAAD,2024/12/31 0:00,ECONOMY,1111,true,customer-01,flight-26
-booking-10,AAAAAAE,2025/01/01 0:00,ECONOMY,1111,true,customer-01,flight-26
-#travelClass - standard variations
-booking-11,AAAAAAF,2012/07/02 0:00,BUSINESS,1111,true,customer-01,flight-26
-#price - standard variations
-booking-12,AAAAAAG,2012/07/02 0:00,ECONOMY,1111,true,customer-01,flight-26
-booking-13,AAAAAAH,2012/07/02 0:00,ECONOMY,1111,true,customer-01,flight-26
-booking-14,AAAAAAI,2012/07/02 0:00,ECONOMY,1111,true,customer-01,flight-26
-booking-15,AAAAAAJ,2012/07/02 0:00,ECONOMY,1111,true,customer-01,flight-26
-#lastNibble - standard variations
-booking-16,AAAAAAK,2012/07/02 0:00,ECONOMY,,true,customer-01,flight-26
-booking-17,AAAAAAL,2012/07/02 0:00,ECONOMY,9999,true,customer-01,flight-26
-#drafMode - standard variations
-booking-18,AAAAAAM,2012/07/02 0:00,ECONOMY,1111,false,customer-01,flight-26
-#customer - standard variations
-booking-19,AAAAAAN,2012/07/02 0:00,ECONOMY,1111,true,customer-02,flight-26
+booking-00,AAAAAAA,2005/06/12 0:00,ECONOMY,1111,true,customer-01,flight-26
+# locatorCode
+booking-01,A1B2C3,2005/06/12 0:00,ECONOMY,1111,true,customer-01,flight-26
+booking-02,123456,2005/06/12 0:00,ECONOMY,1111,true,customer-01,flight-26
+booking-03,ABCDEFG,2005/06/12 0:00,ECONOMY,1111,true,customer-01,flight-26
+booking-04,ABC1234,2005/06/12 0:00,ECONOMY,1111,true,customer-01,flight-26
+booking-05,ZZZZZZZZ,2005/06/12 0:00,ECONOMY,1111,true,customer-01,flight-26
+booking-06,1A2B3C4D,2005/06/12 0:00,ECONOMY,1111,true,customer-01,flight-26
+booking-07,AB12CD34,2005/06/12 0:00,ECONOMY,1111,true,customer-01,flight-26
+booking-08,0000AA,2005/06/12 0:00,ECONOMY,1111,true,customer-01,flight-26
+booking-09,XY9ZQ2,2005/06/12 0:00,ECONOMY,1111,true,customer-01,flight-26
+# purchaseMoment
+booking-10,AAAAAAB,2000/01/01 0:00,ECONOMY,1111,true,customer-01,flight-26
+booking-11,AAAAAAC,2000/01/01 0:01,ECONOMY,1111,true,customer-01,flight-26
+booking-12,AAAAAAD,2010/09/01 9:58,ECONOMY,1111,true,customer-01,flight-26
+booking-13,AAAAAAE,2010/09/01 9:59,ECONOMY,1111,true,customer-01,flight-26
+#travelClass
+booking-14,AAAAAAF,2005/06/12 0:00,BUSINESS,1111,true,customer-01,flight-26
+#lastNibble
+booking-15,AAAAAAK,2005/06/12 0:00,ECONOMY,,true,customer-01,flight-26
+booking-16,AAAAAAL,2005/06/12 0:00,ECONOMY,9999,true,customer-01,flight-26
+#drafMode
+booking-17,AAAAAAM,2005/06/12 0:00,ECONOMY,1111,false,customer-01,flight-26
+#customer
+booking-18,AAAAAAN,2005/06/12 0:00,ECONOMY,1111,true,customer-02,flight-26
+booking-19,AAAAAAZ,2005/06/12 0:00,ECONOMY,1111,true,customer-03,flight-26
+#flight
+booking-20,AAAAAAY,2005/06/12 0:00,ECONOMY,1111,true,customer-02,flight-28

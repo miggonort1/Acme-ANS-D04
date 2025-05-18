@@ -24,3 +24,5 @@ customer.booking.list.button.create = Create
 customer.booking.form.button.passengers = Passengers
 acme.validation.booking.duplicated-booking.message = Duplicated Locator Code
 acme.validation.booking.passengers.message = At Least One Passenger Assigned
+acme.validation.booking.invalid-legs.message = You cannot book a flight with leg whose departure has already occurred
+acme.validation.booking.flight-in-draft-mode.message=You cannot book a flight that is still in draft mode.

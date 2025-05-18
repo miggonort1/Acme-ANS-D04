@@ -1,6 +1,8 @@
 
 package acme.constraints;
 
+import java.util.Date;
+
 import javax.validation.ConstraintValidatorContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,13 +41,14 @@ public class BookingValidator extends AbstractValidator<ValidBooking, Booking> {
 				}
 			}
 			{
-				//				boolean flightInFuture;
-				//				Flight flight;
-				//
-				//				flight = booking.getFlight();
-				//				flightInFuture = flight != null ? MomentHelper.isFuture(flight.getScheduledDeparture()) : true;
-				//
-				//				super.state(context, flightInFuture, "locatorCode", "acme.validation.booking.duplicated-booking.message");
+				boolean validLegs = false;
+				Flight flight = booking.getFlight();
+				Date referenceMoment = booking.getPurchaseMoment();
+
+				if (flight != null)
+					validLegs = this.repository.allLegsArePublishedAndInFutureByFlightId(flight.getId(), referenceMoment);
+
+				super.state(context, validLegs, "flight", "acme.validation.booking.invalid-legs.message");
 			}
 			{
 				boolean flightInDraftMode;
