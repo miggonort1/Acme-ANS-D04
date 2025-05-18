@@ -35,7 +35,7 @@ public class AdministratorBookingShowService extends AbstractGuiService<Administ
 
 		booking = this.repository.findBookingById(masterId);
 
-		status = booking != null;
+		status = booking != null && !booking.isDraftMode();
 
 		super.getResponse().setAuthorised(status);
 	}

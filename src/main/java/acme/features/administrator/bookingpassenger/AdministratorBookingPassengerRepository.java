@@ -17,13 +17,13 @@ public interface AdministratorBookingPassengerRepository extends AbstractReposit
 	@Query("select b from Booking b where b.id = :id")
 	Booking findBookingById(int id);
 
-	@Query("select br from BookingPassenger br where br.booking.id = :bookingId")
+	@Query("select bp from BookingPassenger bp where bp.booking.id = :bookingId and bp.passenger.draftMode = false ")
 	Collection<BookingPassenger> findBookingPassengersByBookingId(int bookingId);
 
-	@Query("select br from BookingPassenger br where br.id = :bookingPassengerId")
+	@Query("select bp from BookingPassenger bp where bp.id = :bookingPassengerId")
 	BookingPassenger findBookingPassengerById(int bookingPassengerId);
 
-	@Query("select p from Passenger p, BookingPassenger br where p.id=br.passenger.id and br.id = :bookingPassengerId")
+	@Query("select p from Passenger p, BookingPassenger bp where p.id=bp.passenger.id and bp.id = :bookingPassengerId")
 	Collection<Passenger> findPassengersByBookingPassengerId(int bookingPassengerId);
 
 	@Query("select p from Passenger p where p.draftMode = false and p.customer.id = :customerId")

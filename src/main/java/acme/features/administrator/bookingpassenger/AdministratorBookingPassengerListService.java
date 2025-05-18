@@ -31,9 +31,7 @@ public class AdministratorBookingPassengerListService extends AbstractGuiService
 
 		masterId = super.getRequest().getData("masterId", int.class);
 		booking = this.repository.findBookingById(masterId);
-		//status = booking != null && (!booking.isDraftMode() || super.getRequest().getPrincipal().hasRealm(booking.getCustomer()));
-		status = booking != null;
-
+		status = booking != null && !booking.isDraftMode();
 		super.getResponse().setAuthorised(status);
 	}
 
