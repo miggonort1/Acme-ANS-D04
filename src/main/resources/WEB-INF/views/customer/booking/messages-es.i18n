@@ -26,4 +26,6 @@ customer.booking.form.button.passengers = Pasajeros
 acme.validation.booking.duplicated-booking.message = Código localizador Duplicado
 acme.validation.booking.passengers.message = Al  Menos Un Pasajero Asignado
 acme.validation.booking.invalid-legs.message=No se puede reservar un vuelo con tramos cuya salida ya haya pasado
-acme.validation.booking.flight-in-draft-mode.message=No se puede reservar un vuelo que aún está en modo borrador.
+acme.validation.booking.flight-in-draft-mode.message=No se puede reservar un vuelo que aún está en modo borrador
+acme.validation.booking.lastNibble.message=Una reserva solo puede publicarse cuando se ha guardado los 4 últimos dígito de la tarjeta de crédito
+
