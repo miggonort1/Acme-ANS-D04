@@ -71,6 +71,8 @@ public class AgentTrackingLogUpdateService extends AbstractGuiService<Agent, Tra
 
 		dataset = super.unbindObject(object, "lastUpdateMoment", "step", "resolutionPercentage", "status", "resolution");
 		dataset.put("status", choicesStatus);
+		dataset.put("masterId", object.getClaim().getId());
+		dataset.put("draftMode", object.getClaim().isDraftMode());
 
 		super.getResponse().addData(dataset);
 	}
