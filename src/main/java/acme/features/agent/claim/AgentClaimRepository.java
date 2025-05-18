@@ -24,8 +24,8 @@ public interface AgentClaimRepository extends AbstractRepository {
 	@Query("select a from Agent a where a.id = :id")
 	Agent findOneAgentById(int id);
 
-	@Query("select l from Leg l where l.status = 3")
-	Collection<Leg> findManyLegsLanded();
+	@Query("select l from Leg l where l.draftMode = false")
+	Collection<Leg> findManyLegsPublished();
 
 	@Query("select l from Leg l where l.id = :legId")
 	Leg findLegById(int legId);

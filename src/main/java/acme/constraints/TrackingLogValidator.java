@@ -1,25 +1,15 @@
 
 package acme.constraints;
 
-import java.util.List;
-import java.util.Optional;
-
 import javax.validation.ConstraintValidatorContext;
-
-import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.validation.AbstractValidator;
 import acme.client.components.validation.Validator;
 import acme.entities.claim.TrackinLogStatus;
 import acme.entities.claim.TrackingLog;
-import acme.features.agent.trackingLog.AgentTrackingLogRepository;
 
 @Validator
 public class TrackingLogValidator extends AbstractValidator<ValidTrackingLog, TrackingLog> {
-
-	@Autowired
-	private AgentTrackingLogRepository repository;
-
 
 	@Override
 	protected void initialise(final ValidTrackingLog annotation) {
@@ -44,9 +34,7 @@ public class TrackingLogValidator extends AbstractValidator<ValidTrackingLog, Tr
 			if (trackingLog.getStatus().equals(TrackinLogStatus.PENDING))
 				super.state(context, trackingLog.getResolution() == null || trackingLog.getResolution().isBlank(), "Resolution", "El campo resolution debe quedar vacío hasta la finalización del tracking log");
 			else
-				super.state(context, trackingLog.getResolution() != null && !trackingLog.getResolution().isBlank(), "Resolution", "El campo resolucion es incorrecto");
-
-			Optional<List<TrackingLog>> trackingLogsOpt = this.repository.findOrderTrackingLog(trackingLog.getClaim().getId());
+				super.state(context, trackingLog.getResolution() != null && !trackingLog.getResolution().isBlank(), "Resolution", "El campo resolucion no debe quedar vacío si se ha finalizado el tracking log");
 
 		}
 		result = !super.hasErrors(context);
