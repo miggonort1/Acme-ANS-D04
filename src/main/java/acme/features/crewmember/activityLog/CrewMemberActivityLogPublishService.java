@@ -25,7 +25,7 @@ public class CrewMemberActivityLogPublishService extends AbstractGuiService<Crew
 	public void authorise() {
 		int activityLogId = super.getRequest().getData("id", int.class);
 		ActivityLog activityLog = this.repository.findActivityLogById(activityLogId);
-		boolean status = activityLog.getDraftMode() && !activityLog.getFlightAssignment().getDraftMode() && super.getRequest().getPrincipal().hasRealm(activityLog.getFlightAssignment().getCrewMember()) && activityLog.getDraftMode() && activityLog != null;
+		boolean status = activityLog.getDraftMode() && !activityLog.getFlightAssignment().getDraftMode() && super.getRequest().getPrincipal().hasRealm(activityLog.getFlightAssignment().getCrewMember()) && activityLog != null;
 
 		super.getResponse().setAuthorised(status);
 	}
