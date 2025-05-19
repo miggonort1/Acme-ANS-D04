@@ -37,4 +37,10 @@ public interface CustomerBookingRepository extends AbstractRepository {
 	@Query("SELECT COUNT(l) = 0 FROM Leg l WHERE l.flight.id = :flightId AND (l.scheduledDeparture <= :referenceMoment OR l.draftMode = true)")
 	boolean allLegsArePublishedAndInFutureByFlightId(@Param("flightId") int flightId, @Param("referenceMoment") Date referenceMoment);
 
+	@Query("SELECT f FROM Flight f WHERE f.draftMode = false AND NOT EXISTS (SELECT l FROM Leg l WHERE l.flight.id = f.id AND (l.scheduledDeparture <= :referenceMoment OR l.draftMode = true))")
+	Collection<Flight> findAllFlightsInNoDraftModeAndWithFuturePublishedLegs(@Param("referenceMoment") Date referenceMoment);
+
+	@Query("SELECT f FROM Flight f WHERE f.id = :id")
+	Flight findFlightById(@Param("id") int id);
+
 }

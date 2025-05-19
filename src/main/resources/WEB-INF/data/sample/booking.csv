@@ -27,4 +27,4 @@ booking-17,AAAAAAM,2005/06/12 0:00,ECONOMY,1111,false,customer-01,flight-26
 booking-18,AAAAAAN,2005/06/12 0:00,ECONOMY,1111,true,customer-02,flight-26
 booking-19,AAAAAAZ,2005/06/12 0:00,ECONOMY,1111,true,customer-03,flight-26
 #flight
-booking-20,AAAAAAY,2005/06/12 0:00,ECONOMY,1111,true,customer-02,flight-28
+booking-20,AAAAAAY,2005/06/12 0:00,ECONOMY,1111,true,customer-01,flight-28

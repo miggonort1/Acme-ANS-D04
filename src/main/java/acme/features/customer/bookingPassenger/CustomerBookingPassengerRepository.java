@@ -4,6 +4,7 @@ package acme.features.customer.bookingPassenger;
 import java.util.Collection;
 
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import acme.client.repositories.AbstractRepository;
@@ -35,8 +36,19 @@ public interface CustomerBookingPassengerRepository extends AbstractRepository {
 	@Query("select b from Booking b where b.customer.id = :customerId")
 	Collection<Booking> findAllBookingsFromCustomerId(final int customerId);
 
-	@Query("select p from Passenger p where p.draftMode = false and p.customer.id = :customerId")
-	Collection<Passenger> findAllPublishedPassengersFromCustomerId(final int customerId);
+	@Query("""
+		    select p from Passenger p
+		    where p.draftMode = false
+		    and p.customer.id = :customerId
+		    and p.id not in (
+		        select bp.passenger.id from BookingPassenger bp
+		        where bp.booking.id = :bookingId
+		    )
+		    and p.dateOfBirth < (
+		        select b.purchaseMoment from Booking b where b.id = :bookingId
+		    )
+		""")
+	Collection<Passenger> findAllValidPassengersForBooking(@Param("customerId") int customerId, @Param("bookingId") int bookingId);
 
 	@Query("select p from Passenger p where p.customer.id = :customerId")
 	Collection<Passenger> findAllPassengersFromCustomerId(final int customerId);
