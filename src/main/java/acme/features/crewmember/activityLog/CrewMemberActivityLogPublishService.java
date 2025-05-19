@@ -8,6 +8,7 @@ import acme.client.helpers.MomentHelper;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.flightassignment.ActivityLog;
+import acme.features.crewmember.flightAssignment.CrewMemberFlightAssignmentRepository;
 import acme.realms.CrewMember;
 
 @GuiService
@@ -16,7 +17,10 @@ public class CrewMemberActivityLogPublishService extends AbstractGuiService<Crew
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
-	private CrewMemberActivityLogRepository repository;
+	private CrewMemberActivityLogRepository			repository;
+
+	@Autowired
+	private CrewMemberFlightAssignmentRepository	flightAssignmentRepository;
 
 	// AbstractGuiService interface -------------------------------------------
 
@@ -25,7 +29,8 @@ public class CrewMemberActivityLogPublishService extends AbstractGuiService<Crew
 	public void authorise() {
 		int activityLogId = super.getRequest().getData("id", int.class);
 		ActivityLog activityLog = this.repository.findActivityLogById(activityLogId);
-		boolean status = activityLog.getDraftMode() && !activityLog.getFlightAssignment().getDraftMode() && super.getRequest().getPrincipal().hasRealm(activityLog.getFlightAssignment().getCrewMember()) && activityLog.getDraftMode() && activityLog != null;
+
+		boolean status = activityLog != null && activityLog.getDraftMode() && super.getRequest().getPrincipal().hasRealm(activityLog.getFlightAssignment().getCrewMember());
 
 		super.getResponse().setAuthorised(status);
 	}
@@ -40,14 +45,16 @@ public class CrewMemberActivityLogPublishService extends AbstractGuiService<Crew
 
 	@Override
 	public void bind(final ActivityLog object) {
-		;
+		super.bindObject(object, "incidentType", "description", "severityLevel");
 	}
 
 	@Override
-	public void validate(final ActivityLog object) {
-		if (object.getFlightAssignment() != null && object.getFlightAssignment().getDraftMode())
-			super.state(false, "flightAssignment", "acme.validation.activityLog.flightAssignment-not-published");
-
+	public void validate(final ActivityLog activityLog) {
+		if (activityLog != null && activityLog.getFlightAssignment() != null) {
+			boolean isDraftMode = activityLog.getFlightAssignment().getDraftMode();
+			if (isDraftMode)
+				super.state(false, "*", "acme.validation.activityLog.flightAssignment-not-published");
+		}
 	}
 
 	@Override
