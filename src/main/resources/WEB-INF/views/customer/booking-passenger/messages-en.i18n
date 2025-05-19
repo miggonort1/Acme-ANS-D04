@@ -20,4 +20,6 @@ acme.validation.booking-passenger.invalid-date-of-birth=The passenger's date of 
 acme.validation.booking-passenger.duplicate-passenger=The same passenger cannot be assigned more than once to a booking
 acme.validation.BookingPassenger.alreadyAssigned.message=This passenger is already assigned to this booking
 acme.validation.booking-passenger.unpublished-passenger = This passenger is unpublished
+acme.validation.booking-passenger.passenger-from-different-customer=The selected passenger does not belong to the current customer
+
 

@@ -54,6 +54,13 @@ public class BookingPassengerValidator extends AbstractValidator<ValidBookingPas
 
 		result = result && !isDuplicate;
 
+		// Validación 3: El passenger debe pertenecer al mismo customer que el booking
+		final int bookingCustomerId = bookingPassenger.getBooking().getCustomer().getId();
+		final int passengerCustomerId = bookingPassenger.getPassenger().getCustomer().getId();
+		final boolean sameCustomer = bookingCustomerId == passengerCustomerId;
+		super.state(context, sameCustomer, "passenger", "acme.validation.booking-passenger.passenger-from-different-customer");
+		result = result && sameCustomer;
+
 		return result;
 	}
 }

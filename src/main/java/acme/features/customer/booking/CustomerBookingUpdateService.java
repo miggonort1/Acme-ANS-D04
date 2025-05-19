@@ -22,8 +22,6 @@ public class CustomerBookingUpdateService extends AbstractGuiService<Customer, B
 	@Autowired
 	private CustomerBookingRepository repository;
 
-	// AbstractGuiService interfaced ------------------------------------------
-
 
 	@Override
 	public void authorise() {
@@ -34,6 +32,15 @@ public class CustomerBookingUpdateService extends AbstractGuiService<Customer, B
 		bookingId = super.getRequest().getData("id", int.class);
 		booking = this.repository.findBookingById(bookingId);
 		status = booking != null && booking.isDraftMode() && super.getRequest().getPrincipal().hasRealm(booking.getCustomer());
+
+		if (super.getRequest().hasData("id")) {
+			Integer flightId = super.getRequest().getData("flight", int.class);
+			if (flightId == null || flightId != 0) {
+				Flight flight = this.repository.findFlightById(flightId);
+				status = status && flight != null && !flight.isDraftMode() && flight.getScheduledArrival().after(booking.getPurchaseMoment());
+			}
+
+		}
 
 		super.getResponse().setAuthorised(status);
 	}
@@ -72,10 +79,10 @@ public class CustomerBookingUpdateService extends AbstractGuiService<Customer, B
 		SelectChoices flightsChoices;
 		Dataset dataset;
 
-		flights = this.repository.findAllFlightsInNoDraftMode();
+		flights = this.repository.findAllFlightsInNoDraftModeAndWithFuturePublishedLegs(booking.getPurchaseMoment());
 
 		travelClassesChoices = SelectChoices.from(TravelClass.class, booking.getTravelClass());
-		flightsChoices = SelectChoices.from(flights, "id", booking.getFlight());
+		flightsChoices = SelectChoices.from(flights, "tag", booking.getFlight());
 
 		dataset = super.unbindObject(booking, "locatorCode", "purchaseMoment", "lastNibble", "draftMode");
 		dataset.put("price", booking.getPrice());

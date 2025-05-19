@@ -1,7 +1,7 @@
 key,name,iataCode,scope,city,country,website,email,phoneNumber
 # base entity
 airport-00,Lorem ipsum dolor sit ame,IXA,INTERNATIONAL,Lorem ipsum dolor sit ame,Lorem ipsum dolor sit ame,http://lorem.com/ipsum,acme@lorem-ipsum.org,12345678
-# name - standard variations
+# name
 airport-01,L,VZX,INTERNATIONAL,Lorem ipsum dolor sit ame,Lorem ipsum dolor sit ame,http://lorem.com/ipsum,acme@lorem-ipsum.org,12345678
 airport-02,Lo,DGX,INTERNATIONAL,Lorem ipsum dolor sit ame,Lorem ipsum dolor sit ame,http://lorem.com/ipsum,acme@lorem-ipsum.org,12345678
 airport-03,"Lorem ipsum dolor sit amet, consectetur adipiscin",XUY,INTERNATIONAL,Lorem ipsum dolor sit ame,Lorem ipsum dolor sit ame,http://lorem.com/ipsum,acme@lorem-ipsum.org,12345678
@@ -12,10 +12,10 @@ airport-07,洛伦·伊普森,TGH,INTERNATIONAL,Lorem ipsum dolor sit ame,Lorem i
 airport-08,<marquee>Hacked</marquee>,CYO,INTERNATIONAL,Lorem ipsum dolor sit ame,Lorem ipsum dolor sit ame,http://lorem.com/ipsum,acme@lorem-ipsum.org,12345678
 airport-09,<script>alert(‘Hacked!’);</script>,NBE,INTERNATIONAL,Lorem ipsum dolor sit ame,Lorem ipsum dolor sit ame,http://lorem.com/ipsum,acme@lorem-ipsum.org,12345678
 airport-10,' or 'A' = 'A,JUG,INTERNATIONAL,Lorem ipsum dolor sit ame,Lorem ipsum dolor sit ame,http://lorem.com/ipsum,acme@lorem-ipsum.org,12345678
-# operationalScope - standard variations
+# operationalScope
 airport-11,Lorem ipsum dolor sit ame,HRC,DOMESTIC,Lorem ipsum dolor sit ame,Lorem ipsum dolor sit ame,http://lorem.com/ipsum,acme@lorem-ipsum.org,12345678
 airport-12,Lorem ipsum dolor sit ame,YXJ,REGIONAL,Lorem ipsum dolor sit ame,Lorem ipsum dolor sit ame,http://lorem.com/ipsum,acme@lorem-ipsum.org,12345678
-# city - standard variations
+# city
 airport-13,Lorem ipsum dolor sit ame,FXF,INTERNATIONAL,L,Lorem ipsum dolor sit ame,http://lorem.com/ipsum,acme@lorem-ipsum.org,12345678
 airport-14,Lorem ipsum dolor sit ame,SIL,INTERNATIONAL,Lo,Lorem ipsum dolor sit ame,http://lorem.com/ipsum,acme@lorem-ipsum.org,12345678
 airport-15,Lorem ipsum dolor sit ame,MPM,INTERNATIONAL,"Lorem ipsum dolor sit amet, consectetur adipiscin",Lorem ipsum dolor sit ame,http://lorem.com/ipsum,acme@lorem-ipsum.org,12345678
@@ -26,7 +26,7 @@ airport-19,Lorem ipsum dolor sit ame,LMB,INTERNATIONAL,洛伦·伊普森,Lorem i
 airport-20,Lorem ipsum dolor sit ame,ZOE,INTERNATIONAL,<marquee>Hacked</marquee>,Lorem ipsum dolor sit ame,http://lorem.com/ipsum,acme@lorem-ipsum.org,12345678
 airport-21,Lorem ipsum dolor sit ame,RNW,INTERNATIONAL,<script>alert(‘Hacked!’);</script>,Lorem ipsum dolor sit ame,http://lorem.com/ipsum,acme@lorem-ipsum.org,12345678
 airport-22,Lorem ipsum dolor sit ame,OST,INTERNATIONAL,' or 'A' = 'A,Lorem ipsum dolor sit ame,http://lorem.com/ipsum,acme@lorem-ipsum.org,12345678
-# country - standard variations
+# country
 airport-23,Lorem ipsum dolor sit ame,UXY,INTERNATIONAL,Lorem ipsum dolor sit ame,L,http://lorem.com/ipsum,acme@lorem-ipsum.org,12345678
 airport-24,Lorem ipsum dolor sit ame,EAL,INTERNATIONAL,Lorem ipsum dolor sit ame,Lo,http://lorem.com/ipsum,acme@lorem-ipsum.org,12345678
 airport-25,Lorem ipsum dolor sit ame,LIH,INTERNATIONAL,Lorem ipsum dolor sit ame,"Lorem ipsum dolor sit amet, consectetur adipiscin",http://lorem.com/ipsum,acme@lorem-ipsum.org,12345678
@@ -37,14 +37,14 @@ airport-29,Lorem ipsum dolor sit ame,AKX,INTERNATIONAL,Lorem ipsum dolor sit ame
 airport-30,Lorem ipsum dolor sit ame,GPR,INTERNATIONAL,Lorem ipsum dolor sit ame,<marquee>Hacked</marquee>,http://lorem.com/ipsum,acme@lorem-ipsum.org,12345678
 airport-31,Lorem ipsum dolor sit ame,OKJ,INTERNATIONAL,Lorem ipsum dolor sit ame,<script>alert(‘Hacked!’);</script>,http://lorem.com/ipsum,acme@lorem-ipsum.org,12345678
 airport-32,Lorem ipsum dolor sit ame,LIL,INTERNATIONAL,Lorem ipsum dolor sit ame,' or 'A' = 'A,http://lorem.com/ipsum,acme@lorem-ipsum.org,12345678
-# website - singular values
+# website
 airport-33,Lorem ipsum dolor sit ame,JUJ,INTERNATIONAL,Lorem ipsum dolor sit ame,Lorem ipsum dolor sit ame,"",acme@lorem-ipsum.org,12345678
-airport-34,Lorem ipsum dolor sit ame,GHU,INTERNATIONAL,Lorem ipsum dolor sit ame,Lorem ipsum dolor sit ame,ftp://a,acme@lorem-ipsum.org,12345678
-airport-35,Lorem ipsum dolor sit ame,MAR,INTERNATIONAL,Lorem ipsum dolor sit ame,Lorem ipsum dolor sit ame,ftp://a.b,acme@lorem-ipsum.org,12345678
+airport-34,Lorem ipsum dolor sit ame,GHU,INTERNATIONAL,Lorem ipsum dolor sit ame,Lorem ipsum dolor sit ame,http://www.a.org,acme@lorem-ipsum.org,12345678
+airport-35,Lorem ipsum dolor sit ame,MAR,INTERNATIONAL,Lorem ipsum dolor sit ame,Lorem ipsum dolor sit ame,http://www.lorem-ipsum.es/dolor/act,acme@lorem-ipsum.org,12345678
 airport-36,Lorem ipsum dolor sit ame,TTI,INTERNATIONAL,Lorem ipsum dolor sit ame,Lorem ipsum dolor sit ame,"http://www.lorem-ipsum.org/dolor/sit/amet,/consectetur/adipiscing/elit,/sed/do/eiusmod/tempor/incididunt/ut/labore/et/dolore/magna/aliqua/Ut/enim/ad/minim/veniam/quis/nostrud/exercitation/ullamco/laboris/nisi/ut/aliquip/ex/ea/commodo/consequat/duis/aute/",acme@lorem-ipsum.org,12345678
 airport-37,Lorem ipsum dolor sit ame,AFP,INTERNATIONAL,Lorem ipsum dolor sit ame,Lorem ipsum dolor sit ame,"http://www.lorem-ipsum.org/dolor/sit/amet,/consectetur/adipiscing/elit,/sed/do/eiusmod/tempor/incididunt/ut/labore/et/dolore/magna/aliqua/Ut/enim/ad/minim/veniam/quis/nostrud/exercitation/ullamco/laboris/nisi/ut/aliquip/ex/ea/commodo/consequat/duis/aute/X",acme@lorem-ipsum.org,12345678
 airport-38,Lorem ipsum dolor sit ame,BLK,INTERNATIONAL,Lorem ipsum dolor sit ame,Lorem ipsum dolor sit ame,https://www.lorem-ipsum.org,acme@lorem-ipsum.org,12345678
-airport-39,Lorem ipsum dolor sit ame,CMU,INTERNATIONAL,Lorem ipsum dolor sit ame,Lorem ipsum dolor sit ame,ftp://www.lorem-ipsum.org,acme@lorem-ipsum.org,12345678
+airport-39,Lorem ipsum dolor sit ame,CMU,INTERNATIONAL,Lorem ipsum dolor sit ame,Lorem ipsum dolor sit ame,https://www.lorem-ipsum.org,acme@lorem-ipsum.org,12345678
 airport-40,Lorem ipsum dolor sit ame,GIQ,INTERNATIONAL,Lorem ipsum dolor sit ame,Lorem ipsum dolor sit ame,http://www.lorem-ipsum.org/dolor/sit.html,acme@lorem-ipsum.org,12345678
 airport-41,Lorem ipsum dolor sit ame,TXH,INTERNATIONAL,Lorem ipsum dolor sit ame,Lorem ipsum dolor sit ame,http://www.lorem-ipsum.org/dolor/sit.html#dolor,acme@lorem-ipsum.org,12345678
 airport-42,Lorem ipsum dolor sit ame,XDP,INTERNATIONAL,Lorem ipsum dolor sit ame,Lorem ipsum dolor sit ame,"http://example.org?a=1&b=2",acme@lorem-ipsum.org,12345678
@@ -56,13 +56,13 @@ airport-47,Lorem ipsum dolor sit ame,JXP,INTERNATIONAL,Lorem ipsum dolor sit ame
 airport-48,Lorem ipsum dolor sit ame,LKR,INTERNATIONAL,Lorem ipsum dolor sit ame,Lorem ipsum dolor sit ame,"http://example.org/a/b",acme@lorem-ipsum.org,12345678
 airport-49,Lorem ipsum dolor sit ame,MZQ,INTERNATIONAL,Lorem ipsum dolor sit ame,Lorem ipsum dolor sit ame,"http://example.org/a/b?",acme@lorem-ipsum.org,12345678
 airport-50,Lorem ipsum dolor sit ame,VYN,INTERNATIONAL,Lorem ipsum dolor sit ame,Lorem ipsum dolor sit ame,"http://example.org/a/b?a&b",acme@lorem-ipsum.org,12345678
-# emailAdress - singular values
+# emailAdress
 airport-52,Lorem ipsum dolor sit ame,NXA,INTERNATIONAL,Lorem ipsum dolor sit ame,Lorem ipsum dolor sit ame,http://lorem.com/ipsum,a@b.e,12345678
 airport-53,Lorem ipsum dolor sit ame,GFT,INTERNATIONAL,Lorem ipsum dolor sit ame,Lorem ipsum dolor sit ame,http://lorem.com/ipsum,a@b.es,12345678
 airport-54,Lorem ipsum dolor sit ame,YWM,INTERNATIONAL,Lorem ipsum dolor sit ame,Lorem ipsum dolor sit ame,http://lorem.com/ipsum,a@b.esx,12345678
 airport-55,Lorem ipsum dolor sit ame,QZR,INTERNATIONAL,Lorem ipsum dolor sit ame,Lorem ipsum dolor sit ame,http://lorem.com/ipsum,lorem-ipsum@dolor.sit.amet.consectetur.adipiscing.elit.sed.do.eiusmod.tempor.incididunt.ut.labore.et.dolore.magna.aliqua.Ut.enim.ad.minim.veniam.quis.nostrud.exercitation.ullamco.laboris.nisi.ut.aliquip.ex.ea.commodo.consequat.duis.aute.irure.doloris.edu,12345678
 airport-56,Lorem ipsum dolor sit ame,BHG,INTERNATIONAL,Lorem ipsum dolor sit ame,Lorem ipsum dolor sit ame,http://lorem.com/ipsum,lorem-ipsum@dolor.sit.amet.consectetur.adipiscing.elit.sed.do.eiusmod.tempor.incididunt.ut.labore.et.dolore.magna.aliqua.Ut.enim.ad.minim.veniam.quis.nostrud.exercitation.ullamco.laboris.nisi.ut.aliquip.ex.ea.commodo.consequat.duis.aute.irure.dolor.es.org,12345678
-# contactPhoneNumber - singular values
+# contactPhoneNumber
 airport-57,Lorem ipsum dolor sit ame,WDL,INTERNATIONAL,Lorem ipsum dolor sit ame,Lorem ipsum dolor sit ame,http://lorem.com/ipsum,acme@lorem-ipsum.org,123456
 airport-58,Lorem ipsum dolor sit ame,PRM,INTERNATIONAL,Lorem ipsum dolor sit ame,Lorem ipsum dolor sit ame,http://lorem.com/ipsum,acme@lorem-ipsum.org,1234567
 airport-59,Lorem ipsum dolor sit ame,OYS,INTERNATIONAL,Lorem ipsum dolor sit ame,Lorem ipsum dolor sit ame,http://lorem.com/ipsum,acme@lorem-ipsum.org,12345678901234
