@@ -50,10 +50,14 @@ public class ClaimValidator extends AbstractValidator<ValidClaim, Claim> {
 			return false;
 		}
 
-		boolean validLegStatus = claim.getRegistrationMoment().after(claim.getLeg().getScheduledDeparture());
-		super.state(context, validLegStatus, "leg", "assistanceAgent.claim.form.error.badLeg");
-
-		return validLegStatus;
+		if (!claim.getLeg().isDraftMode()) {
+			boolean validLegStatus = claim.getRegistrationMoment().after(claim.getLeg().getScheduledDeparture());
+			super.state(context, validLegStatus, "leg", "assistanceAgent.claim.form.error.badLeg");
+			return validLegStatus;
+		} else {
+			super.state(context, false, "leg", "agent.claim.form.error.notPublished");
+			return false;
+		}
 	}
 
 }

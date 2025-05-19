@@ -29,7 +29,14 @@ public class AgentClaimCreateService extends AbstractGuiService<Agent, Claim> {
 	@Override
 	public void authorise() {
 		boolean status;
-		status = super.getRequest().getPrincipal().hasRealmOfType(Agent.class);
+		status = true;
+		if (super.getRequest().hasData("id")) {
+			Integer legId = super.getRequest().getData("leg", Integer.class);
+			if (legId == null || legId != 0) {
+				Leg leg = this.repository.findLegById(legId);
+				status = leg != null && !leg.isDraftMode();
+			}
+		}
 		super.getResponse().setAuthorised(status);
 	}
 

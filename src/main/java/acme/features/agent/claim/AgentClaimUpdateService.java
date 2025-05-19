@@ -36,6 +36,13 @@ public class AgentClaimUpdateService extends AbstractGuiService<Agent, Claim> {
 		claim = this.repository.findClaimById(claimId);
 		status = claim != null && (!claim.isDraftMode() || super.getRequest().getPrincipal().hasRealm(claim.getAgent())) && claim.getAgent().equals(agent);
 
+		if (super.getRequest().hasData("id")) {
+			Integer legId = super.getRequest().getData("leg", Integer.class);
+			if (legId == null || legId != 0) {
+				Leg leg = this.repository.findLegById(legId);
+				status = status && leg != null && !leg.isDraftMode();
+			}
+		}
 		super.getResponse().setAuthorised(status);
 	}
 
@@ -67,7 +74,6 @@ public class AgentClaimUpdateService extends AbstractGuiService<Agent, Claim> {
 	@Override
 	public void validate(final Claim object) {
 		assert object != null;
-
 	}
 
 	@Override
@@ -86,6 +92,9 @@ public class AgentClaimUpdateService extends AbstractGuiService<Agent, Claim> {
 
 		Collection<Leg> legs;
 		legs = this.repository.findManyLegsPublished();
+		for (Leg leg : legs)
+			if (leg.getScheduledArrival().before(object.getRegistrationMoment()))
+				legs.add(leg);
 
 		choicesType = SelectChoices.from(Type.class, object.getType());
 		choicesStatus = SelectChoices.from(ClaimStatus.class, object.getStatus());
