@@ -2,7 +2,6 @@
 package acme.features.customer.bookingPassenger;
 
 import java.util.Collection;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -28,15 +27,46 @@ public class CustomerBookingPassengerCreateService extends AbstractGuiService<Cu
 
 	@Override
 	public void authorise() {
-		boolean status;
-		int masterId;
+		boolean status = true;
+		Integer masterId, passengerId;
 		Booking booking;
 		Customer customer;
+		Passenger passenger;
+		Collection<BookingPassenger> existingAssignments;
 
-		masterId = super.getRequest().getData("masterId", int.class);
-		booking = this.repository.findBookingById(masterId);
-		customer = booking == null ? null : booking.getCustomer();
-		status = booking != null && booking.isDraftMode() && super.getRequest().getPrincipal().hasRealm(customer);
+		try {
+			// ID del booking
+			masterId = super.getRequest().getData("masterId", int.class);
+			booking = this.repository.findBookingById(masterId);
+			customer = booking == null ? null : booking.getCustomer();
+
+			// Validar existencia y derechos del booking
+			status = booking != null && booking.isDraftMode() && super.getRequest().getPrincipal().hasRealm(customer);
+
+			// Si viene passenger en la request, validarlo también
+			if (status && super.getRequest().hasData("passenger")) {
+				passengerId = super.getRequest().getData("passenger", int.class);
+				passenger = this.repository.findPassengerById(passengerId);
+
+				// Validar existencia del passenger
+				status = status && passenger != null;
+
+				// Validar que pertenece al mismo customer
+				status = status && passenger.getCustomer().equals(customer);
+
+				// Validar que no está en draft mode
+				status = status && !passenger.isDraftMode();
+
+				// Validar que fecha de nacimiento < purchaseMoment
+				status = status && passenger.getDateOfBirth().before(booking.getPurchaseMoment());
+
+				// Validar que no esté ya asignado al booking
+				existingAssignments = this.repository.findAssignationFromBookingIdAndPassengerId(masterId, passengerId);
+				status = status && existingAssignments.isEmpty();
+			}
+		} catch (Exception e) {
+			status = false;
+		}
 
 		super.getResponse().setAuthorised(status);
 	}
@@ -73,21 +103,8 @@ public class CustomerBookingPassengerCreateService extends AbstractGuiService<Cu
 
 	@Override
 	public void validate(final BookingPassenger BookingPassenger) {
-		{
-			boolean passengerPublished;
+		;
 
-			passengerPublished = !BookingPassenger.getPassenger().isDraftMode();
-			super.state(passengerPublished, "passenger", "acme.validation.BookingPassenger.passenger.draftMode.message");
-		}
-		{
-			boolean alreadyAssigned;
-
-			List<BookingPassenger> BookingPassengers = this.repository.findAssignationFromBookingIdAndPassengerId(BookingPassenger.getBooking().getId(), BookingPassenger.getPassenger().getId()).stream().toList();
-
-			alreadyAssigned = BookingPassengers.isEmpty();
-
-			super.state(alreadyAssigned, "passenger", "acme.validation.BookingPassenger.alreadyAssigned.message");
-		}
 	}
 
 	@Override
@@ -101,12 +118,14 @@ public class CustomerBookingPassengerCreateService extends AbstractGuiService<Cu
 
 		SelectChoices passengerChoices;
 		Customer customer;
+		int bookingId;
 
 		Dataset dataset;
 
 		customer = (Customer) super.getRequest().getPrincipal().getActiveRealm();
+		bookingId = BookingPassenger.getBooking().getId();
 
-		passengers = this.repository.findAllPublishedPassengersFromCustomerId(customer.getId());
+		passengers = this.repository.findAllValidPassengersForBooking(customer.getId(), bookingId);
 
 		passengerChoices = SelectChoices.from(passengers, "passportNumber", BookingPassenger.getPassenger());
 

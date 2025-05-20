@@ -36,7 +36,7 @@
 			<acme:submit code="crew-member.activity-log.form.button.delete" action="/crew-member/activity-log/delete"/>
 		</jstl:when>
 	</jstl:choose>
-		<jstl:if test="${acme:anyOf(_command, 'show|update') && showAction && draftMode == true && draftModeFlightAssignment == false}">
+		<jstl:if test="${acme:anyOf(_command, 'show|update') && showAction && draftMode == true }">
 			<acme:submit code="crew-member.activity-log.form.button.publish" action="/crew-member/activity-log/publish"/>
 		</jstl:if>
 </acme:form>

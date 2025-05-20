@@ -26,7 +26,9 @@
 </acme:list>
 
 <jstl:if test="${showAction}">
-	<acme:button code="crew-member.activity-log.list.button.create" action="/crew-member/activity-log/create?assignmentId=${assignmentId}"/>
+  <acme:button
+    code="crew-member.activity-log.list.button.create"
+    action="/crew-member/activity-log/create?assignmentId=${assignmentId}"/>
 </jstl:if>
 
 		

@@ -11,6 +11,7 @@ import acme.client.repositories.AbstractRepository;
 import acme.entities.flight.Leg;
 import acme.entities.flightassignment.Duty;
 import acme.entities.flightassignment.FlightAssignment;
+import acme.realms.CrewMember;
 
 @Repository
 public interface CrewMemberFlightAssignmentRepository extends AbstractRepository {
@@ -44,10 +45,67 @@ public interface CrewMemberFlightAssignmentRepository extends AbstractRepository
 	@Query("select l from Leg l where l.id = :legId")
 	Leg findLegById(int legId);
 
+	@Query("""
+		    SELECT COUNT(fa) > 0
+		    FROM FlightAssignment fa
+		    WHERE fa.crewMember = :crewMember
+		    AND fa.leg.scheduledDeparture < :end
+		    AND fa.leg.scheduledArrival > :start
+		""")
+	Boolean isOverlappingAssignment(CrewMember crewMember, java.util.Date start, java.util.Date end);
+
+	@Query("""
+			SELECT COUNT(fa) > 0
+			FROM FlightAssignment fa
+			WHERE fa.crewMember = :crewMember
+			AND fa.id != :currentId
+			AND fa.leg.scheduledDeparture < :end
+			AND fa.leg.scheduledArrival > :start
+		""")
+	boolean isOverlappingAssignmentExcludingSelf(CrewMember crewMember, Date start, Date end, int currentId);
+
+	@Query("""
+			SELECT COUNT(fa) > 0
+			FROM FlightAssignment fa
+			WHERE fa.leg = :leg
+			AND fa.duty = :duty
+			AND fa.id != :currentId
+		""")
+	boolean hasDutyAssignedExcludingSelf(Leg leg, Duty duty, int currentId);
+
+	@Query("SELECT COUNT(fa) FROM FlightAssignment fa WHERE fa.leg = :leg AND fa.duty = :duty")
+	long countByLegAndDuty(Leg leg, Duty duty);
+
+	@Query("SELECT COUNT(fa) > 0 FROM FlightAssignment fa WHERE fa.crewMember.id = :crewMemberId AND fa.moment = :moment AND fa.draftMode = false")
+	Boolean hasFlightCrewMemberLegAssociated(int crewMemberId, Date moment);
+
 	@Query("SELECT COUNT(fa) > 0 FROM FlightAssignment fa WHERE fa.leg.id = :legId AND fa.duty IN ('PILOT', 'CO_PILOT') AND fa.duty = :duty AND fa.id != :id")
 	Boolean hasDutyAssigned(int legId, Duty duty, int id);
 
-	@Query("SELECT COUNT(fa) > 0 FROM FlightAssignment fa WHERE fa.crewMember.id = :crewMemberId AND fa.moment = :moment")
-	Boolean hasFlightCrewMemberLegAssociated(int crewMemberId, Date moment);
+	@Query("""
+		    SELECT COUNT(fa) > 0
+		    FROM FlightAssignment fa
+		    WHERE fa.crewMember = :crewMember
+		    AND fa.leg = :leg
+		""")
+	boolean isAlreadyAssignedToLeg(CrewMember crewMember, Leg leg);
+
+	@Query("""
+		    SELECT l
+		    FROM Leg l
+		    WHERE l.aircraft.airline.id = :airlineId
+		    AND l.draftMode = false
+		""")
+	Collection<Leg> findPublishedLegsByAirlineId(int airlineId);
+
+	@Query("""
+		    SELECT l
+		    FROM Leg l
+		    WHERE l.draftMode = false
+		""")
+	Collection<Leg> findPublishedLegs();
+
+	@Query("SELECT COUNT(f) FROM FlightAssignment f WHERE f.crewMember = :crewMember")
+	int countByCrewMember(CrewMember crewMember);
 
 }

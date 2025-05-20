@@ -1,7 +1,6 @@
 
 package acme.realms.technician;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 
 import acme.client.components.basis.AbstractRole;
@@ -26,8 +25,8 @@ public class Technician extends AbstractRole {
 	// Attributes -------------------------------------------------------------
 
 	@Mandatory
-	@Column(unique = true)
-	@ValidString(min = 8, max = 9, pattern = "^[A-Z]{2,3}\\d{6}$")
+	@ValidString(pattern = "^[A-Z]{2,3}\\d{6}$")
+	@Automapped
 	private String				licenseNumber;
 
 	@Mandatory

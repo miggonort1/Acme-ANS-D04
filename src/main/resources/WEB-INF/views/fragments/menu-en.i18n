@@ -21,6 +21,7 @@ master.menu.anonymous.favourite-link-student5 = 45970335M: Palomo García, Migue
 
 master.menu.administrator = Administrator
 master.menu.administrator.list-user-accounts = List user accounts
+master.menu.administrator.list-bookings = List bookings
 master.menu.administrator.list-airports = List airports
 master.menu.administrator.list-airlines = List airlines
 master.menu.administrator.list-aircraft = List aircrafts
@@ -60,6 +61,7 @@ master.menu.customer.passengers = Passengers
 master.menu.crew-member = Crew Member
 master.menu.crew-member.flight-assignments-completed= Flight Assignments Completed
 master.menu.crew-member.flight-assignments-planned= Flight Assignments Planned
+master.menu.dashboards.crew-member-dashboard = Crew Member Dashboard
 
 # master.menu.agent ####################################################
 
@@ -75,7 +77,9 @@ master.menu.user-account.become-provider = Become a provider
 master.menu.user-account.provider-profile = Provider profile
 master.menu.user-account.become-consumer = Become a consumer
 master.menu.user-account.consumer-profile = Consumer profile
+master.menu.user-account.become-customer = Become a customer
 master.menu.user-account.become-technician= Become a technician
+master.menu.user-account.customer-profile = Customer profile
 master.menu.user-account.technician-profile = Technician profile
 master.menu.user-account.become-crew-member= Become a crew member
 master.menu.user-account.crew-member-profile = Crew Member profile

@@ -11,6 +11,7 @@ import acme.entities.flightassignment.ActivityLog;
 import acme.entities.flightassignment.FlightAssignment;
 import acme.features.crewmember.flightAssignment.CrewMemberFlightAssignmentRepository;
 import acme.realms.CrewMember;
+import acme.realms.CrewMemberRepository;
 
 @GuiService
 public class CrewMemberActivityLogCreateService extends AbstractGuiService<CrewMember, ActivityLog> {
@@ -23,14 +24,38 @@ public class CrewMemberActivityLogCreateService extends AbstractGuiService<CrewM
 	@Autowired
 	private CrewMemberFlightAssignmentRepository	flightAssignmentRepository;
 
+	@Autowired
+	private CrewMemberRepository					crewMemberRepository;
+
 	// AbstractGuiService interface -------------------------------------------
 
 
 	@Override
 	public void authorise() {
-		int assignmentId = super.getRequest().getData("assignmentId", int.class);
-		FlightAssignment flightAssignment = this.flightAssignmentRepository.findFlightAssignmentById(assignmentId);
-		boolean status = flightAssignment.getLeg().getScheduledArrival().before(MomentHelper.getCurrentMoment()) && super.getRequest().getPrincipal().hasRealm(flightAssignment.getCrewMember()) && flightAssignment != null;
+		int userId = super.getRequest().getPrincipal().getActiveRealm().getId();
+		CrewMember crewMember = this.crewMemberRepository.findCrewMemberById(userId);
+
+		boolean status = false;
+
+		if (crewMember != null) {
+			Object assignmentData = super.getRequest().getData().get("flightAssignment");
+
+			if (assignmentData == null || "".equals(assignmentData))
+				status = true;
+			else if (assignmentData instanceof String assignmentKey) {
+				assignmentKey = assignmentKey.trim();
+
+				if (assignmentKey.equals("0"))
+					status = true;
+				else if (assignmentKey.matches("\\d+")) {
+					int assignmentId = Integer.parseInt(assignmentKey);
+					FlightAssignment assignment = this.flightAssignmentRepository.findFlightAssignmentById(assignmentId);
+
+					status = assignment != null && assignment.getLeg().getScheduledArrival().before(MomentHelper.getCurrentMoment());
+				} else
+					status = false;
+			}
+		}
 
 		super.getResponse().setAuthorised(status);
 	}

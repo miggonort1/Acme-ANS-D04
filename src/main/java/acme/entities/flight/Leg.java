@@ -1,7 +1,6 @@
 
 package acme.entities.flight;
 
-import java.time.Duration;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -16,9 +15,8 @@ import acme.client.components.basis.AbstractEntity;
 import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.ValidMoment;
-import acme.client.components.validation.ValidString;
-import acme.client.helpers.MomentHelper;
-import acme.constraints.ValidIATACodeLeg;
+import acme.constraints.ValidFlightNumber;
+import acme.constraints.ValidLeg;
 import acme.entities.aircraft.Aircraft;
 import acme.entities.airport.Airport;
 import lombok.Getter;
@@ -27,15 +25,17 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-@ValidIATACodeLeg
+@ValidLeg
+@ValidFlightNumber
 public class Leg extends AbstractEntity {
 
-	// Serialisation identifier
+	// Serialisation version --------------------------------------------------
+
 	private static final long	serialVersionUID	= 1L;
 
-	// Attributes
+	// Attributes -------------------------------------------------------------
 	@Mandatory
-	@ValidString(pattern = "^[A-Z]{3}\\d{4}$")
+	@Valid
 	@Column(unique = true)
 	private String				flightNumber;
 
@@ -54,23 +54,23 @@ public class Leg extends AbstractEntity {
 	@Automapped
 	private Status				status;
 
+	@Mandatory
+	@Automapped
+	private boolean				draftMode;
 
-	// Derived attributes
+	// Derived attributes -----------------------------------------------------
+
+
 	@Transient
-	public long getDurationInHours() {
-		if (this.scheduledDeparture != null && this.scheduledArrival != null) {
-			Duration duration = MomentHelper.computeDuration(this.scheduledDeparture, this.scheduledArrival);
-			return duration.toHours();
-		} else
-			return 0;
+	public Double getDurationHours() {
+		if (this.scheduledDeparture == null || this.scheduledArrival == null)
+			return null;
+
+		return (this.scheduledArrival.getTime() - this.scheduledDeparture.getTime()) / (1000.0 * 60 * 60);
 	}
 
+	// Relationships ----------------------------------------------------------
 
-	// Relationships
-	@Mandatory
-	@Valid
-	@ManyToOne(optional = false)
-	private Flight		flight;
 
 	@Mandatory
 	@Valid
@@ -86,4 +86,10 @@ public class Leg extends AbstractEntity {
 	@Valid
 	@ManyToOne(optional = false)
 	private Aircraft	aircraft;
+
+	@Mandatory
+	@Valid
+	@ManyToOne(optional = false)
+	private Flight		flight;
+
 }

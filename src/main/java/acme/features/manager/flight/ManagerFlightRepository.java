@@ -15,7 +15,7 @@ public interface ManagerFlightRepository extends AbstractRepository {
 	@Query("select f from Flight f where f.id = :id")
 	Flight findFlightById(Integer id);
 
-	@Query("select f from Flight f where f.manager.userAccount.id = :managerId")
+	@Query("select f from Flight f where f.manager.id = :managerId")
 	Collection<Flight> findAllFlightsByManagerId(Integer managerId);
 
 	@Query("select l from Leg l where l.flight.id = :flightId")
@@ -30,4 +30,6 @@ public interface ManagerFlightRepository extends AbstractRepository {
 	@Query("select m from Manager m where m.id = :managerId")
 	Manager findManagerById(Integer managerId);
 
+	@Query("select count(fa) from FlightAssignment fa where fa.leg.flight.id = :flightId")
+	int countAssignmentsByFlightId(int flightId);
 }

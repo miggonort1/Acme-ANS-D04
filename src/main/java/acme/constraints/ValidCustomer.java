@@ -9,12 +9,13 @@ import java.lang.annotation.Target;
 import javax.validation.Constraint;
 import javax.validation.Payload;
 
-@Constraint(validatedBy = CustomerIdentifierValidator.class)
+@Constraint(validatedBy = CustomerValidator.class)
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
-public @interface ValidCustomerIdentifier {
+public @interface ValidCustomer {
 
-	String message() default "Identifier must start with the customer's initials.";
+	String message() default "";
+
 	Class<?>[] groups() default {};
 	Class<? extends Payload>[] payload() default {};
 }

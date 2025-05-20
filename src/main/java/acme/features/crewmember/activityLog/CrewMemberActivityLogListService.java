@@ -17,15 +17,11 @@ import acme.realms.CrewMember;
 @GuiService
 public class CrewMemberActivityLogListService extends AbstractGuiService<CrewMember, ActivityLog> {
 
-	// Internal state ---------------------------------------------------------
-
 	@Autowired
 	private CrewMemberActivityLogRepository			repository;
 
 	@Autowired
 	private CrewMemberFlightAssignmentRepository	flightAssignmentRepository;
-
-	// AbstractGuiService interface -------------------------------------------
 
 
 	@Override
@@ -41,21 +37,18 @@ public class CrewMemberActivityLogListService extends AbstractGuiService<CrewMem
 		int assignmentId = super.getRequest().getData("assignmentId", int.class);
 		Collection<ActivityLog> activityLogs = this.repository.findActivityLogsByFlightAssignmentId(assignmentId);
 		super.getBuffer().addData(activityLogs);
+
+		FlightAssignment fa = this.flightAssignmentRepository.findFlightAssignmentById(assignmentId);
+		boolean show = fa.getLeg().getScheduledArrival().before(MomentHelper.getCurrentMoment());
+
+		super.getResponse().addGlobal("assignmentId", assignmentId);
+		super.getResponse().addGlobal("showAction", show);
 	}
 
 	@Override
 	public void unbind(final ActivityLog object) {
 		Dataset dataset = super.unbindObject(object, "registrationMoment", "incidentType", "description", "severityLevel", "draftMode");
-
-		if (object.getFlightAssignment().getLeg().getScheduledArrival().before(MomentHelper.getCurrentMoment()))
-			super.getResponse().addGlobal("showAction", true);
-
 		super.getResponse().addData(dataset);
-	}
-
-	@Override
-	public void unbind(final Collection<ActivityLog> activityLogs) {
-		super.getResponse().addGlobal("assignmentId", super.getRequest().getData("assignmentId", int.class));
 	}
 
 }
