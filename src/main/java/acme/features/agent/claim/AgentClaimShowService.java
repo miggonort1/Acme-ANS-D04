@@ -61,6 +61,9 @@ public class AgentClaimShowService extends AbstractGuiService<Agent, Claim> {
 
 		Collection<Leg> legs;
 		legs = this.repository.findManyLegsPublished();
+		for (Leg leg : legs)
+			if (leg.getScheduledArrival().before(object.getRegistrationMoment()))
+				legs.add(leg);
 
 		choicesType = SelectChoices.from(Type.class, object.getType());
 		choicesStatus = SelectChoices.from(ClaimStatus.class, object.getStatus());

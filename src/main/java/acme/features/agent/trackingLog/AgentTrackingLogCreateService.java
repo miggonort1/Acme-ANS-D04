@@ -11,7 +11,6 @@ import acme.client.helpers.MomentHelper;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.claim.Claim;
-import acme.entities.claim.ClaimStatus;
 import acme.entities.claim.TrackinLogStatus;
 import acme.entities.claim.TrackingLog;
 import acme.realms.Agent;
@@ -51,21 +50,20 @@ public class AgentTrackingLogCreateService extends AbstractGuiService<Agent, Tra
 
 	@Override
 	public void validate(final TrackingLog object) {
-		boolean createNewTrackingLog;
-		createNewTrackingLog = this.repository.existsTrackingLogWithFullResolution(object.getClaim().getId());
+		assert object != null;
 
-		if (createNewTrackingLog && object.getResolutionPercentage() < 100)
-			super.state(false, "resolutionPercentage", "acme.validation.trackinglog.must-be-100-percent");
+		if (object.getResolutionPercentage() != null && object.getResolutionPercentage() != null && object.getStatus() != null && object.getResolutionPercentage() < 100.0)
+			super.state(object.getStatus().equals(TrackinLogStatus.PENDING), "status", "agent.trackingLog.form.error.badStatus");
+		else if (object.getStatus() != null)
+			super.state(!object.getStatus().equals(TrackinLogStatus.PENDING), "status", "agent.trackingLog.form.error.badStatus2");
+		if (object.getStatus() != null && object.getStatus().equals(TrackinLogStatus.PENDING))
+			super.state(object.getResolution() == null || object.getResolution().isBlank(), "resolution", "agent.trackingLog.form.error.badResolution");
+		else
+			super.state(object.getResolution() != null && !object.getResolution().isBlank(), "resolution", "agent.trackingLog.form.error.badResolution2");
 	}
 
 	@Override
 	public void perform(final TrackingLog object) {
-		if (object.getStatus() == TrackinLogStatus.ACCEPTED)
-			object.getClaim().setStatus(ClaimStatus.ACCEPTED);
-
-		if (object.getStatus() == TrackinLogStatus.REJECTED)
-			object.getClaim().setStatus(ClaimStatus.DENIED);
-
 		this.repository.save(object);
 	}
 

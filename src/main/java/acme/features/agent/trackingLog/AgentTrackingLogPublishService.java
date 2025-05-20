@@ -47,20 +47,32 @@ public class AgentTrackingLogPublishService extends AbstractGuiService<Agent, Tr
 
 	@Override
 	public void bind(final TrackingLog object) {
+		assert object != null;
+
 		super.bindObject(object, "step", "resolutionPercentage", "status", "resolution");
 	}
 
 	@Override
 	public void validate(final TrackingLog object) {
+		assert object != null;
+
+		if (object.getResolutionPercentage() != null && object.getResolutionPercentage() != null && object.getStatus() != null && object.getResolutionPercentage() < 100.0)
+			super.state(object.getStatus().equals(TrackinLogStatus.PENDING), "status", "agent.trackingLog.form.error.badStatus");
+		else if (object.getStatus() != null)
+			super.state(!object.getStatus().equals(TrackinLogStatus.PENDING), "status", "agent.trackingLog.form.error.badStatus2");
+		if (object.getStatus() != null && object.getStatus().equals(TrackinLogStatus.PENDING))
+			super.state(object.getResolution() == null || object.getResolution().isBlank(), "resolution", "agent.trackingLog.form.error.badResolution");
+		else
+			super.state(object.getResolution() != null && !object.getResolution().isBlank(), "resolution", "agent.trackingLog.form.error.badResolution2");
+
 		Claim claim = object.getClaim();
 		boolean claimPublished = claim.getStatus() != ClaimStatus.PENDING;
-
 		super.state(claimPublished, "*", "acme.validation.trackinglog.publish-claim-not-published");
 	}
 
 	@Override
 	public void perform(final TrackingLog object) {
-		object.setStatus(TrackinLogStatus.ACCEPTED);
+		object.setDraftMode(false);
 		this.repository.save(object);
 	}
 

@@ -55,6 +55,15 @@ public class AgentTrackingLogUpdateService extends AbstractGuiService<Agent, Tra
 	@Override
 	public void validate(final TrackingLog object) {
 		assert object != null;
+
+		if (object.getResolutionPercentage() != null && object.getResolutionPercentage() != null && object.getStatus() != null && object.getResolutionPercentage() < 100.0)
+			super.state(object.getStatus().equals(TrackinLogStatus.PENDING), "status", "agent.trackingLog.form.error.badStatus");
+		else if (object.getStatus() != null)
+			super.state(!object.getStatus().equals(TrackinLogStatus.PENDING), "status", "agent.trackingLog.form.error.badStatus2");
+		if (object.getStatus() != null && object.getStatus().equals(TrackinLogStatus.PENDING))
+			super.state(object.getResolution() == null || object.getResolution().isBlank(), "resolution", "agent.trackingLog.form.error.badResolution");
+		else
+			super.state(object.getResolution() != null && !object.getResolution().isBlank(), "resolution", "agent.trackingLog.form.error.badResolution2");
 	}
 
 	@Override
