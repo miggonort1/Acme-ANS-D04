@@ -7,7 +7,7 @@ import acme.client.components.models.Dataset;
 import acme.client.components.views.SelectChoices;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
-import acme.entities.claim.TrackinLogStatus;
+import acme.entities.claim.TrackingLogStatus;
 import acme.entities.claim.TrackingLog;
 import acme.realms.Agent;
 
@@ -50,7 +50,7 @@ public class AgentTrackingLogDeleteService extends AbstractGuiService<Agent, Tra
 
 	@Override
 	public void validate(final TrackingLog object) {
-		super.state(object.getStatus() == TrackinLogStatus.PENDING, "*", "acme.validation.trackinglog.update-published");
+		super.state(object.getStatus() == TrackingLogStatus.PENDING, "*", "acme.validation.trackinglog.update-published");
 	}
 
 	@Override
@@ -63,7 +63,7 @@ public class AgentTrackingLogDeleteService extends AbstractGuiService<Agent, Tra
 		Dataset dataset;
 		SelectChoices choicesStatus;
 
-		choicesStatus = SelectChoices.from(TrackinLogStatus.class, object.getStatus());
+		choicesStatus = SelectChoices.from(TrackingLogStatus.class, object.getStatus());
 
 		dataset = super.unbindObject(object, "lastUpdateMoment", "step", "resolutionPercentage", "status", "resolution");
 		dataset.put("status", choicesStatus);

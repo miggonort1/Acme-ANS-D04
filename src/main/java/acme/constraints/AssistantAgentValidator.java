@@ -3,12 +3,19 @@ package acme.constraints;
 
 import javax.validation.ConstraintValidatorContext;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import acme.client.components.validation.AbstractValidator;
 import acme.client.components.validation.Validator;
+import acme.features.authenticated.agent.AuthenticatedAgentRepository;
 import acme.realms.Agent;
 
 @Validator
 public class AssistantAgentValidator extends AbstractValidator<ValidAssistantAgent, Agent> {
+
+	@Autowired
+	private AuthenticatedAgentRepository repository;
+
 
 	@Override
 	protected void initialise(final ValidAssistantAgent annotation) {
@@ -44,7 +51,13 @@ public class AssistantAgentValidator extends AbstractValidator<ValidAssistantAge
 
 			validIdentifier = validLength && validPattern;
 
-			super.state(context, validIdentifier, "identifier", "java.validation.assistanceAgent.identifier.message");
+			super.state(context, validIdentifier, "identifier", "validation.agent.identifier.message");
+
+			if (validIdentifier) {
+				Agent existing = this.repository.findAssistanceAgentByUserAccountId(assistantAgent.getUserAccount().getId());
+				boolean unique = existing == null || existing.equals(assistantAgent);
+				super.state(context, unique, "employeeCode", "validation.agent.duplicated-identifier.message");
+			}
 		}
 
 		result = !super.hasErrors(context);

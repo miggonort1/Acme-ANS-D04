@@ -10,7 +10,7 @@ import acme.client.components.views.SelectChoices;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.claim.Claim;
-import acme.entities.claim.TrackinLogStatus;
+import acme.entities.claim.TrackingLogStatus;
 import acme.entities.claim.Type;
 import acme.entities.flight.Leg;
 import acme.realms.Agent;
@@ -87,7 +87,7 @@ public class AgentClaimUpdateService extends AbstractGuiService<Agent, Claim> {
 	public void unbind(final Claim object) {
 		Dataset dataset;
 		SelectChoices choicesType;
-		TrackinLogStatus choicesStatus;
+		TrackingLogStatus choicesStatus;
 		SelectChoices choicesLegs;
 
 		Collection<Leg> legs;

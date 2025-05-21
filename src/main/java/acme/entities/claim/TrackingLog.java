@@ -36,6 +36,11 @@ public class TrackingLog extends AbstractEntity {
 	private Date				lastUpdateMoment;
 
 	@Mandatory
+	@ValidMoment(past = true)
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date				creationMoment;
+
+	@Mandatory
 	@ValidString(min = 1, max = 50)
 	@Automapped
 	private String				step;
@@ -48,7 +53,7 @@ public class TrackingLog extends AbstractEntity {
 	@Mandatory
 	@Valid
 	@Automapped
-	private TrackinLogStatus	status;
+	private TrackingLogStatus	status;
 
 	@Optional
 	@ValidString(min = 0, max = 255)

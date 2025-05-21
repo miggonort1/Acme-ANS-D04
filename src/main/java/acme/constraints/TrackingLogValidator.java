@@ -5,7 +5,7 @@ import javax.validation.ConstraintValidatorContext;
 
 import acme.client.components.validation.AbstractValidator;
 import acme.client.components.validation.Validator;
-import acme.entities.claim.TrackinLogStatus;
+import acme.entities.claim.TrackingLogStatus;
 import acme.entities.claim.TrackingLog;
 
 @Validator
@@ -27,11 +27,11 @@ public class TrackingLogValidator extends AbstractValidator<ValidTrackingLog, Tr
 		else if (trackingLog.getStatus() != null && trackingLog.getResolution() != null && trackingLog.getClaim() != null) {
 
 			if (trackingLog.getResolutionPercentage() != null && trackingLog.getResolutionPercentage() == 100.0)
-				super.state(context, !trackingLog.getStatus().equals(TrackinLogStatus.PENDING), "Status", "El estado no puede ser PENDING");
+				super.state(context, !trackingLog.getStatus().equals(TrackingLogStatus.PENDING), "Status", "El estado no puede ser PENDING");
 			else
-				super.state(context, trackingLog.getStatus().equals(TrackinLogStatus.PENDING), "Status", "El estado debe ser PENDING");
+				super.state(context, trackingLog.getStatus().equals(TrackingLogStatus.PENDING), "Status", "El estado debe ser PENDING");
 
-			if (trackingLog.getStatus().equals(TrackinLogStatus.PENDING))
+			if (trackingLog.getStatus().equals(TrackingLogStatus.PENDING))
 				super.state(context, trackingLog.getResolution() == null || trackingLog.getResolution().isBlank(), "Resolution", "El campo resolution debe quedar vacío hasta la finalización del tracking log");
 			else
 				super.state(context, trackingLog.getResolution() != null && !trackingLog.getResolution().isBlank(), "Resolution", "El campo resolucion no debe quedar vacío si se ha finalizado el tracking log");
