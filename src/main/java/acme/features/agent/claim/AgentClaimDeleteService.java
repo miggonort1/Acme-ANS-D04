@@ -10,7 +10,7 @@ import acme.client.components.views.SelectChoices;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.claim.Claim;
-import acme.entities.claim.ClaimStatus;
+import acme.entities.claim.TrackinLogStatus;
 import acme.entities.claim.TrackingLog;
 import acme.entities.claim.Type;
 import acme.entities.flight.Leg;
@@ -64,7 +64,7 @@ public class AgentClaimDeleteService extends AbstractGuiService<Agent, Claim> {
 		leg = this.repository.findLegById(legId);
 
 		object.setLeg(leg);
-		super.bindObject(object, "description", "passengerEmail", "status", "type", "leg");
+		super.bindObject(object, "description", "passengerEmail", "type", "leg");
 	}
 
 	@Override
@@ -87,17 +87,17 @@ public class AgentClaimDeleteService extends AbstractGuiService<Agent, Claim> {
 	public void unbind(final Claim object) {
 		Dataset dataset;
 		SelectChoices choicesType;
-		SelectChoices choicesStatus;
+		TrackinLogStatus choicesStatus;
 		SelectChoices choicesLegs;
 
 		Collection<Leg> legs;
 		legs = this.repository.findManyLegsPublished();
 
 		choicesType = SelectChoices.from(Type.class, object.getType());
-		choicesStatus = SelectChoices.from(ClaimStatus.class, object.getStatus());
+		choicesStatus = object.getStatus();
 		choicesLegs = SelectChoices.from(legs, "flightNumber", object.getLeg());
 
-		dataset = super.unbindObject(object, "registrationMoment", "description", "passengerEmail", "status", "type", "draftMode");
+		dataset = super.unbindObject(object, "registrationMoment", "description", "passengerEmail", "type", "draftMode");
 		dataset.put("type", choicesType);
 		dataset.put("status", choicesStatus);
 		dataset.put("legs", choicesLegs);

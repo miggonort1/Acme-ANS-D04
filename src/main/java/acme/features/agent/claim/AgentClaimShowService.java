@@ -10,7 +10,7 @@ import acme.client.components.views.SelectChoices;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.claim.Claim;
-import acme.entities.claim.ClaimStatus;
+import acme.entities.claim.TrackinLogStatus;
 import acme.entities.claim.Type;
 import acme.entities.flight.Leg;
 import acme.realms.Agent;
@@ -56,20 +56,18 @@ public class AgentClaimShowService extends AbstractGuiService<Agent, Claim> {
 
 		Dataset dataset;
 		SelectChoices choicesType;
-		SelectChoices choicesStatus;
+		TrackinLogStatus choicesStatus;
 		SelectChoices choicesLegs;
 
 		Collection<Leg> legs;
 		legs = this.repository.findManyLegsPublished();
-		for (Leg leg : legs)
-			if (leg.getScheduledArrival().before(object.getRegistrationMoment()))
-				legs.add(leg);
+		Collection<Leg> validLegs = legs.stream().filter(leg -> leg.getScheduledArrival().before(object.getRegistrationMoment())).toList();
 
 		choicesType = SelectChoices.from(Type.class, object.getType());
-		choicesStatus = SelectChoices.from(ClaimStatus.class, object.getStatus());
-		choicesLegs = SelectChoices.from(legs, "flightNumber", object.getLeg());
+		choicesStatus = object.getStatus();
+		choicesLegs = SelectChoices.from(validLegs, "flightNumber", object.getLeg());
 
-		dataset = super.unbindObject(object, "registrationMoment", "description", "passengerEmail", "status", "type", "draftMode");
+		dataset = super.unbindObject(object, "registrationMoment", "description", "passengerEmail", "type", "draftMode");
 		dataset.put("type", choicesType);
 		dataset.put("status", choicesStatus);
 		dataset.put("legFlightNumber", object.getLeg().getFlightNumber());

@@ -7,8 +7,6 @@ import acme.client.components.models.Dataset;
 import acme.client.components.views.SelectChoices;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
-import acme.entities.claim.Claim;
-import acme.entities.claim.ClaimStatus;
 import acme.entities.claim.TrackinLogStatus;
 import acme.entities.claim.TrackingLog;
 import acme.realms.Agent;
@@ -64,10 +62,6 @@ public class AgentTrackingLogPublishService extends AbstractGuiService<Agent, Tr
 			super.state(object.getResolution() == null || object.getResolution().isBlank(), "resolution", "agent.trackingLog.form.error.badResolution");
 		else
 			super.state(object.getResolution() != null && !object.getResolution().isBlank(), "resolution", "agent.trackingLog.form.error.badResolution2");
-
-		Claim claim = object.getClaim();
-		boolean claimPublished = claim.getStatus() != ClaimStatus.PENDING;
-		super.state(claimPublished, "*", "acme.validation.trackinglog.publish-claim-not-published");
 	}
 
 	@Override

@@ -35,7 +35,7 @@ public interface AgentTrackingLogRepository extends AbstractRepository {
 	TrackingLog findTrackingLogById(int id);
 
 	@Query("SELECT tl FROM TrackingLog tl WHERE tl.claim.id = :claimId ORDER BY tl.lastUpdateMoment DESC")
-	Optional<TrackingLog> findLastTrackingLog(int claimId);
+	Optional<List<TrackingLog>> findLastTrackingLog(int claimId);
 
 	@Query("select t from TrackingLog t where t.claim.id = :claimId order by t.lastUpdateMoment desc")
 	Optional<List<TrackingLog>> findOrderTrackingLog(Integer claimId);
