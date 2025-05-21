@@ -27,12 +27,10 @@ public class CustomerValidator extends AbstractValidator<ValidCustomer, Customer
 		if (customer == null)
 			super.state(context, false, "*", "javax.validation.constraints.NotNull.message");
 		else {
-			// Validar que el identificador sea único
 			Customer existingCustomer = this.repository.findCustomerByIdentifier(customer.getIdentifier());
 			boolean uniqueCustomerIdentifier = existingCustomer == null || existingCustomer.equals(customer);
 			super.state(context, uniqueCustomerIdentifier, "identifier", "acme.validation.customer.identifier.unique.message");
 
-			// Validar la sintaxis del identificador
 			String name = customer.getIdentity().getName().trim();
 			String surname = customer.getIdentity().getSurname().trim();
 
