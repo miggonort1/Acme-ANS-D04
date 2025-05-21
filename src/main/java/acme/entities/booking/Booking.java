@@ -39,6 +39,7 @@ public class Booking extends AbstractEntity {
 
 	@Mandatory
 	@ValidString(pattern = "^[A-Z0-9]{6,8}$")
+	@Automapped
 	private String				locatorCode;
 
 	@Mandatory
@@ -57,6 +58,7 @@ public class Booking extends AbstractEntity {
 	private String				lastNibble;
 
 	@Mandatory
+	//@Valid
 	@Automapped
 	private boolean				draftMode			= true;
 

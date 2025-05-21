@@ -35,32 +35,24 @@ public class CustomerBookingPassengerCreateService extends AbstractGuiService<Cu
 		Collection<BookingPassenger> existingAssignments;
 
 		try {
-			// ID del booking
 			masterId = super.getRequest().getData("masterId", int.class);
 			booking = this.repository.findBookingById(masterId);
 			customer = booking == null ? null : booking.getCustomer();
 
-			// Validar existencia y derechos del booking
 			status = booking != null && booking.isDraftMode() && super.getRequest().getPrincipal().hasRealm(customer);
 
-			// Si viene passenger en la request, validarlo también
 			if (status && super.getRequest().hasData("passenger")) {
 				passengerId = super.getRequest().getData("passenger", int.class);
 				passenger = this.repository.findPassengerById(passengerId);
 
-				// Validar existencia del passenger
 				status = status && passenger != null;
 
-				// Validar que pertenece al mismo customer
 				status = status && passenger.getCustomer().equals(customer);
 
-				// Validar que no está en draft mode
 				status = status && !passenger.isDraftMode();
 
-				// Validar que fecha de nacimiento < purchaseMoment
 				status = status && passenger.getDateOfBirth().before(booking.getPurchaseMoment());
 
-				// Validar que no esté ya asignado al booking
 				existingAssignments = this.repository.findAssignationFromBookingIdAndPassengerId(masterId, passengerId);
 				status = status && existingAssignments.isEmpty();
 			}
@@ -127,7 +119,7 @@ public class CustomerBookingPassengerCreateService extends AbstractGuiService<Cu
 
 		passengers = this.repository.findAllValidPassengersForBooking(customer.getId(), bookingId);
 
-		passengerChoices = SelectChoices.from(passengers, "passportNumber", BookingPassenger.getPassenger());
+		passengerChoices = SelectChoices.from(passengers, "fullNameAndPassportNumber", BookingPassenger.getPassenger());
 
 		dataset = super.unbindObject(BookingPassenger, "booking", "passenger");
 		dataset.put("passenger", passengerChoices.getSelected().getKey());

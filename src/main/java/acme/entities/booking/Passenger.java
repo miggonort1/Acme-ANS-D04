@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 import javax.validation.Valid;
 
 import acme.client.components.basis.AbstractEntity;
@@ -59,10 +60,17 @@ public class Passenger extends AbstractEntity {
 	@Automapped
 	private String				specialNeeds;
 
+
+	@Transient
+	public String getFullNameAndPassportNumber() {
+		return this.passportNumber + " ; " + this.fullName;
+	}
+
+
 	// Relationships ----------------------------------------------------------
 	@Mandatory
 	@Valid
 	@ManyToOne(optional = false)
-	private Customer			customer;
+	private Customer customer;
 
 }
