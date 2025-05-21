@@ -20,4 +20,4 @@ authenticated.customer.form.label.earnedPoints = Puntos Ganados
 authenticated.customer.form.button.create = Registrar
 authenticated.customer.form.button.update = Actualizar
 acme.validation.customer.identifier.syntax.message = Las dos o tres primeras letras deben coincidir con tus iniciales
-acme.validation.customer.identifier.unique.message = El identificador debe ser único
+acme.validation.customer.identifier.unique.message = Este identificador esta en uso

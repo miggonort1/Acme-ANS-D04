@@ -2,9 +2,9 @@
 package acme.features.customer.bookingPassenger;
 
 import java.util.Collection;
+import java.util.Date;
 
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import acme.client.repositories.AbstractRepository;
@@ -27,8 +27,14 @@ public interface CustomerBookingPassengerRepository extends AbstractRepository {
 	@Query("select bp from BookingPassenger bp where bp.booking.id = :bookingId")
 	Collection<BookingPassenger> findBookingPassengersByBookingId(final int bookingId);
 
-	@Query("select p from Passenger p where p.draftMode = false and p.customer.id = :customerId and p.id not in (select bp.passenger.id from BookingPassenger bp where bp.booking.id = :bookingId) and p.dateOfBirth < (select b.purchaseMoment from Booking b where b.id = :bookingId)")
-	Collection<Passenger> findAllValidPassengersForBooking(@Param("customerId") int customerId, @Param("bookingId") int bookingId);
+	@Query("select b.purchaseMoment from Booking b where b.id = :bookingId")
+	Date findPurchaseMomentByBookingId(int bookingId);
+
+	@Query("select bp.passenger.id from BookingPassenger bp where bp.booking.id = :bookingId")
+	Collection<Integer> findPassengerIdsInBooking(int bookingId);
+
+	@Query("select p from Passenger p where p.draftMode = false and p.customer.id = :customerId and p.dateOfBirth<:purchaseMoment")
+	Collection<Passenger> findValidPassengers(int customerId, Date purchaseMoment);
 
 	@Query("select bp from BookingPassenger bp where bp.booking.id = :bookingId and bp.passenger.id = :passengerId")
 	Collection<BookingPassenger> findAssignationFromBookingIdAndPassengerId(final int bookingId, final int passengerId);
