@@ -113,7 +113,10 @@ public class CustomerBookingPublishService extends AbstractGuiService<Customer, 
 		SelectChoices flightsChoices;
 		Dataset dataset;
 
-		flights = this.repository.findAllFlightsInNoDraftModeAndWithFuturePublishedLegs(booking.getPurchaseMoment());
+		Collection<Flight> publishedFlights = this.repository.findAllPublishedFlights();
+		Date referenceMoment = booking.getPurchaseMoment();
+
+		flights = publishedFlights.stream().filter(f -> this.repository.findInvalidLegsForFlight(f.getId(), referenceMoment).isEmpty()).toList();
 
 		travelClassesChoices = SelectChoices.from(TravelClass.class, booking.getTravelClass());
 		flightsChoices = SelectChoices.from(flights, "flightSummary", booking.getFlight());

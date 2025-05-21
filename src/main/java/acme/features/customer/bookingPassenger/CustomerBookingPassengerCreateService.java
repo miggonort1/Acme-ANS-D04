@@ -2,6 +2,7 @@
 package acme.features.customer.bookingPassenger;
 
 import java.util.Collection;
+import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -116,9 +117,11 @@ public class CustomerBookingPassengerCreateService extends AbstractGuiService<Cu
 
 		customer = (Customer) super.getRequest().getPrincipal().getActiveRealm();
 		bookingId = BookingPassenger.getBooking().getId();
+		Date purchaseMoment = this.repository.findPurchaseMomentByBookingId(bookingId);
+		Collection<Integer> excludedIds = this.repository.findPassengerIdsInBooking(bookingId);
 
-		passengers = this.repository.findAllValidPassengersForBooking(customer.getId(), bookingId);
-
+		Collection<Passenger> allValid = this.repository.findValidPassengers(customer.getId(), purchaseMoment);
+		passengers = allValid.stream().filter(p -> !excludedIds.contains(p.getId())).toList();
 		passengerChoices = SelectChoices.from(passengers, "fullNameAndPassportNumber", BookingPassenger.getPassenger());
 
 		dataset = super.unbindObject(BookingPassenger, "booking", "passenger");

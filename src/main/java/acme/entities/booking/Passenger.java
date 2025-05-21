@@ -4,7 +4,9 @@ package acme.entities.booking;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.Index;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
@@ -24,6 +26,9 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
+@Table(indexes = {
+	@Index(columnList = "draftMode, customer_id, dateOfBirth"), @Index(columnList = "draftMode, customer_id")
+})
 public class Passenger extends AbstractEntity {
 
 	// Serialisation version --------------------------------------------------

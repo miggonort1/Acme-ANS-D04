@@ -38,7 +38,7 @@ public class BookingValidator extends AbstractValidator<ValidBooking, Booking> {
 			if (flight != null) {
 				Date referenceMoment = booking.getPurchaseMoment();
 
-				boolean validLegs = this.repository.allLegsArePublishedAndInFutureByFlightId(flight.getId(), referenceMoment);
+				boolean validLegs = this.repository.findInvalidLegsForFlight(flight.getId(), referenceMoment).isEmpty();
 				super.state(context, validLegs, "flight", "acme.validation.booking.invalid-legs.message");
 
 				boolean flightNotInDraft = !flight.isDraftMode();
