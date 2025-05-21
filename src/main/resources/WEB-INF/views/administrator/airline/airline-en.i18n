@@ -26,3 +26,4 @@ administrator.airline.form.label.emailAdress = Email Adress
 administrator.airline.form.label.phoneNumber = Phone number
 
 administrator.airline.list.button.create = Create
+acme.validation.airline.iataCode.unique.message = This IATA code is already in use.
