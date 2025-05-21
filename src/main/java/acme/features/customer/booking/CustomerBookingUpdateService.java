@@ -2,6 +2,7 @@
 package acme.features.customer.booking;
 
 import java.util.Collection;
+import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -32,6 +33,11 @@ public class CustomerBookingUpdateService extends AbstractGuiService<Customer, B
 		bookingId = super.getRequest().getData("id", int.class);
 		booking = this.repository.findBookingById(bookingId);
 		status = booking != null && booking.isDraftMode() && super.getRequest().getPrincipal().hasRealm(booking.getCustomer());
+
+		if (status && super.getRequest().hasData("purchaseMoment")) {
+			Date requestMoment = super.getRequest().getData("purchaseMoment", Date.class);
+			status = status && booking.getPurchaseMoment().equals(requestMoment);
+		}
 
 		if (super.getRequest().hasData("id")) {
 			Integer flightId = super.getRequest().getData("flight", int.class);
