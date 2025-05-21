@@ -13,6 +13,7 @@ customer.booking-passenger.form.label.email = Email:
 customer.booking-passenger.form.label.passenger = Pasajero:
 customer.booking-passenger.form.label.date-of-birth = Fecha de nacimiento:
 customer.booking-passenger.form.label.special-needs = Necesidades especiales:
+customer.booking-passenger.form.label.passport-number = Número de Pasaporte:
 
 customer.booking-passenger.form.button.add = Añadir
 customer.booking-passenger.form.button.delete = Eliminar
