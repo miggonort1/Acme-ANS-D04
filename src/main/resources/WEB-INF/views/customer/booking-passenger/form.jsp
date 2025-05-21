@@ -3,8 +3,8 @@
 <%@taglib prefix="jstl" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="acme" uri="http://acme-framework.org/"%>
 
-<acme:form>		
-	<acme:input-select code="customer.booking-passenger.form.label.passport-number" path="passenger" choices="${passengers}" readonly="${_command != 'create'}"/>
+<acme:form>			
+	<acme:input-select code="customer.booking-passenger.form.label.passenger" path="passenger" choices="${passengers}" readonly="${_command != 'create'}"/>
 	<jstl:choose>
 		<jstl:when test="${acme:anyOf(_command, 'show|delete')}">	
 			<acme:input-textbox code="customer.booking-passenger.form.label.full-name" path="passenger.fullName" readonly="true"/>

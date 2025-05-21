@@ -1,6 +1,7 @@
 
 package acme.entities.flight;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -90,6 +91,22 @@ public class Flight extends AbstractEntity {
 		FlightRepository repository = SpringHelper.getBean(FlightRepository.class);
 		Integer legs = repository.countLegs(this.getId());
 		return legs != null && legs > 0 ? legs - 1 : 0;
+	}
+
+	@Transient
+	public String getFlightSummary() {
+		String tag = this.tag;
+		String origin = this.getOriginCity();
+		String destination = this.getDestinationCity();
+		Date departure = this.getScheduledDeparture();
+		Date arrival = this.getScheduledArrival();
+
+		SimpleDateFormat dateTimeFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+
+		String depTime = departure != null ? dateTimeFormat.format(departure) : "??/??/???? ??:??";
+		String arrTime = arrival != null ? dateTimeFormat.format(arrival) : "??/??/???? ??:??";
+
+		return String.format("[%s] %s → %s | %s - %s", tag, origin, destination, depTime, arrTime);
 	}
 
 

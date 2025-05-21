@@ -59,7 +59,7 @@ public class CustomerBookingShowService extends AbstractGuiService<Customer, Boo
 		flights = this.repository.findAllFlightsInNoDraftModeAndWithFuturePublishedLegs(booking.getPurchaseMoment());
 
 		travelClassesChoices = SelectChoices.from(TravelClass.class, booking.getTravelClass());
-		flightsChoices = SelectChoices.from(flights, "tag", booking.getFlight());
+		flightsChoices = SelectChoices.from(flights, "flightSummary", booking.getFlight());
 
 		dataset = super.unbindObject(booking, "locatorCode", "purchaseMoment", "lastNibble", "draftMode");
 		dataset.put("price", booking.getPrice());

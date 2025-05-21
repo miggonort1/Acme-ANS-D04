@@ -91,7 +91,7 @@ public class CustomerBookingCreateService extends AbstractGuiService<Customer, B
 		flights = this.repository.findAllFlightsInNoDraftModeAndWithFuturePublishedLegs(referenceMoment);
 
 		travelClassesChoices = SelectChoices.from(TravelClass.class, booking.getTravelClass());
-		flightsChoices = SelectChoices.from(flights, "tag", booking.getFlight());
+		flightsChoices = SelectChoices.from(flights, "flightSummary", booking.getFlight());
 
 		dataset = super.unbindObject(booking, "locatorCode", "travelClass", "lastNibble", "flight", "draftMode");
 		dataset.put("travelClasses", travelClassesChoices);
