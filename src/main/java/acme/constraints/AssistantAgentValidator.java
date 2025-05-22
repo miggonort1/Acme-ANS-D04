@@ -42,18 +42,18 @@ public class AssistantAgentValidator extends AbstractValidator<ValidAssistantAge
 			if (surnameParts.length > 1)
 				initials += surnameParts[1].substring(0, 1).toUpperCase();
 
-			boolean validIdentifier;
+			boolean validEmployeeCode;
 
 			String identifier = assistantAgent.getEmployeeCode();
 
 			boolean validLength = identifier.length() >= 8 && identifier.length() <= 9;
 			boolean validPattern = identifier.matches("^" + initials + "\\d{6}$");
 
-			validIdentifier = validLength && validPattern;
+			validEmployeeCode = validLength && validPattern;
 
-			super.state(context, validIdentifier, "identifier", "validation.agent.identifier.message");
+			super.state(context, validEmployeeCode, "employeeCode", "validation.agent.identifier.message");
 
-			if (validIdentifier) {
+			if (validEmployeeCode) {
 				Agent existing = this.repository.findAssistanceAgentByUserAccountId(assistantAgent.getUserAccount().getId());
 				boolean unique = existing == null || existing.equals(assistantAgent);
 				super.state(context, unique, "employeeCode", "validation.agent.duplicated-identifier.message");

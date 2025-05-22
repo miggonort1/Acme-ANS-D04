@@ -84,9 +84,6 @@ public class AgentClaimPublishService extends AbstractGuiService<Agent, Claim> {
 	@Override
 	public void validate(final Claim object) {
 		assert object != null;
-
-		if (object.getLeg() != null && object.getRegistrationMoment() != null)
-			super.state(object.getRegistrationMoment().after(object.getLeg().getScheduledArrival()), "leg", "agent.claim.form.error.badLeg");
 	}
 
 	@Override

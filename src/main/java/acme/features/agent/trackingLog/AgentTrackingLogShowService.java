@@ -7,8 +7,8 @@ import acme.client.components.models.Dataset;
 import acme.client.components.views.SelectChoices;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
-import acme.entities.claim.TrackingLogStatus;
 import acme.entities.claim.TrackingLog;
+import acme.entities.claim.TrackingLogStatus;
 import acme.realms.Agent;
 
 @GuiService
@@ -22,15 +22,11 @@ public class AgentTrackingLogShowService extends AbstractGuiService<Agent, Track
 	public void authorise() {
 		boolean status;
 		int trackingLogId;
-		int agentId;
 		TrackingLog trackingLog;
-		Agent agent;
 
-		agentId = super.getRequest().getPrincipal().getActiveRealm().getId();
-		agent = this.repository.findOneAgentById(agentId);
 		trackingLogId = super.getRequest().getData("id", int.class);
 		trackingLog = this.repository.findTrackingLogById(trackingLogId);
-		status = trackingLog != null && (!trackingLog.isDraftMode() || super.getRequest().getPrincipal().hasRealm(trackingLog.getClaim().getAgent())) && trackingLog.getClaim().getAgent().equals(agent);
+		status = trackingLog != null && super.getRequest().getPrincipal().hasRealm(trackingLog.getClaim().getAgent());
 
 		super.getResponse().setAuthorised(status);
 	}
@@ -53,7 +49,7 @@ public class AgentTrackingLogShowService extends AbstractGuiService<Agent, Track
 
 		choicesStatus = SelectChoices.from(TrackingLogStatus.class, object.getStatus());
 
-		dataset = super.unbindObject(object, "lastUpdateMoment", "step", "resolutionPercentage", "status", "resolution");
+		dataset = super.unbindObject(object, "lastUpdateMoment", "step", "resolutionPercentage", "status", "resolution", "draftMode");
 
 		dataset.put("status", choicesStatus);
 
