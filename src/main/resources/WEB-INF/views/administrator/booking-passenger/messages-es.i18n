@@ -24,3 +24,5 @@ administrator.booking-passenger.form.label.passport-number = Número de Pasaport
 administrator.booking-passenger.form.label.email = Email
 administrator.booking-passenger.form.label.date-of-birth = Fecha Nacimiento
 administrator.booking-passenger.form.label.special-needs = Necesidades Especiales
+acme.validation.booking-passenger.excessive-price=El precio total del booking no debe superar 1.000.000,00
+

@@ -24,3 +24,5 @@ administrator.booking-passenger.passenger.list.label.fullName = Full Name
 
 administrator.booking-passenger.passenger.list.label.email = Email
 administrator.booking-passenger.passenger.list.label.passportNumber = Passport Number
+acme.validation.booking-passenger.excessive-price=The total booking price must not exceed 1,000,000.00
+
