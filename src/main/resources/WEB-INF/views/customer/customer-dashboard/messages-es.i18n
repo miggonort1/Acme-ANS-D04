@@ -1,24 +1,17 @@
-customer.passenger.form.title = Detalles de pasajero
-
-customer.passenger.form.label.full-name = Nombre completo:
-customer.passenger.form.label.email = Email:
-customer.passenger.form.label.passport-number = Número de pasaporte:
-customer.passenger.form.label.date-of-date-of-birth = Fecha de nacimiento:
-customer.passenger.form.label.special-needs = Necesidades especiales:
-customer.passenger.form.label.draft-mode = ¿Está en modo borrador?
-
-customer.passenger.form.button.create = Crear
-customer.passenger.form.button.update = Actualizar
-customer.passenger.form.button.delete = Eliminar
-customer.passenger.form.button.publish = Publicar
-
-customer.passenger.list.title = Lista de pasajeros
-customer.passenger.list.label.passport-number = Modo Borrador
-
-customer.passenger.list.label.full-name = Nombre completo
-customer.passenger.list.label.email = Email
-customer.passenger.list.label.passport-number = Número de pasaporte
-
-customer.passenger.list.button.create = Crear
-
-acme.validation.passenger.duplicated-passenger.message = Número de Pasaporte Duplicado
+customer.dashboard.form.label.last-five-destinations=Últimos 5 destinos
+customer.dashboard.form.label.spent-money-last-year=Dinero gastado el último año
+customer.dashboard.form.label.bookings-by-travel-class=Reservas por clase de viaje
+customer.dashboard.form.label.booking-count-cost=Coste total de reservas en los últimos 5 años
+customer.dashboard.form.label.booking-average-cost=Coste medio de reservas en los últimos 5 años
+customer.dashboard.form.label.booking-minimum-cost=Coste mínimo de reservas en los últimos 5 años
+customer.dashboard.form.label.booking-maximum-cost=Coste máximo de reservas en los últimos 5 años
+customer.dashboard.form.label.booking-deviation-cost=Desviación estándar del coste en los últimos 5 años
+customer.dashboard.form.label.booking-count-passengers=Número total de pasajeros
+customer.dashboard.form.label.booking-average-passengers=Media de pasajeros por reserva
+customer.dashboard.form.label.booking-minimum-passengers=Mínimo de pasajeros por reserva
+customer.dashboard.form.label.booking-maximum-passengers=Máximo de pasajeros por reserva
+customer.dashboard.form.label.booking-deviation-passengers=Desviación de pasajeros por reserva
+customer.dashboard.form.label.economy-bookings=ECONÓMICO
+customer.dashboard.form.label.business-bookings=NEGOCIOS
+master.menu.customer.dashboard = Dashboard
+customer.customer-dashboard.form.title=Dashboard

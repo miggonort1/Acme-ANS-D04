@@ -12,15 +12,15 @@ booking-07,AB12CD34,2005/06/12 0:00,ECONOMY,1111,true,customer-01,flight-26
 booking-08,0000AA,2005/06/12 0:00,ECONOMY,1111,true,customer-01,flight-26
 booking-09,XY9ZQ2,2005/06/12 0:00,ECONOMY,1111,true,customer-01,flight-26
 # purchaseMoment
-booking-10,AAAAAAB,2000/01/01 0:00,ECONOMY,1111,false,customer-01,flight-26
+booking-10,AAAAAAB,2000/01/01 0:00,ECONOMY,1111,true,customer-01,flight-26
 booking-11,AAAAAAC,2000/01/01 0:01,ECONOMY,1111,true,customer-01,flight-26
 booking-12,AAAAAAD,2010/09/01 9:58,ECONOMY,1111,true,customer-01,flight-26
 booking-13,AAAAAAE,2010/09/01 9:59,ECONOMY,1111,true,customer-01,flight-26
 #travelClass
-booking-14,AAAAAAF,2005/06/12 0:00,BUSINESS,1111,true,customer-01,flight-26
+booking-14,AAAAAAF,2005/06/12 0:00,BUSINESS,1111,false,customer-01,flight-26
 #lastNibble
 booking-15,AAAAAAK,2005/06/12 0:00,ECONOMY,,true,customer-01,flight-26
-booking-16,AAAAAAL,2005/06/12 0:00,ECONOMY,9999,true,customer-01,flight-26
+booking-16,AAAAAAL,2005/06/12 0:00,ECONOMY,9999,false,customer-01,flight-26
 #drafMode
 booking-17,AAAAAAM,2005/06/12 0:00,ECONOMY,1111,false,customer-01,flight-26
 #customer
