@@ -23,6 +23,7 @@ import acme.client.helpers.SpringHelper;
 import acme.constraints.ValidBooking;
 import acme.entities.flight.Flight;
 import acme.features.customer.booking.CustomerBookingRepository;
+import acme.features.customer.passenger.CustomerPassengerRepository;
 import acme.realms.Customer;
 import lombok.Getter;
 import lombok.Setter;
@@ -32,7 +33,7 @@ import lombok.Setter;
 @Setter
 @ValidBooking
 @Table(indexes = {
-	@Index(columnList = "locatorCode"), @Index(columnList = "draftMode")
+	@Index(columnList = "locatorCode"), @Index(columnList = "draftMode"), @Index(columnList = "draftMode, customer_id")
 })
 public class Booking extends AbstractEntity {
 
@@ -105,6 +106,11 @@ public class Booking extends AbstractEntity {
 
 		return result;
 
+	}
+	@Transient
+	public Integer getNumberOfPassengers() {
+		CustomerPassengerRepository customerPassengerRepository = SpringHelper.getBean(CustomerPassengerRepository.class);
+		return customerPassengerRepository.findPassengersByBookingId(this.getId()).size();
 	}
 
 }

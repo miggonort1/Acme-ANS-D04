@@ -1,6 +1,6 @@
 key,locatorCode,purchaseMoment,travelClass,lastNibble,draftMode,key:customer,key:flight
 # base entity
-booking-00,AAAAAAA,2005/06/12 0:00,ECONOMY,1111,true,customer-01,flight-26
+booking-00,AAAAAAA,2005/06/12 0:00,ECONOMY,1111,false,customer-01,flight-26
 # locatorCode
 booking-01,A1B2C3,2005/06/12 0:00,ECONOMY,1111,true,customer-01,flight-26
 booking-02,123456,2005/06/12 0:00,ECONOMY,1111,true,customer-01,flight-26
@@ -12,7 +12,7 @@ booking-07,AB12CD34,2005/06/12 0:00,ECONOMY,1111,true,customer-01,flight-26
 booking-08,0000AA,2005/06/12 0:00,ECONOMY,1111,true,customer-01,flight-26
 booking-09,XY9ZQ2,2005/06/12 0:00,ECONOMY,1111,true,customer-01,flight-26
 # purchaseMoment
-booking-10,AAAAAAB,2000/01/01 0:00,ECONOMY,1111,true,customer-01,flight-26
+booking-10,AAAAAAB,2000/01/01 0:00,ECONOMY,1111,false,customer-01,flight-26
 booking-11,AAAAAAC,2000/01/01 0:01,ECONOMY,1111,true,customer-01,flight-26
 booking-12,AAAAAAD,2010/09/01 9:58,ECONOMY,1111,true,customer-01,flight-26
 booking-13,AAAAAAE,2010/09/01 9:59,ECONOMY,1111,true,customer-01,flight-26
@@ -27,4 +27,4 @@ booking-17,AAAAAAM,2005/06/12 0:00,ECONOMY,1111,false,customer-01,flight-26
 booking-18,AAAAAAN,2005/06/12 0:00,ECONOMY,1111,true,customer-02,flight-26
 booking-19,AAAAAAZ,2005/06/12 0:00,ECONOMY,1111,true,customer-03,flight-26
 #flight
-booking-20,AAAAAAY,2005/06/12 0:00,ECONOMY,1111,true,customer-01,flight-28
+booking-20,AAAAAAY,2005/06/12 0:00,ECONOMY,1111,false,customer-01,flight-28
