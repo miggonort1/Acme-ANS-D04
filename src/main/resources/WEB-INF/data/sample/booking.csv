@@ -12,8 +12,8 @@ booking-07,AB12CD34,2005/06/12 0:00,ECONOMY,1111,true,customer-01,flight-26
 booking-08,0000AA,2005/06/12 0:00,ECONOMY,1111,true,customer-01,flight-26
 booking-09,XY9ZQ2,2005/06/12 0:00,ECONOMY,1111,true,customer-01,flight-26
 # purchaseMoment
-booking-10,AAAAAAB,2000/01/01 0:00,ECONOMY,1111,true,customer-01,flight-26
-booking-11,AAAAAAC,2000/01/01 0:01,ECONOMY,1111,true,customer-01,flight-26
+booking-10,AAAAAAB,2000/01/01 0:01,ECONOMY,1111,true,customer-01,flight-26
+booking-11,AAAAAAC,2000/01/01 0:02,ECONOMY,1111,true,customer-01,flight-26
 booking-12,AAAAAAD,2010/09/01 9:58,ECONOMY,1111,true,customer-01,flight-26
 booking-13,AAAAAAE,2010/09/01 9:59,ECONOMY,1111,true,customer-01,flight-26
 #travelClass
