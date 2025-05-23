@@ -13,6 +13,7 @@ customer.passenger.form.button.delete = Eliminar
 customer.passenger.form.button.publish = Publicar
 
 customer.passenger.list.title = Lista de pasajeros
+customer.passenger.list.label.passport-number = Modo Borrador
 
 customer.passenger.list.label.full-name = Nombre completo
 customer.passenger.list.label.email = Email

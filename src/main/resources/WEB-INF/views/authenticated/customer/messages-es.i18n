@@ -8,13 +8,16 @@
 # purposes.  The copyright owner does not offer any warranties or representations, nor do
 # they accept any liabilities with respect to them.
 
+authenticated.customer.form.title = Detalles de cliente
 
-authenticated.technician.form.title= Detalles de técnico
-authenticated.technician.form.label.licenseNumber= Número de licencia
-authenticated.technician.form.label.phoneNumber= Número de teléfono
-authenticated.technician.form.label.specialisation= Especialicación
-authenticated.technician.form.label.annualHealthTest= Test anual de salud
-authenticated.technician.form.label.yearsOfExperience=Años de experiencia
-authenticated.technician.form.label.certifications= Certificaciones
-authenticated.technician.form.button.create= Crear
-authenticated.technician.form.button.update= Actualizar
+authenticated.customer.form.label.identifier = Identificador
+authenticated.customer.form.label.phoneNumber = Número de teléfono
+authenticated.customer.form.label.physicalAddress = Dirección postal
+authenticated.customer.form.label.city = Ciudad
+authenticated.customer.form.label.country = País
+authenticated.customer.form.label.earnedPoints = Puntos Ganados
+
+authenticated.customer.form.button.create = Registrar
+authenticated.customer.form.button.update = Actualizar
+acme.validation.customer.identifier.syntax.message = Las dos o tres primeras letras deben coincidir con tus iniciales
+acme.validation.customer.identifier.unique.message = Este identificador esta en uso

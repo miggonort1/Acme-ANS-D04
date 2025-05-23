@@ -1,7 +1,6 @@
 
 package acme.entities.airport;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.validation.Valid;
 
@@ -33,7 +32,7 @@ public class Airport extends AbstractEntity {
 
 	@Mandatory
 	@ValidString(pattern = "^[A-Z]{3}$")
-	@Column(unique = true)
+	@Automapped
 	private String				iataCode;
 
 	@Mandatory
@@ -52,7 +51,7 @@ public class Airport extends AbstractEntity {
 	private String				country;
 
 	@Optional
-	@ValidUrl(remote = false)
+	@ValidUrl
 	@Automapped
 	private String				website;
 

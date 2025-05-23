@@ -37,6 +37,12 @@ public class CrewMemberActivityLogListService extends AbstractGuiService<CrewMem
 		int assignmentId = super.getRequest().getData("assignmentId", int.class);
 		Collection<ActivityLog> activityLogs = this.repository.findActivityLogsByFlightAssignmentId(assignmentId);
 		super.getBuffer().addData(activityLogs);
+
+		FlightAssignment fa = this.flightAssignmentRepository.findFlightAssignmentById(assignmentId);
+		boolean show = fa.getLeg().getScheduledArrival().before(MomentHelper.getCurrentMoment());
+
+		super.getResponse().addGlobal("assignmentId", assignmentId);
+		super.getResponse().addGlobal("showAction", show);
 	}
 
 	@Override
@@ -45,14 +51,4 @@ public class CrewMemberActivityLogListService extends AbstractGuiService<CrewMem
 		super.getResponse().addData(dataset);
 	}
 
-	// 2) unbind para la colección, donde pones los globals
-	@Override
-	public void unbind(final Collection<ActivityLog> activityLogs) {
-		int assignmentId = super.getRequest().getData("assignmentId", int.class);
-		super.getResponse().addGlobal("assignmentId", assignmentId);
-
-		FlightAssignment fa = this.flightAssignmentRepository.findFlightAssignmentById(assignmentId);
-		boolean show = fa.getLeg().getScheduledArrival().before(MomentHelper.getCurrentMoment());
-		super.getResponse().addGlobal("showAction", show);
-	}
 }

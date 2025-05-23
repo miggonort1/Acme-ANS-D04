@@ -4,7 +4,9 @@ package acme.entities.booking;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.Index;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
@@ -21,6 +23,7 @@ import acme.client.helpers.SpringHelper;
 import acme.constraints.ValidBooking;
 import acme.entities.flight.Flight;
 import acme.features.customer.booking.CustomerBookingRepository;
+import acme.features.customer.passenger.CustomerPassengerRepository;
 import acme.realms.Customer;
 import lombok.Getter;
 import lombok.Setter;
@@ -29,6 +32,9 @@ import lombok.Setter;
 @Getter
 @Setter
 @ValidBooking
+@Table(indexes = {
+	@Index(columnList = "locatorCode"), @Index(columnList = "draftMode"), @Index(columnList = "draftMode, customer_id")
+})
 public class Booking extends AbstractEntity {
 
 	// Serialisation version -----------------------------------------------------------------------------------------
@@ -39,6 +45,7 @@ public class Booking extends AbstractEntity {
 
 	@Mandatory
 	@ValidString(pattern = "^[A-Z0-9]{6,8}$")
+	@Automapped
 	private String				locatorCode;
 
 	@Mandatory
@@ -57,6 +64,7 @@ public class Booking extends AbstractEntity {
 	private String				lastNibble;
 
 	@Mandatory
+	//@Valid
 	@Automapped
 	private boolean				draftMode			= true;
 
@@ -98,6 +106,11 @@ public class Booking extends AbstractEntity {
 
 		return result;
 
+	}
+	@Transient
+	public Integer getNumberOfPassengers() {
+		CustomerPassengerRepository customerPassengerRepository = SpringHelper.getBean(CustomerPassengerRepository.class);
+		return customerPassengerRepository.findPassengersByBookingId(this.getId()).size();
 	}
 
 }

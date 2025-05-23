@@ -2,6 +2,7 @@
 package acme.features.customer.booking;
 
 import java.util.Collection;
+import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -56,10 +57,13 @@ public class CustomerBookingShowService extends AbstractGuiService<Customer, Boo
 		SelectChoices flightsChoices;
 		Dataset dataset;
 
-		flights = this.repository.findAllFlightsInNoDraftMode();
+		Collection<Flight> publishedFlights = this.repository.findAllPublishedFlights();
+		Date referenceMoment = booking.getPurchaseMoment();
+
+		flights = publishedFlights.stream().filter(f -> this.repository.findInvalidLegsForFlight(f.getId(), referenceMoment).isEmpty()).toList();
 
 		travelClassesChoices = SelectChoices.from(TravelClass.class, booking.getTravelClass());
-		flightsChoices = SelectChoices.from(flights, "id", booking.getFlight());
+		flightsChoices = SelectChoices.from(flights, "flightSummary", booking.getFlight());
 
 		dataset = super.unbindObject(booking, "locatorCode", "purchaseMoment", "lastNibble", "draftMode");
 		dataset.put("price", booking.getPrice());
@@ -67,8 +71,6 @@ public class CustomerBookingShowService extends AbstractGuiService<Customer, Boo
 		dataset.put("travelClass", travelClassesChoices.getSelected().getKey());
 		dataset.put("flights", flightsChoices);
 		dataset.put("flight", flightsChoices.getSelected().getKey());
-		//dataset.put("origin-city", booking.getFlight().getOriginCity());
-		//dataset.put("destination-city", booking.getFlight().getDestinationCity());
 
 		super.getResponse().addData(dataset);
 	}

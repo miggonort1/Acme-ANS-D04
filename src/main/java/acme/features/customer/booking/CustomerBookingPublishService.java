@@ -2,9 +2,11 @@
 package acme.features.customer.booking;
 
 import java.util.Collection;
+import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import acme.client.components.datatypes.Money;
 import acme.client.components.models.Dataset;
 import acme.client.components.views.SelectChoices;
 import acme.client.services.AbstractGuiService;
@@ -34,6 +36,29 @@ public class CustomerBookingPublishService extends AbstractGuiService<Customer, 
 		bookingId = super.getRequest().getData("id", int.class);
 		booking = this.repository.findBookingById(bookingId);
 		status = booking != null && booking.isDraftMode() && super.getRequest().getPrincipal().hasRealm(booking.getCustomer());
+		if (status && super.getRequest().hasData("purchaseMoment")) {
+			Date requestMoment = super.getRequest().getData("purchaseMoment", Date.class);
+			boolean unchanged = booking.getPurchaseMoment().getTime() == requestMoment.getTime();
+			status = status && unchanged;
+		}
+		if (status && super.getRequest().hasData("price")) {
+			Money requestPrice = super.getRequest().getData("price", Money.class);
+			Money calculatedPrice = booking.getPrice();
+
+			boolean sameCurrency = calculatedPrice.getCurrency().equals(requestPrice.getCurrency());
+			boolean sameAmount = Math.abs(calculatedPrice.getAmount() - requestPrice.getAmount()) < 0.01;
+
+			boolean unchangedPrice = sameCurrency && sameAmount;
+			status = status && unchangedPrice;
+		}
+		if (super.getRequest().hasData("id")) {
+			Integer flightId = super.getRequest().getData("flight", int.class);
+			if (flightId == null || flightId != 0) {
+				Flight flight = this.repository.findFlightById(flightId);
+				status = status && flight != null && !flight.isDraftMode() && flight.getScheduledArrival().after(booking.getPurchaseMoment());
+			}
+
+		}
 
 		super.getResponse().setAuthorised(status);
 	}
@@ -88,10 +113,13 @@ public class CustomerBookingPublishService extends AbstractGuiService<Customer, 
 		SelectChoices flightsChoices;
 		Dataset dataset;
 
-		flights = this.repository.findAllFlightsInNoDraftMode();
+		Collection<Flight> publishedFlights = this.repository.findAllPublishedFlights();
+		Date referenceMoment = booking.getPurchaseMoment();
+
+		flights = publishedFlights.stream().filter(f -> this.repository.findInvalidLegsForFlight(f.getId(), referenceMoment).isEmpty()).toList();
 
 		travelClassesChoices = SelectChoices.from(TravelClass.class, booking.getTravelClass());
-		flightsChoices = SelectChoices.from(flights, "id", booking.getFlight());
+		flightsChoices = SelectChoices.from(flights, "flightSummary", booking.getFlight());
 
 		dataset = super.unbindObject(booking, "locatorCode", "purchaseMoment", "lastNibble", "draftMode");
 		dataset.put("price", booking.getPrice());

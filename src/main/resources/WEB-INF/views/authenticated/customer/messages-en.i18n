@@ -1,6 +1,5 @@
 # messages-en.i18n
 #
-# Copyright (C) 2012-2025 Rafael Corchuelo.
 #
 # In keeping with the traditional purpose of furthering education and research, it is
 # the policy of the copyright owner to permit non-commercial use and redistribution of
@@ -8,12 +7,16 @@
 # purposes.  The copyright owner does not offer any warranties or representations, nor do
 # they accept any liabilities with respect to them.
 
-authenticated.technician.form.title= Technician form
-authenticated.technician.form.label.licenseNumber= License number
-authenticated.technician.form.label.phoneNumber= Phone Number
-authenticated.technician.form.label.specialisation= Specialisation
-authenticated.technician.form.label.annualHealthTest= Anual health test
-authenticated.technician.form.label.yearsOfExperience= Years of experience
-authenticated.technician.form.label.certifications= Certifications
-authenticated.technician.form.button.create= Create
-authenticated.technician.form.button.update= Update
+authenticated.customer.form.title = Customer form
+
+authenticated.customer.form.label.identifier = Identifier
+authenticated.customer.form.label.phoneNumber = PhoneNumber
+authenticated.customer.form.label.physicalAddress = Physical Address
+authenticated.customer.form.label.city = City
+authenticated.customer.form.label.country = Country
+authenticated.customer.form.label.earnedPoints = Earned Points
+
+authenticated.customer.form.button.create = Register
+authenticated.customer.form.button.update = Update
+acme.validation.customer.identifier.syntax.message = The first two or three letters must match your initials
+acme.validation.customer.identifier.unique.message = This identifier is already in use

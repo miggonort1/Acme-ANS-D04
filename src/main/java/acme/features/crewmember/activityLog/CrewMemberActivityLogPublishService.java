@@ -25,7 +25,8 @@ public class CrewMemberActivityLogPublishService extends AbstractGuiService<Crew
 	public void authorise() {
 		int activityLogId = super.getRequest().getData("id", int.class);
 		ActivityLog activityLog = this.repository.findActivityLogById(activityLogId);
-		boolean status = activityLog.getDraftMode() && !activityLog.getFlightAssignment().getDraftMode() && super.getRequest().getPrincipal().hasRealm(activityLog.getFlightAssignment().getCrewMember()) && activityLog.getDraftMode() && activityLog != null;
+
+		boolean status = activityLog != null && activityLog.getDraftMode() && super.getRequest().getPrincipal().hasRealm(activityLog.getFlightAssignment().getCrewMember());
 
 		super.getResponse().setAuthorised(status);
 	}
@@ -40,14 +41,16 @@ public class CrewMemberActivityLogPublishService extends AbstractGuiService<Crew
 
 	@Override
 	public void bind(final ActivityLog object) {
-		;
+		super.bindObject(object, "incidentType", "description", "severityLevel");
 	}
 
 	@Override
-	public void validate(final ActivityLog object) {
-		if (object.getFlightAssignment() != null && object.getFlightAssignment().getDraftMode())
-			super.state(false, "flightAssignment", "acme.validation.activityLog.flightAssignment-not-published");
-
+	public void validate(final ActivityLog activityLog) {
+		if (activityLog != null && activityLog.getFlightAssignment() != null) {
+			boolean isDraftMode = activityLog.getFlightAssignment().getDraftMode();
+			if (isDraftMode)
+				super.state(false, "*", "acme.validation.activityLog.flightAssignment-not-published");
+		}
 	}
 
 	@Override

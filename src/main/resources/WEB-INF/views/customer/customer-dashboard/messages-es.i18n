@@ -1,0 +1,17 @@
+customer.dashboard.form.label.last-five-destinations=Últimos 5 destinos
+customer.dashboard.form.label.spent-money-last-year=Dinero gastado el último año
+customer.dashboard.form.label.bookings-by-travel-class=Reservas por clase de viaje
+customer.dashboard.form.label.booking-count-cost=Coste total de reservas en los últimos 5 años
+customer.dashboard.form.label.booking-average-cost=Coste medio de reservas en los últimos 5 años
+customer.dashboard.form.label.booking-minimum-cost=Coste mínimo de reservas en los últimos 5 años
+customer.dashboard.form.label.booking-maximum-cost=Coste máximo de reservas en los últimos 5 años
+customer.dashboard.form.label.booking-deviation-cost=Desviación estándar del coste en los últimos 5 años
+customer.dashboard.form.label.booking-count-passengers=Número total de pasajeros
+customer.dashboard.form.label.booking-average-passengers=Media de pasajeros por reserva
+customer.dashboard.form.label.booking-minimum-passengers=Mínimo de pasajeros por reserva
+customer.dashboard.form.label.booking-maximum-passengers=Máximo de pasajeros por reserva
+customer.dashboard.form.label.booking-deviation-passengers=Desviación de pasajeros por reserva
+customer.dashboard.form.label.economy-bookings=ECONÓMICO
+customer.dashboard.form.label.business-bookings=NEGOCIOS
+master.menu.customer.dashboard = Dashboard
+customer.customer-dashboard.form.title=Dashboard
