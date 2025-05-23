@@ -21,14 +21,15 @@
 	<acme:input-email code="agent.claim.form.label.passengerEmail" path="passengerEmail"/>
 	<acme:input-textbox code="agent.claim.form.label.description" path="description"/>
 	<acme:input-select code="agent.claim.form.label.type" path="type" choices="${type}" />
-	<acme:input-select code="agent.claim.form.label.status" path="status" choices="${status}" />
-	
+	<jstl:if test="${_command != 'create'}">
+		<acme:input-textbox code="agent.claim.form.label.status" path="status" readonly="true"/>
+	</jstl:if>
 	<jstl:choose>
 		<jstl:when test="${_command == 'show' && draftMode == false}">
 				<acme:button code="agent.trackingLog.list.tittle" action="/agent/tracking-log/list-mine?masterId=${id}"/>			
 		</jstl:when>
 		<jstl:when test="${_command == 'create'}">
-			<acme:submit  code="agent.claim.form.button.create" action="/agent/claim/create?masterId=${masterId}"/>
+			<acme:submit  code="agent.claim.form.button.create" action="/agent/claim/create"/>
 		</jstl:when>
 			<jstl:when test="${acme:anyOf(_command, 'show|update|delete|publish') && draftMode==true }">
 			<acme:submit  code="agent.claim.form.button.update" action="/agent/claim/update?masterId=${masterId}"/>

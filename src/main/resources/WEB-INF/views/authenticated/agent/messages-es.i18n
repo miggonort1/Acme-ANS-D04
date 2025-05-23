@@ -1,0 +1,27 @@
+# messages-es.i18n
+#
+# Copyright (C) 2012-2025 Rafael Corchuelo.
+#
+# In keeping with the traditional purpose of furthering education and research, it is
+# the policy of the copyright owner to permit non-commercial use and redistribution of
+# this software. It has been tested carefully, but it is not guaranteed for any particular
+# purposes.  The copyright owner does not offer any warranties or representations, nor do
+# they accept any liabilities with respect to them.
+
+authenticated.agent.form.title = Detalles de Asistente
+
+
+authenticated.agent.form.label.employeeCode= Código de empleado
+authenticated.agent.form.label.spokenLanguages= Idiomas hablados
+authenticated.agent.form.label.moment= Momento cuando el agente empezó a trabajar
+authenticated.agent.form.label.briefBio= Biografia breve
+authenticated.agent.form.label.salary= Salario
+authenticated.agent.form.label.photo= Foto
+authenticated.agent.form.label.airline= Aerolínea
+
+
+authenticated.agent.form.button.create = Registrar
+authenticated.agent.form.button.update = Actualizar
+
+validation.agent.identifier.message=El código de empleado debe seguir el patrón requerido: iniciales seguidas de 6 dígitos (por ejemplo, JD123456)
+validation.agent.duplicated-identifier.message=Ya existe un agente con este código de empleado

@@ -2,6 +2,8 @@
 package acme.features.agent.trackingLog;
 
 import java.util.Collection;
+import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -31,5 +33,14 @@ public interface AgentTrackingLogRepository extends AbstractRepository {
 
 	@Query("SELECT t FROM TrackingLog t WHERE t.id = :id")
 	TrackingLog findTrackingLogById(int id);
+
+	@Query("SELECT tl FROM TrackingLog tl WHERE tl.claim.id = :claimId ORDER BY tl.creationMoment DESC")
+	Optional<List<TrackingLog>> findLastTrackingLog(int claimId);
+
+	@Query("select t from TrackingLog t where t.claim.id = :claimId order by t.creationMoment desc")
+	Optional<List<TrackingLog>> findOrderTrackingLog(Integer claimId);
+
+	@Query("select t from TrackingLog t where t.claim.id = :claimId and t.draftMode = false order by t.resolutionPercentage desc")
+	Optional<List<TrackingLog>> findOrderTrackingLogPublished(Integer claimId);
 
 }

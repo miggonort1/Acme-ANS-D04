@@ -3,7 +3,6 @@ package acme.realms;
 
 import java.util.Date;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
@@ -18,7 +17,7 @@ import acme.client.components.validation.Optional;
 import acme.client.components.validation.ValidMoment;
 import acme.client.components.validation.ValidString;
 import acme.client.components.validation.ValidUrl;
-import acme.constraints.ValidEmployeeCode;
+import acme.constraints.ValidAssistantAgent;
 import acme.constraints.ValidLongText;
 import acme.entities.airline.Airline;
 import lombok.Getter;
@@ -27,7 +26,7 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-@ValidEmployeeCode
+@ValidAssistantAgent
 public class Agent extends AbstractRole {
 	// Serialisation identifier -----------------------------------------------
 
@@ -37,7 +36,7 @@ public class Agent extends AbstractRole {
 
 	@Mandatory
 	@ValidString(pattern = "^[A-Z]{2,3}\\d{6}$", message = "{validation.agent.employeeCode}")
-	@Column(unique = true)
+	@Automapped
 	private String				employeeCode;
 
 	@Mandatory

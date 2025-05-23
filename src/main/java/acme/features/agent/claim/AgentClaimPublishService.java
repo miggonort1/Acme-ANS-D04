@@ -13,7 +13,7 @@ import acme.client.helpers.PrincipalHelper;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.claim.Claim;
-import acme.entities.claim.ClaimStatus;
+import acme.entities.claim.TrackingLogStatus;
 import acme.entities.claim.Type;
 import acme.entities.flight.Leg;
 import acme.realms.Agent;
@@ -40,6 +40,13 @@ public class AgentClaimPublishService extends AbstractGuiService<Agent, Claim> {
 		claim = this.repository.findClaimById(claimId);
 		status = claim != null && (!claim.isDraftMode() || super.getRequest().getPrincipal().hasRealm(claim.getAgent())) && claim.getAgent().equals(agent);
 
+		if (super.getRequest().hasData("id")) {
+			Integer legId = super.getRequest().getData("leg", Integer.class);
+			if (legId == null || legId != 0) {
+				Leg leg = this.repository.findLegById(legId);
+				status = status && leg != null && !leg.isDraftMode();
+			}
+		}
 		super.getResponse().setAuthorised(status);
 	}
 
@@ -71,13 +78,12 @@ public class AgentClaimPublishService extends AbstractGuiService<Agent, Claim> {
 		leg = this.repository.findLegById(legId);
 
 		object.setLeg(leg);
-		super.bindObject(object, "description", "passengerEmail", "status", "type", "leg");
+		super.bindObject(object, "description", "passengerEmail", "type", "leg");
 	}
 
 	@Override
 	public void validate(final Claim object) {
 		assert object != null;
-
 	}
 
 	@Override
@@ -92,17 +98,18 @@ public class AgentClaimPublishService extends AbstractGuiService<Agent, Claim> {
 	public void unbind(final Claim object) {
 		Dataset dataset;
 		SelectChoices choicesType;
-		SelectChoices choicesStatus;
+		TrackingLogStatus choicesStatus;
 		SelectChoices choicesLegs;
 
 		Collection<Leg> legs;
-		legs = this.repository.findManyLegsLanded();
+		legs = this.repository.findManyLegsPublished();
+		Collection<Leg> validLegs = legs.stream().filter(leg -> leg.getScheduledDeparture().before(object.getRegistrationMoment())).toList();
 
 		choicesType = SelectChoices.from(Type.class, object.getType());
-		choicesStatus = SelectChoices.from(ClaimStatus.class, object.getStatus());
-		choicesLegs = SelectChoices.from(legs, "flightNumber", object.getLeg());
+		choicesStatus = object.getStatus();
+		choicesLegs = SelectChoices.from(validLegs, "flightNumber", object.getLeg());
 
-		dataset = super.unbindObject(object, "registrationMoment", "description", "passengerEmail", "status", "type", "draftMode");
+		dataset = super.unbindObject(object, "registrationMoment", "description", "passengerEmail", "type", "draftMode");
 		dataset.put("type", choicesType);
 		dataset.put("status", choicesStatus);
 		dataset.put("legs", choicesLegs);

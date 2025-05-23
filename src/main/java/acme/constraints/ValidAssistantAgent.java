@@ -11,11 +11,13 @@ import javax.validation.Payload;
 
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
-@Constraint(validatedBy = EmployeeCodeValidator.class)
+@Constraint(validatedBy = AssistantAgentValidator.class)
+public @interface ValidAssistantAgent {
 
-public @interface ValidEmployeeCode {
+	// Standard validation properties -----------------------------------------
 
-	String message() default "El código de empleado debe comenzar con las iniciales de la identidad del usuario";
+	String message() default "";
+
 	Class<?>[] groups() default {};
 	Class<? extends Payload>[] payload() default {};
 }

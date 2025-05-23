@@ -29,3 +29,9 @@ agent.claim.form.button.update=Update
 agent.claim.form.button.create=Create
 agent.claim.form.button.delete=Delete
 agent.claim.form.button.publish=Publish
+
+agent.claim.validator.error.null=Claim cannot be null
+agent.claim.validator.error.registrationMoment=The registration moment must be after the agent's work start moment
+agent.claim.validator.error.nullLeg=The claim must be associated with a leg
+agent.claim.validator.error.departureAfter=The leg's scheduled departure must be before the registration moment
+agent.claim.validator.error.legNotPublished=The associated leg must be published before attaching it to a claim

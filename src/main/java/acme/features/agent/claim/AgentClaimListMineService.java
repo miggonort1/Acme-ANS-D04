@@ -9,6 +9,7 @@ import acme.client.components.models.Dataset;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.claim.Claim;
+import acme.entities.claim.TrackingLogStatus;
 import acme.realms.Agent;
 
 @GuiService
@@ -39,8 +40,12 @@ public class AgentClaimListMineService extends AbstractGuiService<Agent, Claim> 
 	@Override
 	public void unbind(final Claim object) {
 		Dataset dataset;
+		TrackingLogStatus choicesStatus;
 
-		dataset = super.unbindObject(object, "registrationMoment", "description", "type", "status");
+		choicesStatus = object.getStatus();
+
+		dataset = super.unbindObject(object, "registrationMoment", "description", "type");
+		dataset.put("status", choicesStatus);
 		super.getResponse().addData(dataset);
 	}
 
