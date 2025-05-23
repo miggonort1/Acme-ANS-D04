@@ -40,20 +40,15 @@ public class CrewMemberActivityLogCreateService extends AbstractGuiService<CrewM
 		if (crewMember != null) {
 			Object assignmentData = super.getRequest().getData().get("flightAssignment");
 
-			if (assignmentData == null || "".equals(assignmentData))
-				status = true;
-			else if (assignmentData instanceof String assignmentKey) {
-				assignmentKey = assignmentKey.trim();
+			if (assignmentData instanceof String assignmentKey && assignmentKey.matches("\\d+")) {
+				int assignmentId = Integer.parseInt(assignmentKey);
+				FlightAssignment assignment = this.flightAssignmentRepository.findFlightAssignmentById(assignmentId);
 
-				if (assignmentKey.equals("0"))
-					status = true;
-				else if (assignmentKey.matches("\\d+")) {
-					int assignmentId = Integer.parseInt(assignmentKey);
-					FlightAssignment assignment = this.flightAssignmentRepository.findFlightAssignmentById(assignmentId);
+				boolean userOwnsAssignment = assignment != null && assignment.getCrewMember().getId() == userId;
+				boolean assignmentIsPublished = assignment != null && !assignment.getDraftMode();
+				boolean legCompleted = assignment != null && assignment.getLeg().getScheduledArrival().before(MomentHelper.getCurrentMoment());
 
-					status = assignment != null && assignment.getLeg().getScheduledArrival().before(MomentHelper.getCurrentMoment());
-				} else
-					status = false;
+				status = userOwnsAssignment && assignmentIsPublished && legCompleted;
 			}
 		}
 

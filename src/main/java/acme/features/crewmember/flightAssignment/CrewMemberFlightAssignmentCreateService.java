@@ -100,19 +100,6 @@ public class CrewMemberFlightAssignmentCreateService extends AbstractGuiService<
 			boolean overlaps = this.repository.isOverlappingAssignment(crewMember, start, end);
 			super.state(!overlaps, "*", "acme.validation.flightAssignment.crewMember.multipleLegs");
 		}
-
-		Leg selectedLeg = assignment.getLeg();
-
-		if (selectedLeg != null) {
-			long pilotCount = this.repository.countByLegAndDuty(selectedLeg, Duty.PILOT);
-			long coPilotCount = this.repository.countByLegAndDuty(selectedLeg, Duty.CO_PILOT);
-
-			boolean isPilotAssigned = pilotCount > 0;
-			boolean isCoPilotAssigned = coPilotCount > 0;
-
-			super.state(!(isPilotAssigned && assignment.getDuty() == Duty.PILOT), "duty", "acme.validation.flightAssignment.crewMember.onlyOnePilot");
-			super.state(!(isCoPilotAssigned && assignment.getDuty() == Duty.CO_PILOT), "duty", "acme.validation.flightAssignment.crewMember.onlyOneCoPilot");
-		}
 	}
 
 	@Override
@@ -133,15 +120,15 @@ public class CrewMemberFlightAssignmentCreateService extends AbstractGuiService<
 			boolean isInFuture = leg.getScheduledDeparture().after(MomentHelper.getCurrentMoment());
 			boolean alreadyAssigned = this.repository.isAlreadyAssignedToLeg(crewMember, leg);
 			boolean overlaps = this.repository.isOverlappingAssignment(crewMember, leg.getScheduledDeparture(), leg.getScheduledArrival());
+			boolean isCurrentLeg = leg.equals(flightAssignment.getLeg());
 
-			if (isInFuture && !alreadyAssigned && !overlaps && !leg.isDraftMode()) {
+			if (isInFuture && !alreadyAssigned && !overlaps && !leg.isDraftMode() || isCurrentLeg) {
 				String key = Integer.toString(leg.getId());
 				String label = leg.getFlightNumber() + " (" + leg.getFlight().getTag() + ")";
-				boolean selected = leg.equals(flightAssignment.getLeg());
+				boolean selected = isCurrentLeg;
 				legChoices.add(key, label, selected);
 				hasAvailableLegs = true;
 			}
-
 		}
 
 		if (!hasAvailableLegs)
