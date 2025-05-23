@@ -103,7 +103,7 @@ public class AgentClaimPublishService extends AbstractGuiService<Agent, Claim> {
 
 		Collection<Leg> legs;
 		legs = this.repository.findManyLegsPublished();
-		Collection<Leg> validLegs = legs.stream().filter(leg -> leg.getScheduledArrival().before(object.getRegistrationMoment())).toList();
+		Collection<Leg> validLegs = legs.stream().filter(leg -> leg.getScheduledDeparture().before(object.getRegistrationMoment())).toList();
 
 		choicesType = SelectChoices.from(Type.class, object.getType());
 		choicesStatus = object.getStatus();
