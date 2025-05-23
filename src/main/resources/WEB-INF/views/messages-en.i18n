@@ -4,6 +4,5 @@ validation.agent.employeeNumber = The employee number must follow the pattern ^[
 validation.CrewMember.codePattern = The employee code must start with the initials of the name and surname of the employee
 validation.CrewMember.codeNotUnique = The employee code must be unique
 validation.activityLog.beforeLeg = The registration moment must be equal or after the leg scheduled arrival
-acme.validation.Agent.code = The employee number must begin with the user's initials
 acme.validation.airport.code-duplicated.message= Duplicated Code
 
