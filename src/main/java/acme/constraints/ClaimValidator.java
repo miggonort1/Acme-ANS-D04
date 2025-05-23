@@ -22,42 +22,25 @@ public class ClaimValidator extends AbstractValidator<ValidClaim, Claim> {
 		assert context != null;
 
 		if (claim == null) {
-			super.state(context, false, "*", "javax.validation.constraints.NotNull.message");
+			super.state(context, false, "*", "agent.claim.validator.error.null");
 			return false;
 		}
 
-		boolean consistentRegistrationMoment = this.validateRegistrationMoment(claim, context);
-		boolean validLegStatus = this.validateLegStatus(claim, context);
-		result = consistentRegistrationMoment && validLegStatus && !super.hasErrors(context);
-
-		return result;
-	}
-
-	private boolean validateRegistrationMoment(final Claim claim, final ConstraintValidatorContext context) {
 		Date registrationMoment = claim.getRegistrationMoment();
 		Date workStartMoment = claim.getAgent().getMoment();
+		boolean consistentMoment = registrationMoment != null && workStartMoment != null && registrationMoment.after(workStartMoment);
+		super.state(context, consistentMoment, "registrationMoment", "agent.claim.validator.error.registrationMoment");
 
-		boolean consistentMoment = registrationMoment.after(workStartMoment);
+		if (claim.getLeg() == null)
+			super.state(context, false, "leg", "agent.claim.validator.error.nullLeg");
+		else if (!claim.getLeg().isDraftMode()) {
+			boolean validLegStatus = registrationMoment.after(claim.getLeg().getScheduledDeparture());
+			super.state(context, validLegStatus, "leg", "agent.claim.validator.error.departureAfter");
+		} else
+			super.state(context, false, "leg", "agent.claim.validator.error.legNotPublished");
 
-		super.state(context, consistentMoment, "registrationMoment", "acme.validation.claim.registrationMoment.message");
-
-		return consistentMoment;
-	}
-
-	private boolean validateLegStatus(final Claim claim, final ConstraintValidatorContext context) {
-		if (claim.getLeg() == null) {
-			super.state(context, false, "leg", "javax.validation.constraints.NotNull.message");
-			return false;
-		}
-
-		if (!claim.getLeg().isDraftMode()) {
-			boolean validLegStatus = claim.getRegistrationMoment().after(claim.getLeg().getScheduledDeparture());
-			super.state(context, validLegStatus, "leg", "assistanceAgent.claim.form.error.badLeg");
-			return validLegStatus;
-		} else {
-			super.state(context, false, "leg", "agent.claim.form.error.notPublished");
-			return false;
-		}
+		result = !super.hasErrors(context);
+		return result;
 	}
 
 }

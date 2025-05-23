@@ -34,49 +34,48 @@ public class TrackingLogValidator extends AbstractValidator<ValidTrackingLog, Tr
 		assert context != null;
 
 		if (trackingLog == null)
-			super.state(context, false, "TrackingLog", "No hay trackingLogs");
+			super.state(context, false, "TrackingLog", "agent.trackingLog.validator.error.null");
 
 		else if (!trackingLog.isDraftMode())
-			super.state(context, !trackingLog.getClaim().isDraftMode(), "*", "El claim debe estar publicado para publicar el tracking log.");
+			super.state(context, !trackingLog.getClaim().isDraftMode(), "*", "agent.trackingLog.validator.error.claim-not-published");
 
 		else if (trackingLog.getStatus() != null && trackingLog.getResolution() != null && trackingLog.getClaim() != null) {
 
 			if (trackingLog.getResolutionPercentage() != null && trackingLog.getResolutionPercentage() == 100.0)
-				super.state(context, !trackingLog.getStatus().equals(TrackingLogStatus.PENDING), "Status", "El estado no puede ser PENDING");
+				super.state(context, !trackingLog.getStatus().equals(TrackingLogStatus.PENDING), "status", "agent.trackingLog.form.error.badStatus2");
 			else
-				super.state(context, trackingLog.getStatus().equals(TrackingLogStatus.PENDING), "Status", "El estado debe ser PENDING");
+				super.state(context, trackingLog.getStatus().equals(TrackingLogStatus.PENDING), "status", "agent.trackingLog.form.error.badStatus");
 
 			if (trackingLog.getStatus().equals(TrackingLogStatus.PENDING))
-				super.state(context, trackingLog.getResolution() == null || trackingLog.getResolution().isBlank(), "Resolution", "El campo resolution debe quedar vacío hasta la finalización del tracking log");
+				super.state(context, trackingLog.getResolution() == null || trackingLog.getResolution().isBlank(), "resolution", "agent.trackingLog.form.error.badResolution");
 			else
-				super.state(context, trackingLog.getResolution() != null && !trackingLog.getResolution().isBlank(), "Resolution", "El campo resolucion no debe quedar vacío si se ha finalizado el tracking log");
+				super.state(context, trackingLog.getResolution() != null && !trackingLog.getResolution().isBlank(), "resolution", "agent.trackingLog.form.error.badResolution2");
 
 			Collection<TrackingLog> trackingLogs = this.repository.findTrackingLogsByClaimId(trackingLog.getClaim().getId());
 
 			if (trackingLogs != null && !trackingLogs.isEmpty()) {
-
 				trackingLogs.stream().filter(t -> t.getResolutionPercentage() != null).sorted(Comparator.comparing(TrackingLog::getCreationMoment)).reduce((prev, curr) -> {
 					if (prev.getResolutionPercentage() >= curr.getResolutionPercentage())
-						super.state(context, false, "resolutionPercentage", "Los porcentajes de resolución deben ser estrictamente crecientes respecto al momento de creación.");
+						super.state(context, false, "resolutionPercentage", "agent.trackingLog.validator.error.nonIncreasingPercentage");
 					return curr;
 				});
 
 				List<TrackingLog> completedLogs = trackingLogs.stream().filter(t -> t.getResolutionPercentage() != null && t.getResolutionPercentage() == 100.0).sorted(Comparator.comparing(TrackingLog::getCreationMoment)).toList();
 
 				if (completedLogs.size() > 2)
-					super.state(context, false, "resolutionPercentage", "No puede haber más de dos registros de seguimiento completados (100%).");
+					super.state(context, false, "resolutionPercentage", "agent.trackingLog.form.error.maxcompletedGlobal");
 				else if (completedLogs.size() == 2) {
 					TrackingLog first = completedLogs.get(0);
 					TrackingLog second = completedLogs.get(1);
 
-					super.state(context, !first.isDraftMode(), "resolutionPercentage", "El primer tracking log con resolución al 100% debe estar publicado.");
+					super.state(context, !first.isDraftMode(), "resolutionPercentage", "agent.trackingLog.form.error.firstMustBePublished");
 
 					boolean sameStatus = first.getStatus().equals(second.getStatus());
-					super.state(context, sameStatus, "status", "El segundo tracking log con 100% de resolución debe tener el mismo estado que el primero.");
+					super.state(context, sameStatus, "status", "agent.trackingLog.form.error.mismatchedStatus");
 				}
 			}
-
 		}
+
 		result = !super.hasErrors(context);
 		return result;
 	}

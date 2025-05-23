@@ -21,3 +21,6 @@ authenticated.agent.form.label.airline= Airline
 
 authenticated.agent.form.button.create = Register
 authenticated.agent.form.button.update = Update
+
+validation.agent.identifier.message=The employee code must match the required pattern: initials followed by 6 digits (e.g., JD123456)
+validation.agent.duplicated-identifier.message=An agent with this employee code already exists

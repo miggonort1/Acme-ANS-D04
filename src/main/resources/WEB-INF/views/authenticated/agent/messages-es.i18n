@@ -22,3 +22,6 @@ authenticated.agent.form.label.airline= Aerolínea
 
 authenticated.agent.form.button.create = Registrar
 authenticated.agent.form.button.update = Actualizar
+
+validation.agent.identifier.message=El código de empleado debe seguir el patrón requerido: iniciales seguidas de 6 dígitos (por ejemplo, JD123456)
+validation.agent.duplicated-identifier.message=Ya existe un agente con este código de empleado
