@@ -12,6 +12,7 @@
 
 package acme.realms;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 
 import acme.client.components.basis.AbstractRole;
@@ -38,7 +39,7 @@ public class Customer extends AbstractRole {
 
 	@Mandatory
 	@ValidString(pattern = "^[A-Z]{2,3}\\d{6}$")
-	@Automapped
+	@Column(unique = true)
 	private String				identifier;
 
 	@Mandatory
