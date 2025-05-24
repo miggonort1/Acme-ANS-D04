@@ -3,8 +3,8 @@ key,registrationMoment,incidentType,description,severityLevel,key:flightAssignme
 activityLog-01,2025/01/01 00:00,Lorem ipsum dolor sit ame,Lorem ipsum dolor sit amet  consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*,5,flightAssignment-28,true
 #registrationMoment variations
 activity-log-02,2025/01/01 00:00,Lorem ipsum dolor sit ame,Lorem ipsum dolor sit amet  consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*,5,flightAssignment-28,true
-activity-log-03,2024/31/31 23:58,Lorem ipsum dolor sit ame,Lorem ipsum dolor sit amet  consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*,5,flightAssignment-28,true
-activity-log-04,2024/31/31 23:59,Lorem ipsum dolor sit ame,Lorem ipsum dolor sit amet  consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*,5,flightAssignment-28,true
+activity-log-03,2010/09/01 10:01,Lorem ipsum dolor sit ame,Lorem ipsum dolor sit amet  consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*,5,flightAssignment-28,true
+activity-log-04,2024/12/31 23:59,Lorem ipsum dolor sit ame,Lorem ipsum dolor sit amet  consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*,5,flightAssignment-28,true
 activity-log-05,2017/06/12 11:59,Lorem ipsum dolor sit ame,Lorem ipsum dolor sit amet  consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*,5,flightAssignment-28,true
 #incidentType variations
 activityLog-06,2025/01/01 00:00,L,Lorem ipsum dolor sit amet  consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*,5,flightAssignment-28,true
