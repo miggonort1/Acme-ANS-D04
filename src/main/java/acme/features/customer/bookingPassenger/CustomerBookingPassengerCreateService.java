@@ -96,7 +96,7 @@ public class CustomerBookingPassengerCreateService extends AbstractGuiService<Cu
 
 	@Override
 	public void validate(final BookingPassenger BookingPassenger) {
-		;
+		assert BookingPassenger != null;
 
 	}
 

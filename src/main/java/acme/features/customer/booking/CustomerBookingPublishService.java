@@ -81,6 +81,8 @@ public class CustomerBookingPublishService extends AbstractGuiService<Customer, 
 
 	@Override
 	public void validate(final Booking booking) {
+		assert booking != null;
+
 		{
 			boolean lastNibbleStored;
 
