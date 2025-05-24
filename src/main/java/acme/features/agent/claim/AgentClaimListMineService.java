@@ -21,10 +21,7 @@ public class AgentClaimListMineService extends AbstractGuiService<Agent, Claim> 
 
 	@Override
 	public void authorise() {
-		boolean status;
-		status = super.getRequest().getPrincipal().hasRealmOfType(Agent.class);
-
-		super.getResponse().setAuthorised(status);
+		super.getResponse().setAuthorised(true);
 	}
 
 	@Override

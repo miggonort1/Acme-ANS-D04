@@ -28,11 +28,12 @@ public class AgentClaimCreateService extends AbstractGuiService<Agent, Claim> {
 	public void authorise() {
 		boolean status;
 		status = true;
+		Date currentMoment = MomentHelper.getCurrentMoment();
 		if (super.getRequest().hasData("id")) {
 			Integer legId = super.getRequest().getData("leg", Integer.class);
 			if (legId == null || legId != 0) {
 				Leg leg = this.repository.findLegById(legId);
-				status = leg != null && !leg.isDraftMode();
+				status = leg != null && !leg.isDraftMode() && leg.getScheduledDeparture().before(currentMoment);
 			}
 		}
 		super.getResponse().setAuthorised(status);

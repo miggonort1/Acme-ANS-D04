@@ -7,8 +7,8 @@ import acme.client.components.models.Dataset;
 import acme.client.components.views.SelectChoices;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
-import acme.entities.claim.TrackingLogStatus;
 import acme.entities.claim.TrackingLog;
+import acme.entities.claim.TrackingLogStatus;
 import acme.realms.Agent;
 
 @GuiService
@@ -22,15 +22,11 @@ public class AgentTrackingLogDeleteService extends AbstractGuiService<Agent, Tra
 	public void authorise() {
 		boolean status;
 		int trackingLogId;
-		int agentId;
 		TrackingLog trackingLog;
-		Agent agent;
 
-		agentId = super.getRequest().getPrincipal().getActiveRealm().getId();
-		agent = this.repository.findOneAgentById(agentId);
 		trackingLogId = super.getRequest().getData("id", int.class);
 		trackingLog = this.repository.findTrackingLogById(trackingLogId);
-		status = trackingLog != null && (!trackingLog.getClaim().isDraftMode() || super.getRequest().getPrincipal().hasRealm(trackingLog.getClaim().getAgent())) && trackingLog.getClaim().getAgent().equals(agent);
+		status = trackingLog != null && trackingLog.isDraftMode() && super.getRequest().getPrincipal().hasRealm(trackingLog.getClaim().getAgent());
 
 		super.getResponse().setAuthorised(status);
 	}
@@ -50,22 +46,25 @@ public class AgentTrackingLogDeleteService extends AbstractGuiService<Agent, Tra
 
 	@Override
 	public void validate(final TrackingLog object) {
-		super.state(object.getStatus() == TrackingLogStatus.PENDING, "*", "acme.validation.trackinglog.update-published");
+		assert object != null;
 	}
 
 	@Override
 	public void perform(final TrackingLog object) {
+		assert object != null;
 		this.repository.delete(object);
 	}
 
 	@Override
 	public void unbind(final TrackingLog object) {
+		assert object != null;
+
 		Dataset dataset;
 		SelectChoices choicesStatus;
 
 		choicesStatus = SelectChoices.from(TrackingLogStatus.class, object.getStatus());
 
-		dataset = super.unbindObject(object, "lastUpdateMoment", "step", "resolutionPercentage", "status", "resolution");
+		dataset = super.unbindObject(object, "lastUpdateMoment", "step", "resolutionPercentage", "status", "resolution", "draftMode");
 		dataset.put("status", choicesStatus);
 
 		super.getResponse().addData(dataset);
