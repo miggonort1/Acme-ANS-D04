@@ -1,9 +1,8 @@
 
 package acme.entities.claim;
 
+import java.util.Collection;
 import java.util.Date;
-import java.util.List;
-import java.util.Optional;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
@@ -66,15 +65,13 @@ public class Claim extends AbstractEntity {
 
 	@Transient
 	public TrackingLogStatus getStatus() {
-		TrackingLogStatus tls;
 		AgentTrackingLogRepository repository = SpringHelper.getBean(AgentTrackingLogRepository.class);
-		Optional<List<TrackingLog>> trackingLogs = repository.findLastTrackingLog(this.getId());
-		TrackingLog tl = trackingLogs.isPresent() && !trackingLogs.get().isEmpty() ? trackingLogs.get().get(0) : null;
-		if (tl == null)
-			tls = TrackingLogStatus.PENDING;
-		else
-			tls = tl.getStatus();
-		return tls;
+		Collection<TrackingLog> trackingLogs = repository.findTrackingLogsByClaimId(this.getId());
+
+		if (trackingLogs == null || trackingLogs.isEmpty())
+			return TrackingLogStatus.PENDING;
+
+		return trackingLogs.stream().sorted((a, b) -> b.getCreationMoment().compareTo(a.getCreationMoment())).map(TrackingLog::getStatus).findFirst().orElse(TrackingLogStatus.PENDING);
 	}
 
 
