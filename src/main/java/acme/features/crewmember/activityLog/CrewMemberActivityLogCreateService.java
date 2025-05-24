@@ -44,9 +44,13 @@ public class CrewMemberActivityLogCreateService extends AbstractGuiService<CrewM
 				int assignmentId = Integer.parseInt(assignmentData.toString());
 				FlightAssignment assignment = this.flightAssignmentRepository.findFlightAssignmentById(assignmentId);
 
-				boolean userOwnsAssignment = assignment != null && assignment.getCrewMember().getId() == userId;
+				if (assignment != null) {
+					boolean userOwnsAssignment = assignment.getCrewMember().getId() == userId;
+					boolean assignmentIsPublished = !assignment.getDraftMode();
+					boolean legStarted = assignment.getLeg().getScheduledDeparture().before(MomentHelper.getCurrentMoment());
 
-				status = userOwnsAssignment;
+					status = userOwnsAssignment && assignmentIsPublished && legStarted;
+				}
 			}
 		}
 

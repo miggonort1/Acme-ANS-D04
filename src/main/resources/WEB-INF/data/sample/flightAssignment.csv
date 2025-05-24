@@ -32,8 +32,8 @@ flightAssignment-23,PILOT,2010/09/01 10:00,CONFIRMED,"Lorem ipsum dolor sit amet
 flightAssignment-24,PILOT,2010/09/01 10:00,CONFIRMED,"Lorem ipsum dolor sit amet, consectetur adipiscin",member-04,leg-37,true
 # leg - standard variations
 flightAssignment-25,PILOT,2010/09/01 10:00,CONFIRMED,"Lorem ipsum dolor sit amet, consectetur adipiscin",member-01,leg-37,true
-flightAssignment-26,PILOT,2010/09/01 10:00,CONFIRMED,"Lorem ipsum dolor sit amet, consectetur adipiscin",member-01,leg-29,true
-flightAssignment-27,PILOT,2010/09/01 10:00,CONFIRMED,"Lorem ipsum dolor sit amet, consectetur adipiscin",member-01,leg-30,true
-flightAssignment-28,PILOT,2010/09/01 10:00,CONFIRMED,"Lorem ipsum dolor sit amet, consectetur adipiscin",member-01,leg-31,true
+flightAssignment-26,PILOT,2010/09/01 10:00,CONFIRMED,"Lorem ipsum dolor sit amet, consectetur adipiscin",member-01,leg-29,false
+flightAssignment-27,PILOT,2010/09/01 10:00,CONFIRMED,"Lorem ipsum dolor sit amet, consectetur adipiscin",member-01,leg-30,false
+flightAssignment-28,PILOT,2010/09/01 10:00,CONFIRMED,"Lorem ipsum dolor sit amet, consectetur adipiscin",member-01,leg-31,false
 # draft-mode - standard variations
 flightAssignment-29,PILOT,2010/09/01 10:00,CONFIRMED,"Lorem ipsum dolor sit amet, consectetur adipiscin",member-01,leg-37,false
