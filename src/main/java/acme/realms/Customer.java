@@ -59,6 +59,7 @@ public class Customer extends AbstractRole {
 
 	@Mandatory
 	@ValidString(max = 50)
+	@Automapped
 	private String				country;
 
 	@Optional
