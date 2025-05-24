@@ -44,6 +44,7 @@ public class AgentTrackingLogShowService extends AbstractGuiService<Agent, Track
 
 	@Override
 	public void unbind(final TrackingLog object) {
+		assert object != null;
 		Dataset dataset;
 		SelectChoices choicesStatus;
 

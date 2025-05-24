@@ -30,21 +30,18 @@ public class AgentClaimPublishService extends AbstractGuiService<Agent, Claim> {
 	public void authorise() {
 		boolean status;
 		int claimId;
-		int agentId;
+		Date currentMoment = MomentHelper.getCurrentMoment();
 		Claim claim;
-		Agent agent;
 
-		agentId = super.getRequest().getPrincipal().getActiveRealm().getId();
-		agent = this.repository.findOneAgentById(agentId);
 		claimId = super.getRequest().getData("id", int.class);
 		claim = this.repository.findClaimById(claimId);
-		status = claim != null && (!claim.isDraftMode() || super.getRequest().getPrincipal().hasRealm(claim.getAgent())) && claim.getAgent().equals(agent);
+		status = claim != null && claim.isDraftMode() && super.getRequest().getPrincipal().hasRealm(claim.getAgent());
 
 		if (super.getRequest().hasData("id")) {
 			Integer legId = super.getRequest().getData("leg", Integer.class);
 			if (legId == null || legId != 0) {
 				Leg leg = this.repository.findLegById(legId);
-				status = status && leg != null && !leg.isDraftMode();
+				status = status && leg != null && !leg.isDraftMode() && leg.getScheduledDeparture().before(currentMoment);
 			}
 		}
 		super.getResponse().setAuthorised(status);

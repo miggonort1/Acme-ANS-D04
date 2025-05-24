@@ -66,28 +66,17 @@ public class AgentTrackingLogCreateService extends AbstractGuiService<Agent, Tra
 	public void validate(final TrackingLog object) {
 		assert object != null;
 
-		if (object.getResolutionPercentage() != null && object.getStatus() != null && object.getResolutionPercentage() < 100.0)
-			super.state(object.getStatus().equals(TrackingLogStatus.PENDING), "status", "agent.trackingLog.form.error.badStatus");
-
-		else if (object.getResolutionPercentage() != null && object.getStatus() != null && object.getResolutionPercentage() == 100.0)
-			super.state(!object.getStatus().equals(TrackingLogStatus.PENDING), "status", "agent.trackingLog.form.error.badStatus2");
-
-		if (object.getStatus() != null && object.getStatus().equals(TrackingLogStatus.PENDING))
-			super.state(object.getResolution() == null || object.getResolution().isBlank(), "resolution", "agent.trackingLog.form.error.badResolution");
-		else
-			super.state(object.getResolution() != null && !object.getResolution().isBlank(), "resolution", "agent.trackingLog.form.error.badResolution2");
-
 		if (object.getClaim() != null) {
 			Collection<TrackingLog> trackingLogs = this.repository.findTrackingLogsByClaimId(object.getClaim().getId());
 
 			if (!trackingLogs.isEmpty()) {
 				List<TrackingLog> completedLogs = trackingLogs.stream().filter(t -> t.getResolutionPercentage() != null && t.getResolutionPercentage() == 100.0).sorted(Comparator.comparing(TrackingLog::getCreationMoment)).toList();
 
-				super.state(completedLogs.size() <= 2, "resolutionPercentage", "agent.trackingLog.form.error.maxcompletedGlobal");
+				super.state(completedLogs.size() <= 2, "*", "agent.trackingLog.form.error.maxcompletedGlobal");
 
-				if (completedLogs.size() == 2) {
+				if (completedLogs.size() == 1 && object.getResolutionPercentage() == 100.00) {
 					TrackingLog first = completedLogs.get(0);
-					TrackingLog second = completedLogs.get(1);
+					TrackingLog second = object;
 
 					super.state(!first.isDraftMode(), "resolutionPercentage", "agent.trackingLog.form.error.firstMustBePublished");
 
@@ -99,10 +88,11 @@ public class AgentTrackingLogCreateService extends AbstractGuiService<Agent, Tra
 				if (object.getResolutionPercentage() != null && recentTrackingLogOpt.isPresent()) {
 					TrackingLog recentTrackingLog = recentTrackingLogOpt.get();
 
-					if (recentTrackingLog.getResolutionPercentage() == 100.0 && object.getResolutionPercentage() == 100.0)
-						super.state(!recentTrackingLog.isDraftMode() && completedLogs.size() < 2, "resolutionPercentage", "agent.trackingLog.form.error.maxcompleted");
+					if (recentTrackingLog.getResolutionPercentage() == 100.00 && object.getResolutionPercentage() == 100.00) {
+						super.state(!recentTrackingLog.isDraftMode(), "resolutionPercentage", "agent.trackingLog.form.error.previousDraft");
 
-					else
+						super.state(completedLogs.size() <= 2, "resolutionPercentage", "agent.trackingLog.form.error.maxcompleted");
+					} else
 						super.state(recentTrackingLog.getResolutionPercentage() < object.getResolutionPercentage(), "resolutionPercentage", "agent.trackingLog.form.error.badPercentage");
 				}
 			}
@@ -121,7 +111,7 @@ public class AgentTrackingLogCreateService extends AbstractGuiService<Agent, Tra
 
 		choicesStatus = SelectChoices.from(TrackingLogStatus.class, object.getStatus());
 
-		dataset = super.unbindObject(object, "lastUpdateMoment", "step", "resolutionPercentage", "status", "resolution");
+		dataset = super.unbindObject(object, "lastUpdateMoment", "step", "resolutionPercentage", "status", "resolution", "draftMode");
 		dataset.put("status", choicesStatus);
 
 		dataset.put("masterId", super.getRequest().getData("masterId", int.class));

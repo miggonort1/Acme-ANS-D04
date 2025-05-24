@@ -26,7 +26,7 @@
 	</jstl:if>
 	<jstl:choose>
 		<jstl:when test="${_command == 'show' && draftMode == false}">
-				<acme:button code="agent.trackingLog.list.tittle" action="/agent/tracking-log/list-mine?masterId=${id}"/>			
+				<acme:button code="agent.trackingLog.list.title" action="/agent/tracking-log/list-mine?masterId=${id}"/>			
 		</jstl:when>
 		<jstl:when test="${_command == 'create'}">
 			<acme:submit  code="agent.claim.form.button.create" action="/agent/claim/create"/>

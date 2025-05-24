@@ -21,6 +21,8 @@
 	<acme:list-column code="agent.trackingLog.list.label.status" path="status" width="25%"/>
 </acme:list>
 
-	<jstl:if test="${_command == 'list-mine'}">
-	<acme:button code="agent.trackingLog.list.button.create" action="/agent/tracking-log/create?masterId=${masterId}"/>
+<jstl:if test="${_command == 'list-mine'}">
+	<jstl:if test="${showCreate}">
+		<acme:button code="agent.trackingLog.list.button.create" action="/agent/tracking-log/create?masterId=${masterId}"/>
+	</jstl:if>
 </jstl:if>
