@@ -23,9 +23,6 @@ public interface AdministratorBookingPassengerRepository extends AbstractReposit
 	@Query("select bp from BookingPassenger bp where bp.id = :bookingPassengerId")
 	BookingPassenger findBookingPassengerById(int bookingPassengerId);
 
-	@Query("select p from Passenger p, BookingPassenger bp where p.id=bp.passenger.id and bp.id = :bookingPassengerId")
-	Collection<Passenger> findPassengersByBookingPassengerId(int bookingPassengerId);
-
 	@Query("select p from Passenger p where p.draftMode = false and p.customer.id = :customerId")
 	Collection<Passenger> findAllPublishedPassengersFromCustomerId(final int customerId);
 }
