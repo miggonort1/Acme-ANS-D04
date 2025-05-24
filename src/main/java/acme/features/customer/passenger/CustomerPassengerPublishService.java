@@ -51,7 +51,7 @@ public class CustomerPassengerPublishService extends AbstractGuiService<Customer
 
 	@Override
 	public void validate(final Passenger passenger) {
-		;
+		assert passenger != null;
 	}
 
 	@Override

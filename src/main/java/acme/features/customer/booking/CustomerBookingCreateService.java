@@ -72,7 +72,7 @@ public class CustomerBookingCreateService extends AbstractGuiService<Customer, B
 
 	@Override
 	public void validate(final Booking booking) {
-		;
+		assert booking != null;
 	}
 
 	@Override
