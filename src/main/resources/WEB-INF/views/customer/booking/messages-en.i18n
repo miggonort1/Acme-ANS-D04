@@ -28,3 +28,5 @@ acme.validation.booking.passengers.message = At Least One Passenger Assigned
 acme.validation.booking.invalid-legs.message = You cannot book a flight with leg whose departure has already occurred
 acme.validation.booking.flight-in-draft-mode.message=You cannot book a flight that is still in draft mode
 acme.validation.booking.lastNibble.message = A booking can be published only when the last credit card nibble has been stored
+acme.validation.booking.no-passengers.message= At least one passenger
+acme.validation.booking.passengers-in-draft.message= All passenger must be published to publish

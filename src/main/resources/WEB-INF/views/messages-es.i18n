@@ -1,5 +1,6 @@
 # messages-es.i18n
 
 validation.agent.employeeNumber = El número de empleado debe seguir el patrón ^[A-Z]{2,3}\d{6}$
-acme.validation.Agent.code = El número de empleado debe comenzar por las iniciales del usuario
 acme.validation.airport.code-duplicated.message= Código Duplicado
+
+validation.pattern	= La entrada debe seguir el patrón:

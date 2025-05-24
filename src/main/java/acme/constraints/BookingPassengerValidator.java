@@ -8,6 +8,7 @@ import javax.validation.ConstraintValidatorContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import acme.client.components.datatypes.Money;
 import acme.client.components.validation.AbstractValidator;
 import acme.entities.booking.BookingPassenger;
 import acme.features.customer.bookingPassenger.CustomerBookingPassengerRepository;
@@ -60,6 +61,12 @@ public class BookingPassengerValidator extends AbstractValidator<ValidBookingPas
 		final boolean sameCustomer = bookingCustomerId == passengerCustomerId;
 		super.state(context, sameCustomer, "passenger", "acme.validation.booking-passenger.passenger-from-different-customer");
 		result = result && sameCustomer;
+
+		// Validación 4: El precio total del booking no debe superar 1.000.000,00
+		Money price = bookingPassenger.getBooking().getPrice();
+		boolean validPrice = price != null && price.getAmount() <= 1000000.00;
+		super.state(context, validPrice, "*", "acme.validation.booking-passenger.excessive-price");
+		result = result && validPrice;
 
 		return result;
 	}

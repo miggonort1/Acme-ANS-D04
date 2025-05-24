@@ -60,6 +60,7 @@
 		</acme:menu-option>
 		
 		<acme:menu-option code="master.menu.customer" access="hasRealm('Customer')">
+			<acme:menu-suboption code="master.menu.customer.dashboard" action="/customer/customer-dashboard/show"/>
 			<acme:menu-suboption code="master.menu.customer.bookings" action="/customer/booking/list"/>
 			<acme:menu-suboption code="master.menu.customer.passengers" action="/customer/passenger/list"/>
     </acme:menu-option> 
@@ -85,6 +86,8 @@
 			<acme:menu-suboption code="master.menu.user-account.general-profile" action="/authenticated/user-account/update"/>
 			<acme:menu-suboption code="master.menu.user-account.become-provider" action="/authenticated/provider/create" access="!hasRealm('Provider')"/>
 			<acme:menu-suboption code="master.menu.user-account.provider-profile" action="/authenticated/provider/update" access="hasRealm('Provider')"/>
+			<acme:menu-suboption code="master.menu.user-account.agent-profile" action="/authenticated/agent/update" access="hasRealm('Agent')"/>
+			<acme:menu-suboption code="master.menu.user-account.become-agent" action="/authenticated/agent/create" access="!hasRealm('Agent')"/>
 			<acme:menu-suboption code="master.menu.user-account.become-consumer" action="/authenticated/consumer/create" access="!hasRealm('Consumer')"/>
 			<acme:menu-suboption code="master.menu.user-account.consumer-profile" action="/authenticated/consumer/update" access="hasRealm('Consumer')"/>
 			<acme:menu-suboption code="master.menu.user-account.become-technician" action="/authenticated/technician/create" access="!hasRealm('Technician')"/>

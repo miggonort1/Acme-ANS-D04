@@ -27,7 +27,7 @@ public class AgentTrackingLogListMineService extends AbstractGuiService<Agent, T
 
 		claimId = super.getRequest().getData("masterId", int.class);
 		claim = this.repository.findClaimById(claimId);
-		status = claim != null && (!claim.isDraftMode() || super.getRequest().getPrincipal().hasRealm(claim.getAgent()));
+		status = claim != null && super.getRequest().getPrincipal().hasRealm(claim.getAgent());
 
 		super.getResponse().setAuthorised(status);
 	}
@@ -45,6 +45,7 @@ public class AgentTrackingLogListMineService extends AbstractGuiService<Agent, T
 
 	@Override
 	public void unbind(final TrackingLog object) {
+		assert object != null;
 		Dataset dataset;
 
 		dataset = super.unbindObject(object, "lastUpdateMoment", "step", "resolutionPercentage", "status", "resolution");
@@ -58,11 +59,14 @@ public class AgentTrackingLogListMineService extends AbstractGuiService<Agent, T
 		int masterId;
 		Claim claim;
 		final boolean showCreate;
+		long completedCount;
 
 		masterId = super.getRequest().getData("masterId", int.class);
 		claim = this.repository.findClaimById(masterId);
-		showCreate = claim.isDraftMode() && super.getRequest().getPrincipal().hasRealm(claim.getAgent());
 
+		completedCount = objects.stream().filter(t -> t.getResolutionPercentage() != null && t.getResolutionPercentage() == 100.0).count();
+
+		showCreate = super.getRequest().getPrincipal().hasRealm(claim.getAgent()) && completedCount < 2;
 		super.getResponse().addGlobal("masterId", masterId);
 		super.getResponse().addGlobal("showCreate", showCreate);
 	}

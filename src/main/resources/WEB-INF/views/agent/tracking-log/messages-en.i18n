@@ -23,3 +23,17 @@ agent.trackingLog.form.button.update=Update
 agent.trackingLog.form.button.create=Create
 agent.trackingLog.form.button.delete=Delete
 agent.trackingLog.form.button.publish=Publish
+
+agent.trackingLog.form.error.badStatus=Status must be PENDING when the resolution percentage is under 100%
+agent.trackingLog.form.error.badStatus2=Status cannot be PENDING when the resolution percentage is 100%
+agent.trackingLog.form.error.badResolution=Resolution must be empty when the status is PENDING
+agent.trackingLog.form.error.badResolution2=Resolution must be filled in when the status is not PENDING
+agent.trackingLog.form.error.maxcompletedGlobal=There cannot be more than two tracking logs with 100% resolution
+agent.trackingLog.form.error.firstMustBePublished=The first tracking log with 100% resolution must be published
+agent.trackingLog.form.error.mismatchedStatus=The second tracking log with 100% resolution must have the same status as the first one
+agent.trackingLog.form.error.previousDraft=The previous tracking log is still in draft mode and cannot be followed by another with 100% resolution.
+agent.trackingLog.form.error.maxcompleted=There cannot be more than two tracking logs with 100% resolution.
+agent.trackingLog.form.error.badPercentage=Resolution percentage must be greater than the previous tracking log
+agent.trackingLog.validator.error.null=There are no tracking logs to validate
+agent.trackingLog.validator.error.claim-not-published=The claim must be published in order to publish the tracking log
+agent.trackingLog.validator.error.nonIncreasingPercentage=Resolution percentages must be strictly increasing with respect to the creation moment

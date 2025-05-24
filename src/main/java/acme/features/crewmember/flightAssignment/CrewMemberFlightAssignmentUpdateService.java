@@ -2,7 +2,6 @@
 package acme.features.crewmember.flightAssignment;
 
 import java.util.Collection;
-import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -79,29 +78,7 @@ public class CrewMemberFlightAssignmentUpdateService extends AbstractGuiService<
 
 	@Override
 	public void validate(final FlightAssignment flightAssignment) {
-		int userId = super.getRequest().getPrincipal().getActiveRealm().getId();
-		CrewMember crewMember = this.crewMemberRepository.findCrewMemberById(userId);
-
-		if (flightAssignment.getLeg() != null) {
-			boolean isLinkedToPastLeg = flightAssignment.getLeg().getScheduledDeparture().before(MomentHelper.getCurrentMoment());
-			super.state(!isLinkedToPastLeg, "leg", "acme.validation.flightAssignment.leg.moment");
-
-			Date start = flightAssignment.getLeg().getScheduledDeparture();
-			Date end = flightAssignment.getLeg().getScheduledArrival();
-			boolean overlaps = this.repository.isOverlappingAssignmentExcludingSelf(crewMember, start, end, flightAssignment.getId());
-			super.state(!overlaps, "*", "acme.validation.flightAssignment.crewMember.multipleLegs");
-		}
-
-		Leg selectedLeg = flightAssignment.getLeg();
-		if (selectedLeg != null && flightAssignment.getDuty() != null) {
-			boolean isDutyAlreadyAssigned = this.repository.hasDutyAssignedExcludingSelf(selectedLeg, flightAssignment.getDuty(), flightAssignment.getId());
-
-			if (flightAssignment.getDuty() == Duty.PILOT)
-				super.state(!isDutyAlreadyAssigned, "duty", "acme.validation.flightAssignment.crewMember.onlyOnePilot");
-
-			if (flightAssignment.getDuty() == Duty.CO_PILOT)
-				super.state(!isDutyAlreadyAssigned, "duty", "acme.validation.flightAssignment.crewMember.onlyOneCoPilot");
-		}
+		;
 	}
 
 	@Override

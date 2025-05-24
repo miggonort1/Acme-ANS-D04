@@ -38,8 +38,8 @@ public class Customer extends AbstractRole {
 	// Attributes -------------------------------------------------------------
 
 	@Mandatory
-	@Column(unique = true)
 	@ValidString(pattern = "^[A-Z]{2,3}\\d{6}$")
+	@Column(unique = true)
 	private String				identifier;
 
 	@Mandatory
@@ -59,6 +59,7 @@ public class Customer extends AbstractRole {
 
 	@Mandatory
 	@ValidString(max = 50)
+	@Automapped
 	private String				country;
 
 	@Optional

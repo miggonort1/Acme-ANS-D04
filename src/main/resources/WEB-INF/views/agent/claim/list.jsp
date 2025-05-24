@@ -24,5 +24,5 @@
 </acme:list>
 
 	<jstl:if test="${_command == 'list-mine'}">
-	<acme:button code="agent.claim.list.button.create" action="/agent/claim/create?masterId=${masterId}"/>
+	<acme:button code="agent.claim.list.button.create" action="/agent/claim/create"/>
 </jstl:if>

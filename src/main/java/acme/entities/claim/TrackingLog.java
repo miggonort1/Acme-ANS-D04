@@ -16,13 +16,14 @@ import acme.client.components.validation.Optional;
 import acme.client.components.validation.ValidMoment;
 import acme.client.components.validation.ValidScore;
 import acme.client.components.validation.ValidString;
-import acme.constraints.ValidLongText;
+import acme.constraints.ValidTrackingLog;
 import lombok.Getter;
 import lombok.Setter;
 
 @Entity
 @Getter
 @Setter
+@ValidTrackingLog
 public class TrackingLog extends AbstractEntity {
 
 	// Serialisation version --------------------------------------------------
@@ -35,6 +36,11 @@ public class TrackingLog extends AbstractEntity {
 	private Date				lastUpdateMoment;
 
 	@Mandatory
+	@ValidMoment(past = true)
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date				creationMoment;
+
+	@Mandatory
 	@ValidString(min = 1, max = 50)
 	@Automapped
 	private String				step;
@@ -42,15 +48,15 @@ public class TrackingLog extends AbstractEntity {
 	@Mandatory
 	@ValidScore
 	@Automapped
-	private double				resolutionPercentage;
+	private Double				resolutionPercentage;
 
 	@Mandatory
 	@Valid
 	@Automapped
-	private TrackinLogStatus				status;
+	private TrackingLogStatus	status;
 
 	@Optional
-	@ValidLongText
+	@ValidString(min = 0, max = 255)
 	@Automapped
 	private String				resolution;
 

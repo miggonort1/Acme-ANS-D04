@@ -18,7 +18,7 @@ import acme.client.components.validation.Optional;
 import acme.client.components.validation.ValidMoment;
 import acme.client.components.validation.ValidString;
 import acme.client.components.validation.ValidUrl;
-import acme.constraints.ValidEmployeeCode;
+import acme.constraints.ValidAssistantAgent;
 import acme.constraints.ValidLongText;
 import acme.entities.airline.Airline;
 import lombok.Getter;
@@ -27,7 +27,7 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-@ValidEmployeeCode
+@ValidAssistantAgent
 public class Agent extends AbstractRole {
 	// Serialisation identifier -----------------------------------------------
 
@@ -36,7 +36,7 @@ public class Agent extends AbstractRole {
 	// Attributes -------------------------------------------------------------
 
 	@Mandatory
-	@ValidString(pattern = "^[A-Z]{2,3}\\d{6}$", message = "{validation.agent.employeeCode}")
+	@ValidString(pattern = "^[A-Z]{2,3}\\d{6}$")
 	@Column(unique = true)
 	private String				employeeCode;
 

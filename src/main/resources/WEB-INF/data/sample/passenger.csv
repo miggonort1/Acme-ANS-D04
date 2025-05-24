@@ -2,7 +2,7 @@ key,fullName,email,passportNumber,dateOfBirth,specialNeeds,draftMode,key:custome
 # base entity
 passenger-00,"Lorem ipsum dolor sit amet,consectetu",acme@lorem-ipsum.org,1234567,2002/01/01 0:00,"Lorem ipsum dolor sit amet,consectetu",false,customer-01
 # fullName
-passenger-01,L,acme@lorem-ipsum.org,US39N3HE,2002/01/01 0:00,"Lorem ipsum dolor sit amet,consectetu",false,customer-01
+passenger-01,L,acme@lorem-ipsum.org,US39N3HE,2002/01/01 0:00,"Lorem ipsum dolor sit amet,consectetu",true,customer-01
 passenger-02,Lo,acme@lorem-ipsum.org,A1B2C3D4,2002/01/01 0:00,"Lorem ipsum dolor sit amet,consectetu",false,customer-01
 passenger-03,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut enim ad minim veniam? Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor",acme@lorem-ipsum.org,ZZZZZZZZZ,2002/01/01 0:00,"Lorem ipsum dolor sit amet,consectetu",false,customer-01
 passenger-04,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut enim ad minim veniam? Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor*",acme@lorem-ipsum.org,1A2B3C4D5,2002/01/01 0:00,"Lorem ipsum dolor sit amet,consectetu",false,customer-01
@@ -39,6 +39,6 @@ passenger-30,"Lorem ipsum dolor sit amet,consectetu",acme@lorem-ipsum.org,1MNOP6
 passenger-31,"Lorem ipsum dolor sit amet,consectetu",acme@lorem-ipsum.org,2QRST89,2002/01/01 0:00,<script>alert(‘Hacked!’);</script>,false,customer-01
 passenger-32,"Lorem ipsum dolor sit amet,consectetu",acme@lorem-ipsum.org,3UVWX01,2002/01/01 0:00,'' or 'A' = 'A,false,customer-01
 # draftMode
-passenger-33,"draftmode dolor sit amet,consectetu",acme@lorem-ipsum.org,4YZAB23,2002/01/01 0:00,"Lorem ipsum dolor sit amet,consectetu",true,customer-01
+passenger-33,"draftmode dolor sit amet,consectetu",acme@lorem-ipsum.org,4YZAB23,2002/01/01 0:00,"Lorem ipsum dolor sit amet,consectetu",false,customer-01
 # customer
 passenger-34,"Lorem ipsum dolor sit amet,consectetu",acme@lorem-ipsum.org,STU901,2002/01/01 0:00,"Lorem ipsum dolor sit amet,consectetu",false,customer-02
