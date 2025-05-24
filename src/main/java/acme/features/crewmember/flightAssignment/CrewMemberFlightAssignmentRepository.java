@@ -51,16 +51,18 @@ public interface CrewMemberFlightAssignmentRepository extends AbstractRepository
 		    WHERE fa.crewMember = :crewMember
 		    AND fa.leg.scheduledDeparture < :end
 		    AND fa.leg.scheduledArrival > :start
+		    AND fa.draftMode = false
 		""")
 	Boolean isOverlappingAssignment(CrewMember crewMember, java.util.Date start, java.util.Date end);
 
 	@Query("""
-			SELECT COUNT(fa) > 0
-			FROM FlightAssignment fa
-			WHERE fa.crewMember = :crewMember
-			AND fa.id != :currentId
-			AND fa.leg.scheduledDeparture < :end
-			AND fa.leg.scheduledArrival > :start
+		    SELECT COUNT(fa) > 0
+		    FROM FlightAssignment fa
+		    WHERE fa.crewMember = :crewMember
+		    AND fa.id <> :currentId
+		    AND fa.leg.scheduledDeparture < :end
+		    AND fa.leg.scheduledArrival > :start
+		    AND fa.draftMode = false
 		""")
 	boolean isOverlappingAssignmentExcludingSelf(CrewMember crewMember, Date start, Date end, int currentId);
 
@@ -69,7 +71,8 @@ public interface CrewMemberFlightAssignmentRepository extends AbstractRepository
 			FROM FlightAssignment fa
 			WHERE fa.leg = :leg
 			AND fa.duty = :duty
-			AND fa.id != :currentId
+			AND fa.id <> :currentId
+			AND fa.draftMode = false
 		""")
 	boolean hasDutyAssignedExcludingSelf(Leg leg, Duty duty, int currentId);
 
@@ -78,9 +81,6 @@ public interface CrewMemberFlightAssignmentRepository extends AbstractRepository
 
 	@Query("SELECT COUNT(fa) > 0 FROM FlightAssignment fa WHERE fa.crewMember.id = :crewMemberId AND fa.moment = :moment AND fa.draftMode = false")
 	Boolean hasFlightCrewMemberLegAssociated(int crewMemberId, Date moment);
-
-	@Query("SELECT COUNT(fa) > 0 FROM FlightAssignment fa WHERE fa.leg.id = :legId AND fa.duty IN ('PILOT', 'CO_PILOT') AND fa.duty = :duty AND fa.id != :id")
-	Boolean hasDutyAssigned(int legId, Duty duty, int id);
 
 	@Query("""
 		    SELECT COUNT(fa) > 0

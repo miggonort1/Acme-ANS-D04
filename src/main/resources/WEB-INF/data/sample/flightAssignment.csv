@@ -1,31 +1,39 @@
-key,duty,moment,currentStatus,remarks,key:crewMember,key:leg
-#base entity,"","","","","",""
-flightAssignment-01,CABIN_ATTENDANT,2012/07/02 00:00,CONFIRMED,Lorem ipsum dolor sit amet  consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*,member-01,leg-32
-#Student 3 testing requirements (duty and CrewMember variations)
-flightAssignment-02,LEAD_ATTENDANT,2012/07/02 00:00,CONFIRMED,Lorem ipsum dolor sit amet  consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*,member-02,leg-32
-flightAssignment-03,CO_PILOT,2012/07/02 00:00,CONFIRMED,Lorem ipsum dolor sit amet  consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*,member-03,leg-32
-flightAssignment-04,PILOT,2012/07/02 00:00,CONFIRMED,Lorem ipsum dolor sit amet  consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*,member-04,leg-32
-#moment variations
-flightAssignment-05,CABIN_ATTENDANT,2000/01/01 00:00,CONFIRMED,Lorem ipsum dolor sit amet  consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*,member-01,leg-32
-flightAssignment-06,CABIN_ATTENDANT,2000/01/01 00:01,CONFIRMED,Lorem ipsum dolor sit amet  consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*,member-01,leg-32
-flightAssignment-07,CABIN_ATTENDANT,2024/12/31 23:59,CONFIRMED,Lorem ipsum dolor sit amet  consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*,member-01,leg-32
-#currentStatus variations
-flightAssignment-09,CABIN_ATTENDANT,2012/07/02 00:00,PENDING,Lorem ipsum dolor sit amet  consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*,member-01,leg-32
-flightAssignment-10,CABIN_ATTENDANT,2012/07/02 00:00,CANCELLED,Lorem ipsum dolor sit amet  consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*,member-01,leg-32
-#remarks variations
-assignment-11,CABIN_ATTENDANT,2012/07/02 00:00,CONFIRMED,,member-01,leg-32
-assignment-12,CABIN_ATTENDANT,2012/07/02 00:00,CONFIRMED,"",member-01,leg-32
-flightAssignment-13,CABIN_ATTENDANT,2012/07/02 00:00,CONFIRMED,L,member-01,leg-32
-flightAssignment-14,CABIN_ATTENDANT,2012/07/02 00:00,CONFIRMED,Lorem ipsum dolor sit amet  consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut enim ad minim veniam? Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor,member-01,leg-32
-flightAssignment-15,CABIN_ATTENDANT,2012/07/02 00:00,CONFIRMED,Lorem ipsum dolor sit amet  consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut enim ad minim veniam? Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor*,member-01,leg-32
-flightAssignment-16,CABIN_ATTENDANT,2012/07/02 00:00,CONFIRMED,โลเร็ม อิปซัม,member-01,leg-32
-flightAssignment-17,CABIN_ATTENDANT,2012/07/02 00:00,CONFIRMED,لوريم إيبسوم,member-01,leg-32
-flightAssignment-18,CABIN_ATTENDANT,2012/07/02 00:00,CONFIRMED,洛伦·伊普森,member-01,leg-32
-flightAssignment-19,CABIN_ATTENDANT,2012/07/02 00:00,CONFIRMED,<marquee>Hacked</marquee>,member-01,leg-32
-flightAssignment-20,CABIN_ATTENDANT,2012/07/02 00:00,CONFIRMED,<script>alert(‘Hacked!’);</script>,member-01,leg-32
-flightAssignment-21,CABIN_ATTENDANT,2012/07/02 00:00,CONFIRMED,' or 'A' = 'A,member-01,leg-32
-#leg variations
-flightAssignment-22,CABIN_ATTENDANT,2012/07/02 00:00,CONFIRMED,Lorem ipsum dolor sit amet  consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*,member-01,leg-32
-flightAssignment-23,CABIN_ATTENDANT,2012/07/02 00:00,CONFIRMED,Lorem ipsum dolor sit amet  consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*,member-01,leg-33
-flightAssignment-24,CABIN_ATTENDANT,2012/07/02 00:00,CONFIRMED,Lorem ipsum dolor sit amet  consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*,member-01,leg-34
-flightAssignment-25,CABIN_ATTENDANT,2012/07/02 00:00,CONFIRMED,Lorem ipsum dolor sit amet  consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*,member-01,leg-38
+key,duty,moment,current-status,remarks,key:crewMember,key:leg,draft-mode
+# base-entity
+flightAssignment-00,PILOT,2010/09/01 10:00,CONFIRMED,"Lorem ipsum dolor sit amet, consectetur adipiscin",member-01,leg-37,true
+# duty - standard variations
+flightAssignment-01,CO_PILOT,2010/09/01 10:00,CONFIRMED,"Lorem ipsum dolor sit amet, consectetur adipiscin",member-01,leg-37,true
+flightAssignment-02,LEAD_ATTENDANT,2010/09/01 10:00,CONFIRMED,"Lorem ipsum dolor sit amet, consectetur adipiscin",member-01,leg-37,true
+flightAssignment-03,CABIN_ATTENDANT,2010/09/01 10:00,CONFIRMED,"Lorem ipsum dolor sit amet, consectetur adipiscin",member-01,leg-37,true
+# moment - standar variations
+flightAssignment-04,PILOT,2000/01/01 00:00,CONFIRMED,"Lorem ipsum dolor sit amet, consectetur adipiscin",member-01,leg-37,true
+flightAssignment-05,PILOT,2000/01/01 00:01,CONFIRMED,"Lorem ipsum dolor sit amet, consectetur adipiscin",member-01,leg-37,true
+flightAssignment-06,PILOT,2024/12/31 23:58,CONFIRMED,"Lorem ipsum dolor sit amet, consectetur adipiscin",member-01,leg-37,true
+flightAssignment-07,PILOT,2024/12/31 23:59,CONFIRMED,"Lorem ipsum dolor sit amet, consectetur adipiscin",member-01,leg-37,true
+flightAssignment-08,PILOT,2025/01/01 00:00,CONFIRMED,"Lorem ipsum dolor sit amet, consectetur adipiscin",member-01,leg-37,true
+flightAssignment-09,PILOT,2010/09/01 10:00,CONFIRMED,"Lorem ipsum dolor sit amet, consectetur adipiscin",member-01,leg-37,true
+# current-status - standard variations
+flightAssignment-10,PILOT,2010/09/01 10:00,PENDING,"Lorem ipsum dolor sit amet, consectetur adipiscin",member-01,leg-37,true
+flightAssignment-11,PILOT,2010/09/01 10:00,CANCELLED,"Lorem ipsum dolor sit amet, consectetur adipiscin",member-01,leg-37,true
+# remarks - standard variations
+flightAssignment-12,PILOT,2010/09/01 10:00,CONFIRMED,L,member-01,leg-37,true
+flightAssignment-13,PILOT,2010/09/01 10:00,CONFIRMED,Lo,member-01,leg-37,true
+flightAssignment-14,PILOT,2010/09/01 10:00,CONFIRMED,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla facilisi. Donec vel felis eget justo dictum fermentum. Nam nec magna sed risus dictum suscipit.",member-01,leg-37,true
+flightAssignment-15,PILOT,2010/09/01 10:00,CONFIRMED,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla facilisi. Donec vel felis eget justo dictum fermentum. Nam nec magna sed risus dictum suscipit.",member-01,leg-37,true
+flightAssignment-16,PILOT,2010/09/01 10:00,CONFIRMED,โลเร็ม อิปซัม,member-01,leg-37,true
+flightAssignment-17,PILOT,2010/09/01 10:00,CONFIRMED,لوريم إيبسوم,member-01,leg-37,true
+flightAssignment-18,PILOT,2010/09/01 10:00,CONFIRMED,洛伦·伊普森,member-01,leg-37,true
+flightAssignment-19,PILOT,2010/09/01 10:00,CONFIRMED,<marquee>Hacked</marquee>,member-01,leg-37,true
+flightAssignment-20,PILOT,2010/09/01 10:00,CONFIRMED,<script>alert('Hacked!');</script>,member-01,leg-37,true
+flightAssignment-21,PILOT,2010/09/01 10:00,CONFIRMED,' or 'A' = 'A,member-01,leg-37,true
+# flight-crew-member - standard variations
+flightAssignment-22,PILOT,2010/09/01 10:00,CONFIRMED,"Lorem ipsum dolor sit amet, consectetur adipiscin",member-02,leg-37,true
+flightAssignment-23,PILOT,2010/09/01 10:00,CONFIRMED,"Lorem ipsum dolor sit amet, consectetur adipiscin",member-03,leg-37,true
+flightAssignment-24,PILOT,2010/09/01 10:00,CONFIRMED,"Lorem ipsum dolor sit amet, consectetur adipiscin",member-04,leg-37,true
+# leg - standard variations
+flightAssignment-25,PILOT,2010/09/01 10:00,CONFIRMED,"Lorem ipsum dolor sit amet, consectetur adipiscin",member-01,leg-37,true
+flightAssignment-26,PILOT,2010/09/01 10:00,CONFIRMED,"Lorem ipsum dolor sit amet, consectetur adipiscin",member-01,leg-29,false
+flightAssignment-27,PILOT,2010/09/01 10:00,CONFIRMED,"Lorem ipsum dolor sit amet, consectetur adipiscin",member-01,leg-30,false
+flightAssignment-28,PILOT,2010/09/01 10:00,CONFIRMED,"Lorem ipsum dolor sit amet, consectetur adipiscin",member-01,leg-31,false
+# draft-mode - standard variations
+flightAssignment-29,PILOT,2010/09/01 10:00,CONFIRMED,"Lorem ipsum dolor sit amet, consectetur adipiscin",member-01,leg-37,false

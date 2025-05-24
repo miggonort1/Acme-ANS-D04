@@ -11,13 +11,18 @@ import acme.client.helpers.MomentHelper;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.flightassignment.FlightAssignment;
+import acme.realms.AvailabilityStatus;
 import acme.realms.CrewMember;
+import acme.realms.CrewMemberRepository;
 
 @GuiService
 public class CrewMemberFlightAssignmentPlannedListService extends AbstractGuiService<CrewMember, FlightAssignment> {
 
 	@Autowired
-	private CrewMemberFlightAssignmentRepository repository;
+	private CrewMemberFlightAssignmentRepository	repository;
+
+	@Autowired
+	private CrewMemberRepository					crewMemberRepository;
 
 
 	@Override
@@ -34,6 +39,15 @@ public class CrewMemberFlightAssignmentPlannedListService extends AbstractGuiSer
 		Collection<FlightAssignment> planned = this.repository.findPendingFlightAssignments(crewMemberId, currentMoment);
 
 		super.getBuffer().addData(planned);
+	}
+
+	@Override
+	public void unbind(final Collection<FlightAssignment> objects) {
+		int userId = super.getRequest().getPrincipal().getActiveRealm().getId();
+		CrewMember crewMember = this.crewMemberRepository.findCrewMemberById(userId);
+		boolean canCreate = crewMember != null && crewMember.getAvailabilityStatus().equals(AvailabilityStatus.AVAILABLE);
+
+		super.getResponse().addGlobal("showCreate", canCreate);
 	}
 
 	@Override

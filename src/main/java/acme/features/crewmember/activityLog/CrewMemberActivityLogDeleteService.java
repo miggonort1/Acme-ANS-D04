@@ -8,6 +8,7 @@ import acme.client.helpers.MomentHelper;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.flightassignment.ActivityLog;
+import acme.entities.flightassignment.FlightAssignment;
 import acme.realms.CrewMember;
 
 @GuiService
@@ -23,9 +24,20 @@ public class CrewMemberActivityLogDeleteService extends AbstractGuiService<CrewM
 
 	@Override
 	public void authorise() {
-		int activityLogId = super.getRequest().getData("id", int.class);
-		ActivityLog activityLog = this.repository.findActivityLogById(activityLogId);
-		boolean status = super.getRequest().getPrincipal().hasRealm(activityLog.getFlightAssignment().getCrewMember()) && activityLog.getDraftMode() && activityLog != null;
+		int id = super.getRequest().getData("id", int.class);
+		ActivityLog activityLog = this.repository.findActivityLogById(id);
+
+		boolean status = false;
+
+		if (activityLog != null && activityLog.getDraftMode()) {
+			int userId = super.getRequest().getPrincipal().getActiveRealm().getId();
+			FlightAssignment assignment = activityLog.getFlightAssignment();
+
+			boolean userOwnsLog = assignment.getCrewMember().getId() == userId;
+			boolean assignmentIsPublished = !assignment.getDraftMode();
+
+			status = userOwnsLog && assignmentIsPublished;
+		}
 
 		super.getResponse().setAuthorised(status);
 	}

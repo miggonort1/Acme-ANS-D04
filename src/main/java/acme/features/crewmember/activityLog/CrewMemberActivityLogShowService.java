@@ -27,9 +27,14 @@ public class CrewMemberActivityLogShowService extends AbstractGuiService<CrewMem
 
 	@Override
 	public void authorise() {
-		int activityLogId = super.getRequest().getData("id", int.class);
-		ActivityLog activityLog = this.repository.findActivityLogById(activityLogId);
-		boolean status = super.getRequest().getPrincipal().hasRealm(activityLog.getFlightAssignment().getCrewMember()) && activityLog != null;
+		int id = super.getRequest().getData("id", int.class);
+		ActivityLog activityLog = this.repository.findActivityLogById(id);
+
+		boolean isOwner = activityLog != null && super.getRequest().getPrincipal().hasRealm(activityLog.getFlightAssignment().getCrewMember());
+
+		boolean isPublished = activityLog != null && !activityLog.getDraftMode();
+
+		boolean status = isOwner || isPublished;
 
 		super.getResponse().setAuthorised(status);
 	}
