@@ -55,7 +55,7 @@ public class TrackingLogValidator extends AbstractValidator<ValidTrackingLog, Tr
 
 			if (trackingLogs != null && !trackingLogs.isEmpty()) {
 				trackingLogs.stream().filter(t -> t.getResolutionPercentage() != null).sorted(Comparator.comparing(TrackingLog::getCreationMoment)).reduce((prev, curr) -> {
-					if (prev.getResolutionPercentage() >= curr.getResolutionPercentage())
+					if (prev.getResolutionPercentage() >= curr.getResolutionPercentage() && curr.getResolutionPercentage() != 100.0)
 						super.state(context, false, "resolutionPercentage", "agent.trackingLog.validator.error.nonIncreasingPercentage");
 					return curr;
 				});

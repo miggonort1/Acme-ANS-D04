@@ -1,22 +1,26 @@
 
-package acme.features.agent.claim;
+package acme.features.administrator.claim;
 
 import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
+import acme.client.components.principals.Administrator;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.claim.Claim;
 import acme.entities.claim.TrackingLogStatus;
-import acme.realms.Agent;
 
 @GuiService
-public class AgentClaimListMineService extends AbstractGuiService<Agent, Claim> {
+public class AdministratorClaimListService extends AbstractGuiService<Administrator, Claim> {
+
+	// Internal state ---------------------------------------------------------
 
 	@Autowired
-	private AgentClaimRepository repository;
+	private AdministratorClaimRepository repository;
+
+	// AbstractGuiService interface -------------------------------------------
 
 
 	@Override
@@ -26,14 +30,13 @@ public class AgentClaimListMineService extends AbstractGuiService<Agent, Claim> 
 
 	@Override
 	public void load() {
-		Collection<Claim> objects;
-		int agentId;
+		Collection<Claim> claims;
 
-		agentId = super.getRequest().getPrincipal().getActiveRealm().getId();
-		objects = this.repository.findManyClaimsByAgentId(agentId);
+		claims = this.repository.findClaims();
 
-		super.getBuffer().addData(objects);
+		super.getBuffer().addData(claims);
 	}
+
 	@Override
 	public void unbind(final Claim object) {
 		Dataset dataset;

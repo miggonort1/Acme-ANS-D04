@@ -28,6 +28,7 @@ agent.claim.form.button.update=Actualizar
 agent.claim.form.button.create=Crear
 agent.claim.form.button.delete=Borrar
 agent.claim.form.button.publish=Publicar
+agent.claim.list.label.draftMode=Modo Borrador
 
 agent.claim.validator.error.null=El claim no puede ser nulo
 agent.claim.validator.error.registrationMoment=La fecha de registro debe ser posterior al inicio de la actividad del agente
