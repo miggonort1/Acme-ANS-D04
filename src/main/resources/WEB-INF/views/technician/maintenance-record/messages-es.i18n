@@ -34,3 +34,4 @@ technician.maintenance-record.form.button.maintenance-record-task= Añade o elim
 technician.maintenance-record.form.error.task= Todas las tareas deben estar publicadas
 technician.maintenance-record.form.error.existsTasks= No hay tareas asociadas
 technician.maintenance-record.form.error.bad-date= La fecha debe ser futura
+ technician.maintenance-record.form.error.statusCompleted= El estado debe ser COMPLETED para ser publicado

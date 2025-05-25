@@ -49,8 +49,8 @@ master.menu.customer.passengers = Pasajeros
 master.menu.technician = Técnico
 master.menu.technician.my-maintenance-record= Mis informes de mantenimiento
 master.menu.technician.all-maintenance-record= Todos los informes de mantenimiento
-master.menu.technician.my-tasks= Mis tareas
-
+master.menu.technician.all-tasks= Tareas
+master.menu.technician.dashboard= Dashboard
 
 # master.menu.manager ####################################################
 

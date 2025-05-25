@@ -27,6 +27,9 @@ public class TechnicianMaintenanceRecordTaskController extends AbstractGuiContro
 	@Autowired
 	private TechnicianMaintenanceRecordTaskDeleteService	deleteService;
 
+	@Autowired
+	private TechnicianMaintenanceRecordTaskUpdateService	updateService;
+
 	// Constructors -----------------------------------------------------------
 
 
@@ -35,6 +38,7 @@ public class TechnicianMaintenanceRecordTaskController extends AbstractGuiContro
 		super.addBasicCommand("show", this.showService);
 		super.addBasicCommand("create", this.createService);
 		super.addBasicCommand("delete", this.deleteService);
+		super.addBasicCommand("update", this.updateService);
 
 		super.addCustomCommand("list-maintenance-record", "list", this.listService);
 	}

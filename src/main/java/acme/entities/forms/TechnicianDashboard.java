@@ -18,7 +18,6 @@ import java.util.Map;
 import acme.client.components.basis.AbstractForm;
 import acme.entities.aircraft.Aircraft;
 import acme.entities.maintenancerecord.MaintenanceRecord;
-import acme.entities.maintenancerecord.Status;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -32,7 +31,9 @@ public class TechnicianDashboard extends AbstractForm {
 
 	// Attributes -------------------------------------------------------------
 
-	Map<Status, Integer>		totalNumberOfMaintenanceRecordGroupedByStatus;
+	Integer						totalMaintenancePending;
+	Integer						totalMaintenanceInProgress;
+	Integer						totalMaintenanceCompleted;
 
 	MaintenanceRecord			maintentanceRecordWithNearestDueDate;
 
