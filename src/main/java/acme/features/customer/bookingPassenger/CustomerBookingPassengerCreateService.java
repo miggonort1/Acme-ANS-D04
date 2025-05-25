@@ -98,6 +98,15 @@ public class CustomerBookingPassengerCreateService extends AbstractGuiService<Cu
 	public void validate(final BookingPassenger BookingPassenger) {
 		assert BookingPassenger != null;
 
+		Booking booking = BookingPassenger.getBooking();
+		int currentPassengers = booking.getNumberOfPassengers();
+		double flightCost = booking.getFlight().getCost().getAmount();
+
+		double projectedCost = flightCost * (currentPassengers + 1);
+
+		boolean validPrice = projectedCost <= 1_000_000.00;
+
+		super.state(validPrice, "passenger", "acme.validation.booking-passenger.excessive-price");
 	}
 
 	@Override

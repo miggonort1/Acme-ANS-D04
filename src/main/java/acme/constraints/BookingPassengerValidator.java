@@ -65,7 +65,7 @@ public class BookingPassengerValidator extends AbstractValidator<ValidBookingPas
 		// Validación 4: El precio total del booking no debe superar 1.000.000,00
 		Money price = bookingPassenger.getBooking().getPrice();
 		boolean validPrice = price != null && price.getAmount() <= 1000000.00;
-		super.state(context, validPrice, "*", "acme.validation.booking-passenger.excessive-price");
+		super.state(context, validPrice, "passenger", "acme.validation.booking-passenger.excessive-price");
 		result = result && validPrice;
 
 		return result;
