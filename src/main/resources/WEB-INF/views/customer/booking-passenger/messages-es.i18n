@@ -22,6 +22,8 @@ acme.validation.booking-passenger.duplicate-passenger=No se puede asignar el mis
 acme.validation.BookingPassenger.alreadyAssigned.message=Este pasajero ya está asignado a esta reserva
 acme.validation.booking-passenger.unpublished-passenger = Este pasajero no está publicado
 acme.validation.booking-passenger.passenger-from-different-customer= El pasagero  no pertenece al customer actual
+customer.booking-passenger.form.title = Formulario de pasajeros de reserva
+
 
 
 
