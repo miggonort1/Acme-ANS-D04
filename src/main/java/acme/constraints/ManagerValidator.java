@@ -26,17 +26,17 @@ public class ManagerValidator extends AbstractValidator<ValidManager, Manager> {
 	}
 
 	@Override
-	public boolean isValid(final Manager airlineManager, final ConstraintValidatorContext context) {
+	public boolean isValid(final Manager manager, final ConstraintValidatorContext context) {
 		assert context != null;
 
 		boolean result;
 
-		if (airlineManager == null)
+		if (manager == null)
 			super.state(context, false, "*", "javax.validation.constraints.NotNull.message");
 		else {
 
 			//Validar identidad del manager
-			DefaultUserIdentity identity = airlineManager.getIdentity();
+			DefaultUserIdentity identity = manager.getIdentity();
 
 			if (identity != null && identity.getName() != null && identity.getSurname() != null) {
 				String name = identity.getName().trim();
@@ -46,7 +46,7 @@ public class ManagerValidator extends AbstractValidator<ValidManager, Manager> {
 				char surnameInitial = surname.split(" ")[0].charAt(0);
 
 				String expectedPrefix = "" + nameInitial + surnameInitial;
-				String identifier = airlineManager.getIdentifierNumber();
+				String identifier = manager.getIdentifierNumber();
 
 				//Validar patron y prefijo del identifierNumber del manager
 				boolean matchesPattern = identifier != null && identifier.matches("^[A-Z]{2,3}\\d{6}$");
@@ -56,7 +56,7 @@ public class ManagerValidator extends AbstractValidator<ValidManager, Manager> {
 				Manager existing = this.repository.findByIdentifierNumber(identifier);
 
 				//Validar unicidad del identifierNumber del manager
-				boolean isUnique = !alreadyExists || existing != null && existing.getId() == airlineManager.getId();
+				boolean isUnique = !alreadyExists || existing != null && existing.getId() == manager.getId();
 
 				//Union de validaciones
 				boolean isValidIdentifier = matchesPattern && startsWithPrefix && isUnique;
