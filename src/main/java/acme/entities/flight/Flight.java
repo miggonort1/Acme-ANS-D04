@@ -17,7 +17,6 @@ import acme.client.components.validation.Optional;
 import acme.client.components.validation.ValidMoney;
 import acme.client.components.validation.ValidString;
 import acme.client.helpers.SpringHelper;
-import acme.constraints.ValidShortText;
 import acme.realms.manager.Manager;
 import lombok.Getter;
 import lombok.Setter;
@@ -32,7 +31,7 @@ public class Flight extends AbstractEntity {
 
 	// Attributes
 	@Mandatory
-	@ValidShortText
+	@ValidString(min = 1, max = 50)
 	@Automapped
 	private String				tag;
 

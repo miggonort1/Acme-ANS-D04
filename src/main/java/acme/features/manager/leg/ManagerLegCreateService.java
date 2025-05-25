@@ -30,11 +30,26 @@ public class ManagerLegCreateService extends AbstractGuiService<Manager, Leg> {
 
 	@Override
 	public void authorise() {
-		int masterId = super.getRequest().getData("masterId", int.class);
-		Flight flight = this.repository.findFlightById(masterId);
-		Manager current = (Manager) super.getRequest().getPrincipal().getActiveRealm();
+		boolean status = false;
+		String method = super.getRequest().getMethod();
 
-		boolean status = flight != null && flight.getManager().equals(current) && flight.isDraftMode();
+		int managerId = super.getRequest().getPrincipal().getActiveRealm().getId();
+		int flightId = super.getRequest().getData("masterId", int.class);
+		Flight flight = this.repository.findFlightById(flightId);
+
+		status = flight != null && flight.isDraftMode() && flight.getManager().getId() == managerId;
+
+		if (status && "POST".equals(method)) {
+			int depId = super.getRequest().getData("departureAirport", int.class);
+			int arrId = super.getRequest().getData("arrivalAirport", int.class);
+			int planeId = super.getRequest().getData("aircraft", int.class);
+
+			boolean validDep = depId == 0 || this.repository.findAirportById(depId) != null;
+			boolean validArr = arrId == 0 || this.repository.findAirportById(arrId) != null;
+			boolean validPlane = planeId == 0 || this.repository.existsAircraftOfManager(managerId, planeId);
+
+			status = validDep && validArr && validPlane;
+		}
 
 		super.getResponse().setAuthorised(status);
 	}
@@ -54,6 +69,10 @@ public class ManagerLegCreateService extends AbstractGuiService<Manager, Leg> {
 
 	@Override
 	public void bind(final Leg leg) {
+		int masterId = super.getRequest().getData("masterId", int.class);
+		Flight flight = this.repository.findFlightById(masterId);
+		leg.setFlight(flight);
+
 		int departureAirportId = super.getRequest().getData("departureAirport", int.class);
 		int arrivalAirportId = super.getRequest().getData("arrivalAirport", int.class);
 		int aircraftId = super.getRequest().getData("aircraft", int.class);
@@ -73,12 +92,17 @@ public class ManagerLegCreateService extends AbstractGuiService<Manager, Leg> {
 
 		if (!super.getBuffer().getErrors().hasErrors("scheduledDeparture")) {
 			boolean isPastOrPresent = MomentHelper.isPresentOrPast(leg.getScheduledDeparture());
-			super.state(!isPastOrPresent, "scheduledDeparture", "acme.validation.airline-manager.leg.departure-in-the-past");
+			super.state(!isPastOrPresent, "scheduledDeparture", "acme.validation.manager.leg.departure-in-the-past");
+		}
+
+		if (!super.getBuffer().getErrors().hasErrors("scheduledArrival")) {
+			boolean isPastOrPresent = MomentHelper.isPresentOrPast(leg.getScheduledArrival());
+			super.state(!isPastOrPresent, "scheduledArrival", "acme.validation.manager.leg.arrival-in-the-past");
 		}
 
 		if (!super.getBuffer().getErrors().hasErrors("arrivalAirport") && !super.getBuffer().getErrors().hasErrors("departureAirport")) {
 			boolean sameAirport = leg.getDepartureAirport().equals(leg.getArrivalAirport());
-			super.state(!sameAirport, "arrivalAirport", "acme.validation.airline-manager.leg.departure-equals-arrival");
+			super.state(!sameAirport, "arrivalAirport", "acme.validation.manager.leg.departure-equals-arrival");
 		}
 
 		if (!super.getBuffer().getErrors().hasErrors("departureAirport")) {
@@ -90,21 +114,14 @@ public class ManagerLegCreateService extends AbstractGuiService<Manager, Leg> {
 
 				boolean isConnected = lastLeg != null && lastLeg.getArrivalAirport().equals(leg.getDepartureAirport());
 
-				super.state(isConnected, "departureAirport", "acme.validation.airline-manager.leg.not-connected-to-previous");
+				super.state(isConnected, "departureAirport", "acme.validation.manager.leg.not-connected-to-previous");
 			}
-		}
-
-		if (!super.getBuffer().getErrors().hasErrors("departureAirport")) {
-			boolean isNoSelfTransfer = leg.getFlight().getSelfTransfer() == false;
-			super.state(!isNoSelfTransfer, "*", "acme.validation.airline-manager.leg.cannot-add-leg-to-no-self-transfer");
 		}
 
 	}
 
 	@Override
 	public void perform(final Leg leg) {
-		super.state(leg != null, "*", "acme.validation.airline-manager.leg.invalid-request");
-		super.state(leg.getFlight() != null, "*", "acme.validation.airline-manager.leg.invalid-flight");
 		this.repository.save(leg);
 	}
 
