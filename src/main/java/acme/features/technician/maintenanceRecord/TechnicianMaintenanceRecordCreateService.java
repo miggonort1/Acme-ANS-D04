@@ -1,7 +1,6 @@
 
 package acme.features.technician.maintenanceRecord;
 
-import java.time.temporal.ChronoUnit;
 import java.util.Collection;
 import java.util.Date;
 
@@ -14,6 +13,7 @@ import acme.client.helpers.PrincipalHelper;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.aircraft.Aircraft;
+import acme.entities.aircraft.AircraftStatus;
 import acme.entities.maintenancerecord.MaintenanceRecord;
 import acme.entities.maintenancerecord.Status;
 import acme.realms.technician.Technician;
@@ -28,7 +28,16 @@ public class TechnicianMaintenanceRecordCreateService extends AbstractGuiService
 
 	@Override
 	public void authorise() {
-		super.getResponse().setAuthorised(true);
+		boolean status;
+		status = true;
+		if (super.getRequest().hasData("id")) {
+			Integer AircraftId = super.getRequest().getData("aircraft", Integer.class);
+			if (AircraftId == null || AircraftId != 0) {
+				Aircraft aircraft = this.repository.findOneAircraftById(AircraftId);
+				status = aircraft != null && aircraft.getStatus() == AircraftStatus.UNDER_MAINTENANCE;
+			}
+		}
+		super.getResponse().setAuthorised(status);
 	}
 
 	@Override
@@ -66,14 +75,8 @@ public class TechnicianMaintenanceRecordCreateService extends AbstractGuiService
 	public void validate(final MaintenanceRecord object) {
 		assert object != null;
 
-		if (!super.getBuffer().getErrors().hasErrors("inspectionDueDate")) {
-			Date minimumStart;
-
-			minimumStart = java.sql.Date.valueOf("2024-12-31");
-			minimumStart = MomentHelper.deltaFromMoment(minimumStart, 23, ChronoUnit.HOURS);
-			minimumStart = MomentHelper.deltaFromMoment(minimumStart, 59, ChronoUnit.MINUTES);
-			super.state(MomentHelper.isAfter(object.getInspectionDueDate(), minimumStart), "inspectionDueDate", "technician.maintenance-record.form.error.bad-date");
-		}
+		if (!super.getBuffer().getErrors().hasErrors("inspectionDueDate"))
+			super.state(MomentHelper.isAfter(object.getInspectionDueDate(), object.getMoment()), "inspectionDueDate", "technician.maintenance-record.form.error.bad-date");
 
 	}
 
@@ -91,7 +94,8 @@ public class TechnicianMaintenanceRecordCreateService extends AbstractGuiService
 		SelectChoices choicesAircraft;
 
 		Collection<Aircraft> aircrafts;
-		aircrafts = this.repository.findManyAircrafts();
+		AircraftStatus status = AircraftStatus.UNDER_MAINTENANCE;
+		aircrafts = this.repository.findManyAircraftsUnderMaintenance(status);
 
 		choicesAircraft = SelectChoices.from(aircrafts, "registrationNumber", object.getAircraft());
 

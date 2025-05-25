@@ -19,7 +19,7 @@
 	<acme:list-column code="technician.task.list.label.description" path="description" width="80%"/>	
 </acme:list>
 
-	<jstl:if test="${_command == 'list-mine'}">
+	<jstl:if test="${_command == 'list-all'}">
 	<acme:button code="technician.task.list.button.create" action="/technician/task/create?masterId=${masterId}"/>
-</jstl:if>		
+</jstl:if>	
 		

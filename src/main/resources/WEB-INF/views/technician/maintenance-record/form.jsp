@@ -35,8 +35,8 @@
 		<jstl:when test="${acme:anyOf(_command, 'show|update|delete|publish') && draftMode==true }">
 	 <acme:input-moment code="technician.maintenance-record.form.label.execution" path="moment" readonly="true" />
 		<acme:submit  code="technician.maintenance-record.form.button.update" action="/technician/maintenance-record/update"/>
-		<acme:submit  code="technician.maintenance-record.form.button.publish" action="/technician/maintenance-record/publish"/>
 		<acme:submit  code="technician.maintenance-record.form.button.delete" action="/technician/maintenance-record/delete"/>
+		<acme:submit  code="technician.maintenance-record.form.button.publish" action="/technician/maintenance-record/publish"/>
 			<acme:button code="technician.maintenance-record.form.button.task" action="/technician/task/list-maintenance-record?masterId=${id}"/>		
 			<acme:button code="technician.maintenance-record.form.button.maintenance-record-task" action="/technician/maintenance-record-task/list-maintenance-record?masterId=${id}"/>
 	</jstl:when>	

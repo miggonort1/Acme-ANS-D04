@@ -25,9 +25,6 @@ public class TechnicianMaintenanceRecordController extends AbstractGuiController
 	private TechnicianMaintenanceRecordCreateService	createService;
 
 	@Autowired
-	private TechnicianMaintenanceRecordDeleteService	deleteService;
-
-	@Autowired
 	private TechnicianMaintenanceRecordUpdateService	updateService;
 
 	@Autowired
@@ -35,6 +32,9 @@ public class TechnicianMaintenanceRecordController extends AbstractGuiController
 
 	@Autowired
 	private TechnicianMaintenanceRecordPublishService	publishService;
+
+	@Autowired
+	private TechnicianMaintenanceRecordDeleteService	deleteService;
 
 	// Constructors -----------------------------------------------------------
 

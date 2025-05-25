@@ -43,8 +43,8 @@ master.menu.consumer.favourite-link = Favourite link
 master.menu.technician = Technician
 master.menu.technician.my-maintenance-record= My Maintenance Record
 master.menu.technician.all-maintenance-record= All Maintenance Records
-master.menu.technician.my-tasks= My Tasks
-
+master.menu.technician.all-tasks= All Tasks
+master.menu.technician.dashboard= Dashboard
 # master.menu.manager ####################################################
 
 master.menu.manager = Manager

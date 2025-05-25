@@ -27,7 +27,7 @@ public class TechnicianTaskListInMaintenanceRecordService extends AbstractGuiSer
 
 		maintenanceRecordId = super.getRequest().getData("masterId", int.class);
 		maintenanceRecord = this.repository.findOneMaintenanceRecordById(maintenanceRecordId);
-		status = maintenanceRecord != null && (!maintenanceRecord.isDraftMode() || super.getRequest().getPrincipal().hasRealm(maintenanceRecord.getTechnician()));
+		status = maintenanceRecord != null && super.getRequest().getPrincipal().hasRealm(maintenanceRecord.getTechnician());
 
 		super.getResponse().setAuthorised(status);
 	}

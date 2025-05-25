@@ -1,23 +1,22 @@
 
-package acme.features.technician.task;
-
-import java.util.Collection;
+package acme.features.administrator.technician.task;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
+import acme.client.components.principals.Administrator;
 import acme.client.components.views.SelectChoices;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.maintenancerecord.Task;
 import acme.entities.maintenancerecord.Type;
-import acme.realms.technician.Technician;
 
 @GuiService
-public class TechnicianTaskListMineService extends AbstractGuiService<Technician, Task> {
+public class AdministratorTechnicianTaskShowService extends AbstractGuiService<Administrator, Task> {
+	// Internal state ---------------------------------------------------------
 
 	@Autowired
-	private TechnicianTaskRepository repository;
+	private AdministratorTechnicianTaskRepository repository;
 
 
 	@Override
@@ -27,24 +26,23 @@ public class TechnicianTaskListMineService extends AbstractGuiService<Technician
 
 	@Override
 	public void load() {
-		Collection<Task> objects;
-		int technicianId;
+		Task object;
 
-		technicianId = super.getRequest().getPrincipal().getActiveRealm().getId();
-		objects = this.repository.findManyTaskByTechnicianId(technicianId);
-
-		super.getBuffer().addData(objects);
+		int id;
+		id = super.getRequest().getData("id", int.class);
+		object = this.repository.findOneTaskById(id);
+		super.getBuffer().addData(object);
 	}
+
 	@Override
 	public void unbind(final Task object) {
 		Dataset dataset;
 		SelectChoices choicesType;
 
 		choicesType = SelectChoices.from(Type.class, object.getType());
-		dataset = super.unbindObject(object, "description");
+		dataset = super.unbindObject(object, "type", "description", "priority", "estimatedDuration", "draftMode");
 		dataset.put("type", choicesType);
 
 		super.getResponse().addData(dataset);
 	}
-
 }

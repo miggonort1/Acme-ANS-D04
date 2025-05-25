@@ -17,11 +17,12 @@
 
 <acme:form> 
 
-<acme:input-select code="technician.maintenance-record-task.form.label.task" path="task"  choices="${tasks}" readonly="${_command != 'create'}"/>
+<acme:input-select code="technician.maintenance-record-task.form.label.task" path="task"  choices="${tasks}"/>
 
 <jstl:choose>
-		<jstl:when test="${acme:anyOf(_command, 'show|delete') && draftMode == true}">
+		<jstl:when test="${acme:anyOf(_command, 'show|delete|update') && draftMode == true}">
 			<acme:submit code="technician.maintenance-record.form.button.delete" action="/technician/maintenance-record-task/delete"/>
+			<acme:submit code="technician.maintenance-record.form.button.update" action="/technician/maintenance-record-task/update"/>
 		</jstl:when>
 
 		<jstl:when test="${_command == 'create'}">

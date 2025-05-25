@@ -10,6 +10,7 @@ import acme.client.components.views.SelectChoices;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.aircraft.Aircraft;
+import acme.entities.aircraft.AircraftStatus;
 import acme.entities.maintenancerecord.MaintenanceRecord;
 import acme.entities.maintenancerecord.Status;
 import acme.realms.technician.Technician;
@@ -30,7 +31,7 @@ public class TechnicianMaintenanceRecordShowService extends AbstractGuiService<T
 
 		maintenanceRecordId = super.getRequest().getData("id", int.class);
 		maintenanceRecord = this.repository.findOneMaintenanceRecordById(maintenanceRecordId);
-		status = maintenanceRecord != null && (!maintenanceRecord.isDraftMode() || super.getRequest().getPrincipal().hasRealm(maintenanceRecord.getTechnician()));
+		status = maintenanceRecord != null && super.getRequest().getPrincipal().hasRealm(maintenanceRecord.getTechnician());
 
 		super.getResponse().setAuthorised(status);
 	}
@@ -53,7 +54,13 @@ public class TechnicianMaintenanceRecordShowService extends AbstractGuiService<T
 		SelectChoices choicesAircraft;
 
 		Collection<Aircraft> aircrafts;
-		aircrafts = this.repository.findManyAircrafts();
+		if (object.isDraftMode()) {
+
+			AircraftStatus status = AircraftStatus.UNDER_MAINTENANCE;
+			aircrafts = this.repository.findManyAircraftsUnderMaintenance(status);
+
+		} else
+			aircrafts = this.repository.findManyAircrafts();
 
 		choicesAircraft = SelectChoices.from(aircrafts, "registrationNumber", object.getAircraft());
 

@@ -26,7 +26,7 @@ public class TechnicianTaskUpdateService extends AbstractGuiService<Technician, 
 
 		taskId = super.getRequest().getData("id", int.class);
 		task = this.repository.findOneTaskById(taskId);
-		status = task != null && (!task.isDraftMode() || super.getRequest().getPrincipal().hasRealm(task.getTechnician()));
+		status = task != null && task.isDraftMode() && super.getRequest().getPrincipal().hasRealm(task.getTechnician());
 
 		super.getResponse().setAuthorised(status);
 	}
@@ -51,7 +51,10 @@ public class TechnicianTaskUpdateService extends AbstractGuiService<Technician, 
 	@Override
 	public void validate(final Task object) {
 		assert object != null;
-
+		if (!super.getBuffer().getErrors().hasErrors("priority"))
+			super.state(object.getPriority() >= 0 && object.getPriority() < 11, "priority", "technician.task.form.error.priority-range");
+		if (!super.getBuffer().getErrors().hasErrors("estimatedDuration"))
+			super.state(object.getEstimatedDuration() >= 0 && object.getEstimatedDuration() < 1001, "estimatedDuration", "technician.task.form.error.estimatedDuration-range");
 	}
 
 	@Override
