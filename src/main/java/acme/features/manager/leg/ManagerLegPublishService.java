@@ -2,7 +2,6 @@
 package acme.features.manager.leg;
 
 import java.util.Collection;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -64,20 +63,6 @@ public class ManagerLegPublishService extends AbstractGuiService<Manager, Leg> {
 
 	@Override
 	public void validate(final Leg leg) {
-
-		boolean validStatus = leg.getStatus() == Status.ON_TIME || leg.getStatus() == Status.DELAYED;
-		super.state(validStatus, "status", "acme.validation.airline-manager.leg.invalid-status-on-publish");
-
-		List<Leg> legs = this.repository.findLegsByFlightId(leg.getFlight().getId()).stream().toList();
-
-		for (int i = 0; i < legs.size() - 1; i++) {
-			Leg actual = legs.get(i);
-			Leg next = legs.get(i + 1);
-
-			boolean connected = actual.getArrivalAirport().equals(next.getDepartureAirport());
-			super.state(connected, "*", "acme.validation.airline-manager.leg.legs-not-connected");
-		}
-
 	}
 
 	@Override

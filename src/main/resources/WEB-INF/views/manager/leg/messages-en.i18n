@@ -26,7 +26,7 @@ manager.leg.form.label.arrivalAirport = Arrival Airport:
 manager.leg.form.label.aircraft = Aircraft:
 manager.leg.form.label.durationHours = Duration:
 
-manager.leg.list.button.create = Create
+manager.leg.list.button.create = Create a leg
 manager.leg.form.button.create = Create
 manager.leg.form.button.update = Update
 manager.leg.form.button.delete = Delete
