@@ -15,9 +15,9 @@
 				<acme:input-textbox code="customer.booking.form.label.purchase-moment" path="purchaseMoment" readonly="true"/>
 				<acme:input-money code="customer.booking.form.label.price" path="price" readonly="true"/>
 				<acme:button code="customer.booking.form.button.passengers" action="/customer/booking-passenger/list?masterId=${id}"/>			
-				<acme:submit code="customer.booking.form.button.update" action="/customer/booking/update"/>
-				<acme:submit code="customer.booking.form.button.delete" action="/customer/booking/delete"/>
-				<acme:submit code="customer.booking.form.button.publish" action="/customer/booking/publish"/>
+				<acme:submit code="customer.booking.form.button.update" action="/customer/booking/update?id=${id}"/>
+				<acme:submit code="customer.booking.form.button.delete" action="/customer/booking/delete?id=${id}"/>
+				<acme:submit code="customer.booking.form.button.publish" action="/customer/booking/publish?id=${id}"/>
 			</jstl:when>
 			<jstl:when test="${acme:anyOf(_command, 'show|update|publish|delete')}">
 				<acme:input-textbox code="customer.booking.form.label.purchase-moment" path="purchaseMoment" readonly="true"/>
