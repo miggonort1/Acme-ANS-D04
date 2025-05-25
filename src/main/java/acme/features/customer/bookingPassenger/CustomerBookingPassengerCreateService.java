@@ -45,17 +45,19 @@ public class CustomerBookingPassengerCreateService extends AbstractGuiService<Cu
 			if (status && super.getRequest().hasData("passenger")) {
 				passengerId = super.getRequest().getData("passenger", int.class);
 				passenger = this.repository.findPassengerById(passengerId);
+				if (passengerId != 0) {
 
-				status = status && passenger != null;
+					status = status && passenger != null;
 
-				status = status && passenger.getCustomer().equals(customer);
+					status = status && passenger.getCustomer().equals(customer);
 
-				status = status && !passenger.isDraftMode();
+					status = status && !passenger.isDraftMode();
 
-				status = status && passenger.getDateOfBirth().before(booking.getPurchaseMoment());
+					status = status && passenger.getDateOfBirth().before(booking.getPurchaseMoment());
 
-				existingAssignments = this.repository.findAssignationFromBookingIdAndPassengerId(masterId, passengerId);
-				status = status && existingAssignments.isEmpty();
+					existingAssignments = this.repository.findAssignationFromBookingIdAndPassengerId(masterId, passengerId);
+					status = status && existingAssignments.isEmpty();
+				}
 			}
 		} catch (Exception e) {
 			status = false;
