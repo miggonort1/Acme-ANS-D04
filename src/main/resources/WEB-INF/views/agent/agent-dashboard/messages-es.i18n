@@ -1,0 +1,15 @@
+agent.dashboard.form.label.ratio-of-claims-resolved=Ratio de reclamaciones resueltas
+agent.dashboard.form.label.ratio-of-claims-rejected=Ratio de reclamaciones rechazadas
+agent.dashboard.form.label.top-months-with-claims=Top meses con mayor número de reclamaciones
+agent.dashboard.form.label.average-logs-per-claim=Número medio de registros por reclamación
+agent.dashboard.form.label.minimum-logs-per-claim=Número mínimo de registros por reclamación
+agent.dashboard.form.label.maximum-logs-per-claim=Número máximo de registros por reclamación
+agent.dashboard.form.label.deviation-logs-per-claim=Desviación estándar de registros por reclamación
+agent.dashboard.form.label.average-claims-assisted=Media de reclamaciones asistidas durante el último mes
+agent.dashboard.form.label.minimum-claims-assisted=Mínimo de reclamaciones asistidas durante el último mes
+agent.dashboard.form.label.maximum-claims-assisted=Máximo de reclamaciones asistidas durante el último mes
+agent.dashboard.form.label.deviation-claims-assisted=Desviación estándar de reclamaciones asistidas durante el último mes
+agent.agent-dashboard.form.title=Panel de control del agente asistente
+
+master.menu.agent.dashboard=Panel de control
+

@@ -68,6 +68,7 @@
     
 		<acme:menu-option code="master.menu.agent" access="hasRealm('Agent')">
 			<acme:menu-suboption code="master.menu.agent.my-claim" action="/agent/claim/list-mine"/>
+			<acme:menu-suboption code="master.menu.agent.dashboard" action="/agent/agent-dashboard/show"/>
 		</acme:menu-option>
 		<acme:menu-option code="master.menu.user-account" access="isAuthenticated">
 			<acme:menu-suboption code="master.menu.technician.all-maintenance-record" action="/technician/maintenance-record/list-all"/>

@@ -1,0 +1,15 @@
+
+agent.dashboard.form.label.ratio-of-claims-resolved=Ratio of claims resolved
+agent.dashboard.form.label.ratio-of-claims-rejected=Ratio of claims rejected
+agent.dashboard.form.label.top-months-with-claims=Top months with highest number of claims
+agent.dashboard.form.label.average-logs-per-claim=Average number of logs per claim
+agent.dashboard.form.label.minimum-logs-per-claim=Minimum number of logs per claim
+agent.dashboard.form.label.maximum-logs-per-claim=Maximum number of logs per claim
+agent.dashboard.form.label.deviation-logs-per-claim=Standard deviation of logs per claim
+agent.dashboard.form.label.average-claims-assisted=Average number of claims assisted during the last month
+agent.dashboard.form.label.minimum-claims-assisted=Minimum number of claims assisted during the last month
+agent.dashboard.form.label.maximum-claims-assisted=Maximum number of claims assisted during the last month
+agent.dashboard.form.label.deviation-claims-assisted=Standard deviation of claims assisted during the last month
+agent.agent-dashboard.form.title= Assistant agent dashboard
+
+master.menu.agent.dashboard = Dashboard
