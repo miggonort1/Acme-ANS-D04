@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import acme.client.components.models.Dataset;
 import acme.client.components.views.SelectChoices;
 import acme.client.helpers.MomentHelper;
+import acme.client.helpers.PrincipalHelper;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.claim.Claim;
@@ -101,5 +102,11 @@ public class AgentClaimCreateService extends AbstractGuiService<Agent, Claim> {
 		dataset.put("leg", choicesLegs.getSelected().getKey());
 
 		super.getResponse().addData(dataset);
+	}
+
+	@Override
+	public void onSuccess() {
+		if (super.getRequest().getMethod().equals("POST"))
+			PrincipalHelper.handleUpdate();
 	}
 }

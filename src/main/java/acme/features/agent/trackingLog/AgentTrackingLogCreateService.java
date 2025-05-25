@@ -31,10 +31,15 @@ public class AgentTrackingLogCreateService extends AbstractGuiService<Agent, Tra
 		boolean status;
 		int claimId;
 		Claim claim;
+		Collection<TrackingLog> trackingLogs;
+		long completedCount;
 
 		claimId = super.getRequest().getData("masterId", int.class);
 		claim = this.repository.findClaimById(claimId);
-		status = claim != null && super.getRequest().getPrincipal().hasRealm(claim.getAgent());
+		trackingLogs = this.repository.findTrackingLogsByClaimId(claimId);
+		completedCount = trackingLogs.stream().filter(t -> t.getResolutionPercentage() != null && t.getResolutionPercentage() == 100.0).count();
+
+		status = claim != null && super.getRequest().getPrincipal().hasRealm(claim.getAgent()) && completedCount < 2;
 
 		super.getResponse().setAuthorised(status);
 	}
@@ -69,32 +74,36 @@ public class AgentTrackingLogCreateService extends AbstractGuiService<Agent, Tra
 		if (object.getClaim() != null) {
 			Collection<TrackingLog> trackingLogs = this.repository.findTrackingLogsByClaimId(object.getClaim().getId());
 
-			if (!trackingLogs.isEmpty()) {
-				List<TrackingLog> completedLogs = trackingLogs.stream().filter(t -> t.getResolutionPercentage() != null && t.getResolutionPercentage() == 100.0).sorted(Comparator.comparing(TrackingLog::getCreationMoment)).toList();
+			List<TrackingLog> completedLogs = this.repository.findCompletedTrackingLogsByClaimId(object.getClaim().getId()).stream().sorted(Comparator.comparing(TrackingLog::getCreationMoment)).toList();
 
-				super.state(completedLogs.size() <= 2, "*", "agent.trackingLog.form.error.maxcompletedGlobal");
+			super.state(completedLogs.size() < 2, "*", "agent.trackingLog.form.error.maxcompletedGlobal");
 
-				if (completedLogs.size() == 1 && object.getResolutionPercentage() == 100.00) {
-					TrackingLog first = completedLogs.get(0);
-					TrackingLog second = object;
+			if (completedLogs.size() == 1 && object.getResolutionPercentage() == 100.0) {
+				TrackingLog first = completedLogs.get(0);
+				TrackingLog second = object;
 
-					super.state(!first.isDraftMode(), "resolutionPercentage", "agent.trackingLog.form.error.firstMustBePublished");
+				super.state(!first.isDraftMode(), "resolutionPercentage", "agent.trackingLog.form.error.firstMustBePublished");
+				super.state(first.getStatus().equals(second.getStatus()), "status", "agent.trackingLog.form.error.mismatchedStatus");
+			}
 
-					super.state(first.getStatus().equals(second.getStatus()), "status", "agent.trackingLog.form.error.mismatchedStatus");
-				}
+			Optional<TrackingLog> recentTrackingLogOpt = trackingLogs.stream().filter(t -> t.getId() != object.getId()).sorted(Comparator.comparing(TrackingLog::getCreationMoment).reversed()).findFirst();
 
-				Optional<TrackingLog> recentTrackingLogOpt = trackingLogs.stream().filter(t -> t.getId() != object.getId()).sorted(Comparator.comparing(TrackingLog::getCreationMoment).reversed()).findFirst();
+			if (object.getResolutionPercentage() != null && recentTrackingLogOpt.isPresent()) {
+				TrackingLog recentTrackingLog = recentTrackingLogOpt.get();
+				Double previous = recentTrackingLog.getResolutionPercentage();
+				Double current = object.getResolutionPercentage();
 
-				if (object.getResolutionPercentage() != null && recentTrackingLogOpt.isPresent()) {
-					TrackingLog recentTrackingLog = recentTrackingLogOpt.get();
+				boolean bothCompleted = previous != null && previous == 100.0 && current == 100.0;
+				boolean validIncrement = previous == null || previous < current;
 
-					if (recentTrackingLog.getResolutionPercentage() == 100.00 && object.getResolutionPercentage() == 100.00) {
-						super.state(!recentTrackingLog.isDraftMode(), "resolutionPercentage", "agent.trackingLog.form.error.previousDraft");
+				if (bothCompleted) {
+					super.state(!recentTrackingLog.isDraftMode(), "resolutionPercentage", "agent.trackingLog.form.error.previousDraft");
+					super.state(completedLogs.size() < 2, "resolutionPercentage", "agent.trackingLog.form.error.maxcompleted");
 
-						super.state(completedLogs.size() <= 2, "resolutionPercentage", "agent.trackingLog.form.error.maxcompleted");
-					} else
-						super.state(recentTrackingLog.getResolutionPercentage() < object.getResolutionPercentage(), "resolutionPercentage", "agent.trackingLog.form.error.badPercentage");
-				}
+					boolean sameStatus = recentTrackingLog.getStatus().equals(object.getStatus());
+					super.state(sameStatus, "status", "agent.trackingLog.form.error.mismatchedStatus");
+				} else
+					super.state(validIncrement, "resolutionPercentage", "agent.trackingLog.form.error.badPercentage");
 			}
 		}
 	}

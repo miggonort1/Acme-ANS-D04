@@ -2,13 +2,12 @@
 package acme.features.agent.claim;
 
 import java.util.Collection;
-import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
 import acme.client.components.views.SelectChoices;
-import acme.client.helpers.MomentHelper;
+import acme.client.helpers.PrincipalHelper;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.claim.Claim;
@@ -28,7 +27,6 @@ public class AgentClaimUpdateService extends AbstractGuiService<Agent, Claim> {
 	public void authorise() {
 		boolean status;
 		int claimId;
-		Date currentMoment = MomentHelper.getCurrentMoment();
 		Claim claim;
 
 		claimId = super.getRequest().getData("id", int.class);
@@ -39,7 +37,7 @@ public class AgentClaimUpdateService extends AbstractGuiService<Agent, Claim> {
 			Integer legId = super.getRequest().getData("leg", Integer.class);
 			if (legId == null || legId != 0) {
 				Leg leg = this.repository.findLegById(legId);
-				status = status && leg != null && !leg.isDraftMode() && leg.getScheduledDeparture().before(currentMoment);
+				status = status && leg != null && !leg.isDraftMode() && leg.getScheduledDeparture().before(claim.getRegistrationMoment());
 			}
 		}
 		super.getResponse().setAuthorised(status);
@@ -104,6 +102,12 @@ public class AgentClaimUpdateService extends AbstractGuiService<Agent, Claim> {
 		dataset.put("leg", choicesLegs.getSelected().getKey());
 
 		super.getResponse().addData(dataset);
+	}
+
+	@Override
+	public void onSuccess() {
+		if (super.getRequest().getMethod().equals("POST"))
+			PrincipalHelper.handleUpdate();
 	}
 
 }

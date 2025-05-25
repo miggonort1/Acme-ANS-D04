@@ -66,7 +66,7 @@ public class Claim extends AbstractEntity {
 	@Transient
 	public TrackingLogStatus getStatus() {
 		AgentTrackingLogRepository repository = SpringHelper.getBean(AgentTrackingLogRepository.class);
-		Collection<TrackingLog> trackingLogs = repository.findTrackingLogsByClaimId(this.getId());
+		Collection<TrackingLog> trackingLogs = repository.findTrackingLogsPublishedByClaimId(this.getId());
 
 		if (trackingLogs == null || trackingLogs.isEmpty())
 			return TrackingLogStatus.PENDING;
