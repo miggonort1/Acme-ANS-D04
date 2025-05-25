@@ -29,7 +29,7 @@ public class BookingPassengerValidator extends AbstractValidator<ValidBookingPas
 
 			// Validación 0: Passenger debe estar publicado
 			final boolean isPublished = !bookingPassenger.getPassenger().isDraftMode();
-			super.state(context, isPublished, "passenger", "acme.validation.booking-passenger.unpublished-passenger");
+			super.state(context, isPublished, "*", "acme.validation.booking-passenger.unpublished-passenger");
 			result = result && isPublished;
 
 			// Validación 1: Fecha de nacimiento < fecha de compra
@@ -39,7 +39,7 @@ public class BookingPassengerValidator extends AbstractValidator<ValidBookingPas
 			final boolean validBirth = dateOfBirth != null && purchaseMoment != null && dateOfBirth.before(purchaseMoment);
 			super.state(context, validBirth, "passenger.dateOfBirth", "acme.validation.booking-passenger.invalid-date-of-birth");
 
-			result = validBirth;
+			result = result && validBirth;
 
 			// Validación 2: No duplicar pasajeros en un mismo booking
 			final int bookingId = bookingPassenger.getBooking().getId();
