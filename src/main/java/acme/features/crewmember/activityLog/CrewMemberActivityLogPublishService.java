@@ -8,6 +8,7 @@ import acme.client.helpers.MomentHelper;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.flightassignment.ActivityLog;
+import acme.entities.flightassignment.FlightAssignment;
 import acme.realms.CrewMember;
 
 @GuiService
@@ -23,9 +24,15 @@ public class CrewMemberActivityLogPublishService extends AbstractGuiService<Crew
 
 	@Override
 	public void authorise() {
-		int activityLogId = super.getRequest().getData("id", int.class);
-		ActivityLog activityLog = this.repository.findActivityLogById(activityLogId);
-		boolean status = activityLog.getDraftMode() && !activityLog.getFlightAssignment().getDraftMode() && super.getRequest().getPrincipal().hasRealm(activityLog.getFlightAssignment().getCrewMember()) && activityLog.getDraftMode() && activityLog != null;
+		int id = super.getRequest().getData("id", int.class);
+		ActivityLog activityLog = this.repository.findActivityLogById(id);
+
+		boolean status = false;
+
+		if (activityLog != null && activityLog.getDraftMode()) {
+			boolean userOwnsActivityLog = super.getRequest().getPrincipal().hasRealm(activityLog.getFlightAssignment().getCrewMember());
+			status = userOwnsActivityLog;
+		}
 
 		super.getResponse().setAuthorised(status);
 	}
@@ -40,14 +47,18 @@ public class CrewMemberActivityLogPublishService extends AbstractGuiService<Crew
 
 	@Override
 	public void bind(final ActivityLog object) {
-		;
+		super.bindObject(object, "incidentType", "description", "severityLevel");
 	}
 
 	@Override
-	public void validate(final ActivityLog object) {
-		if (object.getFlightAssignment() != null && object.getFlightAssignment().getDraftMode())
-			super.state(false, "flightAssignment", "acme.validation.activityLog.flightAssignment-not-published");
+	public void validate(final ActivityLog activityLog) {
+		FlightAssignment fa = activityLog.getFlightAssignment();
 
+		boolean isAssignmentPublished = !fa.getDraftMode();
+		super.state(isAssignmentPublished, "*", "acme.validation.activityLog.flightAssignment-not-published");
+
+		boolean hasLegStarted = fa.getLeg().getScheduledDeparture().before(MomentHelper.getCurrentMoment());
+		super.state(hasLegStarted, "*", "acme.validation.activityLog.leg.not-started");
 	}
 
 	@Override

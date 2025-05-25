@@ -7,7 +7,6 @@ import acme.client.components.models.Dataset;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.booking.BookingPassenger;
-import acme.entities.booking.Passenger;
 import acme.realms.Customer;
 
 @GuiService
@@ -46,21 +45,13 @@ public class CustomerBookingPassengerDeleteService extends AbstractGuiService<Cu
 	}
 
 	@Override
-	public void bind(final BookingPassenger BookingPassenger) {
-		int passengerId;
-		Passenger passenger;
-
-		passengerId = super.getRequest().getData("passenger", int.class);
-		passenger = this.repository.findPassengerById(passengerId);
-
-		super.bindObject(BookingPassenger, "passenger");
-
-		BookingPassenger.setPassenger(passenger);
+	public void bind(final BookingPassenger bookingPassenger) {
+		;
 	}
-
 	@Override
 	public void validate(final BookingPassenger BookingPassenger) {
-		;
+		assert BookingPassenger != null;
+
 	}
 
 	@Override

@@ -5,6 +5,7 @@ import javax.validation.ConstraintValidatorContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import acme.client.components.principals.DefaultUserIdentity;
 import acme.client.components.validation.AbstractValidator;
 import acme.realms.manager.Manager;
 import acme.realms.manager.ManagerRepository;
@@ -26,33 +27,45 @@ public class ManagerValidator extends AbstractValidator<ValidManager, Manager> {
 
 	@Override
 	public boolean isValid(final Manager manager, final ConstraintValidatorContext context) {
+		assert context != null;
 
-		if (context == null)
-			return false;
+		boolean result;
 
-		boolean validIdentifier = false;
-
-		if (manager.getUserAccount() == null)
+		if (manager == null)
 			super.state(context, false, "*", "javax.validation.constraints.NotNull.message");
 		else {
-			String initials = this.getInitials(manager);
-			String identifier = manager.getIdentifierNumber();
 
-			if (identifier != null)
-				validIdentifier = identifier.startsWith(initials);
+			//Validar identidad del manager
+			DefaultUserIdentity identity = manager.getIdentity();
+
+			if (identity != null && identity.getName() != null && identity.getSurname() != null) {
+				String name = identity.getName().trim();
+				String surname = identity.getSurname().trim();
+
+				char nameInitial = name.charAt(0);
+				char surnameInitial = surname.split(" ")[0].charAt(0);
+
+				String expectedPrefix = "" + nameInitial + surnameInitial;
+				String identifier = manager.getIdentifierNumber();
+
+				//Validar patron y prefijo del identifierNumber del manager
+				boolean matchesPattern = identifier != null && identifier.matches("^[A-Z]{2,3}\\d{6}$");
+				boolean startsWithPrefix = identifier != null && identifier.startsWith(expectedPrefix);
+
+				boolean alreadyExists = this.repository.existsByIdentifierNumber(identifier);
+				Manager existing = this.repository.findByIdentifierNumber(identifier);
+
+				//Validar unicidad del identifierNumber del manager
+				boolean isUnique = !alreadyExists || existing != null && existing.getId() == manager.getId();
+
+				//Union de validaciones
+				boolean isValidIdentifier = matchesPattern && startsWithPrefix && isUnique;
+
+				super.state(context, isValidIdentifier, "identifierNumber", "acme.validation.manager.flight.identifier-number.invalid.message");
+			}
 		}
-		return validIdentifier;
-	}
 
-	private String getInitials(final Manager manager) {
-
-		String initials = "";
-		String name = manager.getUserAccount().getIdentity().getName().trim();
-		String surname = manager.getUserAccount().getIdentity().getSurname().trim();
-
-		if (name != null && surname != null)
-			initials = name.substring(0, 1) + surname.substring(0, 1);
-
-		return initials;
+		result = !super.hasErrors(context);
+		return result;
 	}
 }

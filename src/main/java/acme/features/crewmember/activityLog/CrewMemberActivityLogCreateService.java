@@ -11,6 +11,7 @@ import acme.entities.flightassignment.ActivityLog;
 import acme.entities.flightassignment.FlightAssignment;
 import acme.features.crewmember.flightAssignment.CrewMemberFlightAssignmentRepository;
 import acme.realms.CrewMember;
+import acme.realms.CrewMemberRepository;
 
 @GuiService
 public class CrewMemberActivityLogCreateService extends AbstractGuiService<CrewMember, ActivityLog> {
@@ -23,14 +24,35 @@ public class CrewMemberActivityLogCreateService extends AbstractGuiService<CrewM
 	@Autowired
 	private CrewMemberFlightAssignmentRepository	flightAssignmentRepository;
 
+	@Autowired
+	private CrewMemberRepository					crewMemberRepository;
+
 	// AbstractGuiService interface -------------------------------------------
 
 
 	@Override
 	public void authorise() {
-		int assignmentId = super.getRequest().getData("assignmentId", int.class);
-		FlightAssignment flightAssignment = this.flightAssignmentRepository.findFlightAssignmentById(assignmentId);
-		boolean status = flightAssignment.getLeg().getScheduledArrival().before(MomentHelper.getCurrentMoment()) && super.getRequest().getPrincipal().hasRealm(flightAssignment.getCrewMember()) && flightAssignment != null;
+		int userId = super.getRequest().getPrincipal().getActiveRealm().getId();
+		CrewMember crewMember = this.crewMemberRepository.findCrewMemberById(userId);
+
+		boolean status = false;
+
+		if (crewMember != null) {
+			Object assignmentData = super.getRequest().getData().get("assignmentId");
+
+			if (assignmentData != null) {
+				int assignmentId = Integer.parseInt(assignmentData.toString());
+				FlightAssignment assignment = this.flightAssignmentRepository.findFlightAssignmentById(assignmentId);
+
+				if (assignment != null) {
+					boolean userOwnsAssignment = assignment.getCrewMember().getId() == userId;
+					boolean assignmentIsPublished = !assignment.getDraftMode();
+					boolean legStarted = assignment.getLeg().getScheduledDeparture().before(MomentHelper.getCurrentMoment());
+
+					status = userOwnsAssignment && assignmentIsPublished && legStarted;
+				}
+			}
+		}
 
 		super.getResponse().setAuthorised(status);
 	}

@@ -10,8 +10,8 @@ import acme.client.components.views.SelectChoices;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.claim.Claim;
-import acme.entities.claim.ClaimStatus;
 import acme.entities.claim.TrackingLog;
+import acme.entities.claim.TrackingLogStatus;
 import acme.entities.claim.Type;
 import acme.entities.flight.Leg;
 import acme.realms.Agent;
@@ -30,15 +30,11 @@ public class AgentClaimDeleteService extends AbstractGuiService<Agent, Claim> {
 	public void authorise() {
 		boolean status;
 		int claimId;
-		int agentId;
 		Claim claim;
-		Agent agent;
 
-		agentId = super.getRequest().getPrincipal().getActiveRealm().getId();
-		agent = this.repository.findOneAgentById(agentId);
 		claimId = super.getRequest().getData("id", int.class);
 		claim = this.repository.findClaimById(claimId);
-		status = claim != null && (!claim.isDraftMode() || super.getRequest().getPrincipal().hasRealm(claim.getAgent())) && claim.getAgent().equals(agent);
+		status = claim != null && claim.isDraftMode() && super.getRequest().getPrincipal().hasRealm(claim.getAgent());
 
 		super.getResponse().setAuthorised(status);
 	}
@@ -64,13 +60,13 @@ public class AgentClaimDeleteService extends AbstractGuiService<Agent, Claim> {
 		leg = this.repository.findLegById(legId);
 
 		object.setLeg(leg);
-		super.bindObject(object, "description", "passengerEmail", "status", "type", "leg");
+		super.bindObject(object, "description", "passengerEmail", "type", "leg");
 	}
 
 	@Override
 	public void validate(final Claim claim) {
 		if (!super.getBuffer().getErrors().hasErrors("draftMode"))
-			super.state(claim.isDraftMode(), "draftMode", "assistanceAgent.claim.form.error.draftMode");
+			super.state(claim.isDraftMode(), "draftMode", "agent.claim.form.error.draftMode");
 	}
 
 	@Override
@@ -87,17 +83,17 @@ public class AgentClaimDeleteService extends AbstractGuiService<Agent, Claim> {
 	public void unbind(final Claim object) {
 		Dataset dataset;
 		SelectChoices choicesType;
-		SelectChoices choicesStatus;
+		TrackingLogStatus choicesStatus;
 		SelectChoices choicesLegs;
 
 		Collection<Leg> legs;
-		legs = this.repository.findManyLegsLanded();
+		legs = this.repository.findManyLegsPublished();
 
 		choicesType = SelectChoices.from(Type.class, object.getType());
-		choicesStatus = SelectChoices.from(ClaimStatus.class, object.getStatus());
+		choicesStatus = object.getStatus();
 		choicesLegs = SelectChoices.from(legs, "flightNumber", object.getLeg());
 
-		dataset = super.unbindObject(object, "registrationMoment", "description", "passengerEmail", "status", "type", "draftMode");
+		dataset = super.unbindObject(object, "registrationMoment", "description", "passengerEmail", "type", "draftMode");
 		dataset.put("type", choicesType);
 		dataset.put("status", choicesStatus);
 		dataset.put("legs", choicesLegs);

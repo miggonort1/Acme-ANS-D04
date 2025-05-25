@@ -6,7 +6,7 @@ administrator.airport.form.label.code = Código:
 administrator.airport.form.label.scope = Alcance operativo:
 administrator.airport.form.label.city = Ciudad:
 administrator.airport.form.label.country = País:
-administrator.airport.form.label.website= Página web:
+administrator.airport.form.label.website= Página web: (Opcional)
 administrator.airport.form.label.email = Email: (Opcional)
 administrator.airport.form.label.phoneNumber = Número de teléfono: (Opcional)
 

@@ -28,3 +28,9 @@ agent.claim.form.button.update=Actualizar
 agent.claim.form.button.create=Crear
 agent.claim.form.button.delete=Borrar
 agent.claim.form.button.publish=Publicar
+
+agent.claim.validator.error.null=El claim no puede ser nulo
+agent.claim.validator.error.registrationMoment=La fecha de registro debe ser posterior al inicio de la actividad del agente
+agent.claim.validator.error.nullLeg=El claim debe estar asociado a un leg
+agent.claim.validator.error.departureAfter=La salida programada del leg debe ser anterior al momento de registro
+agent.claim.validator.error.legNotPublished=El leg asociado debe estar publicado antes de adjuntarlo al claim

@@ -3,6 +3,8 @@ package acme.entities.airport;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Index;
+import javax.persistence.Table;
 import javax.validation.Valid;
 
 import acme.client.components.basis.AbstractEntity;
@@ -20,6 +22,9 @@ import lombok.Setter;
 @Getter
 @Setter
 @ValidAirport
+@Table(indexes = {
+	@Index(columnList = "iataCode"),
+})
 public class Airport extends AbstractEntity {
 
 	// Serialisation version --------------------------------------------------
@@ -52,7 +57,7 @@ public class Airport extends AbstractEntity {
 	private String				country;
 
 	@Optional
-	@ValidUrl(remote = false)
+	@ValidUrl
 	@Automapped
 	private String				website;
 

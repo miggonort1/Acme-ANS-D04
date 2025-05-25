@@ -59,10 +59,8 @@ public class AdministratorBookingPassengerListService extends AbstractGuiService
 	@Override
 	public void unbind(final Collection<BookingPassenger> bookingPassenger) {
 		int masterId;
-		Booking booking;
 
 		masterId = super.getRequest().getData("masterId", int.class);
-		booking = this.repository.findBookingById(masterId);
 
 		super.getResponse().addGlobal("masterId", masterId);
 	}

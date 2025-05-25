@@ -2,6 +2,7 @@
 package acme.features.customer.bookingPassenger;
 
 import java.util.Collection;
+import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -27,15 +28,38 @@ public class CustomerBookingPassengerCreateService extends AbstractGuiService<Cu
 
 	@Override
 	public void authorise() {
-		boolean status;
-		int masterId;
+		boolean status = true;
+		Integer masterId, passengerId;
 		Booking booking;
 		Customer customer;
+		Passenger passenger;
+		Collection<BookingPassenger> existingAssignments;
 
-		masterId = super.getRequest().getData("masterId", int.class);
-		booking = this.repository.findBookingById(masterId);
-		customer = booking == null ? null : booking.getCustomer();
-		status = booking != null && booking.isDraftMode() && super.getRequest().getPrincipal().hasRealm(customer);
+		try {
+			masterId = super.getRequest().getData("masterId", int.class);
+			booking = this.repository.findBookingById(masterId);
+			customer = booking == null ? null : booking.getCustomer();
+
+			status = booking != null && booking.isDraftMode() && super.getRequest().getPrincipal().hasRealm(customer);
+
+			if (status && super.getRequest().hasData("passenger")) {
+				passengerId = super.getRequest().getData("passenger", int.class);
+				passenger = this.repository.findPassengerById(passengerId);
+
+				status = status && passenger != null;
+
+				status = status && passenger.getCustomer().equals(customer);
+
+				status = status && !passenger.isDraftMode();
+
+				status = status && passenger.getDateOfBirth().before(booking.getPurchaseMoment());
+
+				existingAssignments = this.repository.findAssignationFromBookingIdAndPassengerId(masterId, passengerId);
+				status = status && existingAssignments.isEmpty();
+			}
+		} catch (Exception e) {
+			status = false;
+		}
 
 		super.getResponse().setAuthorised(status);
 	}
@@ -72,12 +96,7 @@ public class CustomerBookingPassengerCreateService extends AbstractGuiService<Cu
 
 	@Override
 	public void validate(final BookingPassenger BookingPassenger) {
-		{
-			boolean passengerPublished;
-
-			passengerPublished = !BookingPassenger.getPassenger().isDraftMode();
-			super.state(passengerPublished, "passenger", "acme.validation.BookingPassenger.passenger.draftMode.message");
-		}
+		assert BookingPassenger != null;
 
 	}
 
@@ -92,14 +111,18 @@ public class CustomerBookingPassengerCreateService extends AbstractGuiService<Cu
 
 		SelectChoices passengerChoices;
 		Customer customer;
+		int bookingId;
 
 		Dataset dataset;
 
 		customer = (Customer) super.getRequest().getPrincipal().getActiveRealm();
+		bookingId = BookingPassenger.getBooking().getId();
+		Date purchaseMoment = this.repository.findPurchaseMomentByBookingId(bookingId);
+		Collection<Integer> excludedIds = this.repository.findPassengerIdsInBooking(bookingId);
 
-		passengers = this.repository.findAllPublishedPassengersFromCustomerId(customer.getId());
-
-		passengerChoices = SelectChoices.from(passengers, "passportNumber", BookingPassenger.getPassenger());
+		Collection<Passenger> allValid = this.repository.findValidPassengers(customer.getId(), purchaseMoment);
+		passengers = allValid.stream().filter(p -> !excludedIds.contains(p.getId())).toList();
+		passengerChoices = SelectChoices.from(passengers, "fullNameAndPassportNumber", BookingPassenger.getPassenger());
 
 		dataset = super.unbindObject(BookingPassenger, "booking", "passenger");
 		dataset.put("passenger", passengerChoices.getSelected().getKey());

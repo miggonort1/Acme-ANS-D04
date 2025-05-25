@@ -1,10 +1,13 @@
 
 package acme.entities.flight;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.Index;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.validation.Valid;
 
@@ -16,7 +19,6 @@ import acme.client.components.validation.Optional;
 import acme.client.components.validation.ValidMoney;
 import acme.client.components.validation.ValidString;
 import acme.client.helpers.SpringHelper;
-import acme.constraints.ValidShortText;
 import acme.realms.manager.Manager;
 import lombok.Getter;
 import lombok.Setter;
@@ -24,6 +26,9 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
+@Table(indexes = {
+	@Index(columnList = "draftMode"), @Index(columnList = "manager_id")
+})
 public class Flight extends AbstractEntity {
 
 	// Serialisation identifier
@@ -31,7 +36,7 @@ public class Flight extends AbstractEntity {
 
 	// Attributes
 	@Mandatory
-	@ValidShortText
+	@ValidString(min = 1, max = 50)
 	@Automapped
 	private String				tag;
 
@@ -90,6 +95,22 @@ public class Flight extends AbstractEntity {
 		FlightRepository repository = SpringHelper.getBean(FlightRepository.class);
 		Integer legs = repository.countLegs(this.getId());
 		return legs != null && legs > 0 ? legs - 1 : 0;
+	}
+
+	@Transient
+	public String getFlightSummary() {
+		String tag = this.tag;
+		String origin = this.getOriginCity();
+		String destination = this.getDestinationCity();
+		Date departure = this.getScheduledDeparture();
+		Date arrival = this.getScheduledArrival();
+
+		SimpleDateFormat dateTimeFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+
+		String depTime = departure != null ? dateTimeFormat.format(departure) : "??/??/???? ??:??";
+		String arrTime = arrival != null ? dateTimeFormat.format(arrival) : "??/??/???? ??:??";
+
+		return String.format("[%s] %s → %s | %s - %s", tag, origin, destination, depTime, arrTime);
 	}
 
 

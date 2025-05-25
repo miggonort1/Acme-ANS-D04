@@ -26,7 +26,7 @@
 	<acme:list-payload path="payload"/>
 </acme:list>
 
-<jstl:if test="${acme:anyOf(_command,'list-completed|list-planned')}">
+<jstl:if test="${acme:anyOf(_command,'list-completed|list-planned') and showCreate}">
 	<acme:button code="crew-member.flight-assignment.list.button.create" action="/crew-member/flight-assignment/create"/>
 </jstl:if>	
 

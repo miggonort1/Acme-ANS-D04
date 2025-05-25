@@ -46,19 +46,26 @@ public class ManagerFlightPublishService extends AbstractGuiService<Manager, Fli
 
 	@Override
 	public void bind(final Flight flight) {
+		assert flight != null;
+
 		super.bindObject(flight, "tag", "selfTransfer", "cost", "description");
 	}
 
 	@Override
 	public void validate(final Flight flight) {
+		assert flight != null;
+
 		int flightId = flight.getId();
 
+		//No puedo publicar un vuelo sin tramos
 		Collection<Leg> legs = this.repository.findAllLegsByFlightId(flightId);
 		super.state(!legs.isEmpty(), "*", "acme.validation.manager.flight.no-legs");
 
+		//Todos los tramos tienen que estar publicados antes de publicar el vuelo
 		boolean allLegsPublished = legs.stream().allMatch(l -> !l.isDraftMode());
 		super.state(allLegsPublished, "*", "acme.validation.manager.flight.legs-not-published");
 
+		//Si no tengo autotransbordo, no puedo tener escalas
 		if (!super.getBuffer().getErrors().hasErrors("selfTransfer")) {
 			Integer layovers = flight.getLayovers();
 			if (flight.getSelfTransfer() == false && layovers > 0)
@@ -68,6 +75,8 @@ public class ManagerFlightPublishService extends AbstractGuiService<Manager, Fli
 
 	@Override
 	public void perform(final Flight flight) {
+		assert flight != null;
+
 		flight.setDraftMode(false);
 		this.repository.save(flight);
 	}

@@ -10,9 +10,10 @@ customer.booking-passenger.list.button.add = Añadir
 
 customer.booking-passenger.form.label.full-name = Nombre completo:
 customer.booking-passenger.form.label.email = Email:
-customer.booking-passenger.form.label.passport-number = Número de pasaporte:
+customer.booking-passenger.form.label.passenger = Pasajero:
 customer.booking-passenger.form.label.date-of-birth = Fecha de nacimiento:
 customer.booking-passenger.form.label.special-needs = Necesidades especiales:
+customer.booking-passenger.form.label.passport-number = Número de Pasaporte:
 
 customer.booking-passenger.form.button.add = Añadir
 customer.booking-passenger.form.button.delete = Eliminar
@@ -20,6 +21,7 @@ acme.validation.booking-passenger.invalid-date-of-birth=La fecha de nacimiento d
 acme.validation.booking-passenger.duplicate-passenger=No se puede asignar el mismo pasajero más de una vez a una reserva
 acme.validation.BookingPassenger.alreadyAssigned.message=Este pasajero ya está asignado a esta reserva
 acme.validation.booking-passenger.unpublished-passenger = Este pasajero no está publicado
+acme.validation.booking-passenger.passenger-from-different-customer= El pasagero  no pertenece al customer actual
 
 
 
