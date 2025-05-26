@@ -27,10 +27,9 @@ public class AdministratorAirportUpdateService extends AbstractGuiService<Admini
 		boolean exist;
 		Airport airport;
 		int id;
-
 		id = super.getRequest().getData("id", int.class);
 		airport = this.repository.findAirportById(id);
-		exist = airport != null;
+		exist = airport != null && super.getRequest().getPrincipal().hasRealmOfType(Administrator.class);
 
 		super.getResponse().setAuthorised(exist);
 	}
