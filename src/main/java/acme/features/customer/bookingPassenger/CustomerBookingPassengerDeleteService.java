@@ -3,7 +3,6 @@ package acme.features.customer.bookingPassenger;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import acme.client.components.models.Dataset;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.booking.BookingPassenger;
@@ -61,13 +60,7 @@ public class CustomerBookingPassengerDeleteService extends AbstractGuiService<Cu
 
 	@Override
 	public void unbind(final BookingPassenger BookingPassenger) {
-		Dataset dataset;
 
-		dataset = super.unbindObject(BookingPassenger, "passenger", "passenger.fullName", "passenger.email", "passenger.passportNumber", "passenger.birthDate", "passenger.specialNeeds");
-		dataset.put("passenger", BookingPassenger.getPassenger().getId());
-		dataset.put("draftMode", BookingPassenger.getBooking().isDraftMode());
-
-		super.getResponse().addData(dataset);
 	}
 
 }

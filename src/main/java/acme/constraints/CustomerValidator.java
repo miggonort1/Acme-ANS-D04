@@ -35,8 +35,8 @@ public class CustomerValidator extends AbstractValidator<ValidCustomer, Customer
 			String surname = customer.getIdentity().getSurname().trim();
 
 			if (!StringHelper.isBlank(name) && !StringHelper.isBlank(surname)) {
-				String initials = "" + name.charAt(0) + surname.charAt(0);
-				String identifier = customer.getIdentifier().trim();
+				String initials = ("" + name.charAt(0) + surname.charAt(0)).toUpperCase();
+				String identifier = customer.getIdentifier().trim().toUpperCase();
 
 				boolean identifierCorrectSyntax = identifier.startsWith(initials);
 				super.state(context, identifierCorrectSyntax, "identifier", "acme.validation.customer.identifier.syntax.message");

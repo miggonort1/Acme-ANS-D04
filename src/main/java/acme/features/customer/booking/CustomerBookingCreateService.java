@@ -35,7 +35,7 @@ public class CustomerBookingCreateService extends AbstractGuiService<Customer, B
 		if (super.getRequest().hasData("id")) {
 			Integer flightId = super.getRequest().getData("flight", int.class);
 			Date currentDate = MomentHelper.getCurrentMoment();
-			if (flightId == null || flightId != 0) {
+			if (flightId != null && flightId != 0) {
 				Flight flight = this.repository.findFlightById(flightId);
 				status = flight != null && !flight.isDraftMode() && flight.getScheduledArrival().after(currentDate);
 
