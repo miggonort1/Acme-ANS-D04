@@ -2,13 +2,11 @@
 package acme.features.agent.claim;
 
 import java.util.Collection;
-import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
 import acme.client.components.views.SelectChoices;
-import acme.client.helpers.MomentHelper;
 import acme.client.helpers.PrincipalHelper;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
@@ -49,18 +47,11 @@ public class AgentClaimPublishService extends AbstractGuiService<Agent, Claim> {
 	@Override
 	public void load() {
 		Claim object;
-		Agent agent;
-		Date moment;
+		int id;
 
-		agent = this.repository.findOneAgentById(super.getRequest().getPrincipal().getActiveRealm().getId());
-		moment = MomentHelper.getCurrentMoment();
+		id = super.getRequest().getData("id", int.class);
 
-		object = new Claim();
-		object.setLeg(null);
-		object.setDraftMode(true);
-		object.setRegistrationMoment(moment);
-		object.setAgent(agent);
-
+		object = this.repository.findClaimById(id);
 		super.getBuffer().addData(object);
 	}
 
