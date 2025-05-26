@@ -19,7 +19,7 @@
 	<acme:list-column code="customer.passenger.list.label.full-name" path="fullName" width="25%"/>	
 	<acme:list-column code="customer.passenger.list.label.email" path="email" width="25%"/>	
 	<acme:list-column code="customer.passenger.list.label.passport-number" path="passportNumber" width="25%"/>
-	<acme:list-column code="customer.passenger.list.label.passport-number" path="draftMode" width="25%"/>		
+	<acme:list-column code="customer.passenger.list.label.draft-mode" path="draftMode" width="25%"/>		
 	<acme:list-payload path="payload"/>
 </acme:list>
 

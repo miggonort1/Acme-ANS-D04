@@ -13,7 +13,7 @@ customer.passenger.form.button.delete = Delete
 customer.passenger.form.button.publish = Publish
 
 customer.passenger.list.title = Listing of passengers
-customer.passenger.list.label.passport-number = Draft Mode
+customer.passenger.list.label.draft-mode = Draft Mode
 
 customer.passenger.list.label.full-name = Full name
 customer.passenger.list.label.email = Email
