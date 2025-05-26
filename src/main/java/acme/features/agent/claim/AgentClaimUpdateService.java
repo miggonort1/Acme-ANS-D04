@@ -2,6 +2,7 @@
 package acme.features.agent.claim;
 
 import java.util.Collection;
+import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -33,13 +34,27 @@ public class AgentClaimUpdateService extends AbstractGuiService<Agent, Claim> {
 		claim = this.repository.findClaimById(claimId);
 		status = claim != null && claim.isDraftMode() && super.getRequest().getPrincipal().hasRealm(claim.getAgent());
 
-		if (super.getRequest().hasData("id")) {
-			Integer legId = super.getRequest().getData("leg", Integer.class);
-			if (legId == null || legId != 0) {
-				Leg leg = this.repository.findLegById(legId);
-				status = status && leg != null && !leg.isDraftMode() && leg.getScheduledDeparture().before(claim.getRegistrationMoment());
+		if (status && super.getRequest().hasData("registrationMoment")) {
+			Date registration = super.getRequest().getData("registrationMoment", Date.class);
+			if (registration != null && claim.getRegistrationMoment() != null) {
+				boolean unchanged = claim.getRegistrationMoment().getTime() == registration.getTime();
+				status = status && unchanged;
 			}
 		}
+
+		Integer legId = null;
+
+		try {
+			legId = super.getRequest().getData("leg", int.class);
+		} catch (Throwable oops) {
+			legId = null;
+		}
+
+		if (legId != null && legId != 0) {
+			Leg leg = this.repository.findLegById(legId);
+			status = leg != null && !leg.isDraftMode() && leg.getScheduledDeparture().before(claim.getRegistrationMoment());
+		}
+
 		super.getResponse().setAuthorised(status);
 	}
 
