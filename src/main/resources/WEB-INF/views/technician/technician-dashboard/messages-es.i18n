@@ -1,0 +1,30 @@
+# messages-es.i18n
+#
+# Copyright (C) 2012-2025 Rafael Corchuelo.
+#
+# In keeping with the traditional purpose of furthering education and research, it is
+# the policy of the copyright owner to permit non-commercial use and redistribution of
+# this software. It has been tested carefully, but it is not guaranteed for any particular
+# purposes.  The copyright owner does not offer any warranties or representations, nor do
+# they accept any liabilities with respect to them.
+
+
+technician.technician-dashboard.form.title=  Dashboard Técnico
+
+technician.dashboard.form.title.general-indicators= Dashboard Técnico
+
+technician.dashboard.form.label.totalPending= Registros de maintenimiento pendiente
+technician.dashboard.form.label.totalInProgress=Registros de maintenimiento en progreso
+technician.dashboard.form.label.totalCompleted=Registros de maintenimiento completado
+technician.dashboard.form.label.mr= Registros de maintenimiento con la fecha proxima de inspeccion mas cercana
+technician.dashboard.form.label.higernumber= Top 5 aeronaves con mas tareas
+technician.dashboard.form.label.avg= Media del coste estimado
+technician.dashboard.form.label.min= Minimo del coste estimado
+technician.dashboard.form.label.max= Maximo del coste estimado
+technician.dashboard.form.label.dev= Deviacion del coste estimado
+technician.dashboard.form.label.Navg= Media de la duracion estimada
+technician.dashboard.form.label.Nmin= Minimo de la duracion estimada
+technician.dashboard.form.label.Nmax= Maximo de la duracion estimada
+technician.dashboard.form.label.Ndev= Deviacion de la duracion estimada
+
+

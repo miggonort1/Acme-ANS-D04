@@ -2,6 +2,7 @@
 package acme.features.manager.leg;
 
 import java.util.Collection;
+import java.util.List;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -41,5 +42,14 @@ public interface ManagerLegRepository extends AbstractRepository {
 
 	@Query("select count(c) > 0 from Claim c where c.leg.id = :legId")
 	boolean existsClaimsByLegId(int legId);
+
+	@Query("select count(a) > 0 from Aircraft a, Manager m " + "where a.id = :aircraftId " + "and   m.id = :managerId " + "and   a.airline = m.airline")
+	boolean existsAircraftOfManager(int managerId, int aircraftId);
+
+	@Query("SELECT l FROM Leg l WHERE l.flight.id = :flightId AND l.scheduledDeparture < (SELECT ll.scheduledDeparture FROM Leg ll WHERE ll.id = :currentLegId) ORDER BY l.scheduledDeparture DESC")
+	List<Leg> findPreviousLeg(int flightId, int currentLegId);
+
+	@Query("select count(l) > 0 from Leg l " + "where l.flight.id = :flightId " + "and (l.departureAirport.id = :airportId " + "     or l.arrivalAirport.id   = :airportId)")
+	boolean existsAirportInFlight(int flightId, int airportId);
 
 }

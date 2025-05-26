@@ -15,17 +15,32 @@ acme.validation.flightAssignment.crewMember.multipleLegs = El tripulante ya est�
 acme.validation.flightAssignment.crewMember.onlyOnePilot = El tramo solo puede tener 1 piloto
 acme.validation.flightAssignment.crewMember.onlyOneCoPilot = El tramo solo puede tener 1 co-piloto
 acme.validation.flightAssignment.crewMember.noAvailableLegs = No hay vuelos disponibles para ti en este momento.
-acme.validation.flightAssignment.crewMember.legNotPublished= No puedes asignarte a un tramo que aún no ha sido publicado.
+acme.validation.flightAssignment.legNotPublished= No puedes asignarte a un tramo que aún no ha sido publicado.
 acme.validation.authorisation=No estás autorizado para realizar esta operación.
 acme.validation.activityLog.beforeLeg = No puede asignarse un Activity Log a un tramo que aún no ha sucedido
 acme.validation.activityLog.severityLevelOutOfRange = El nivel de severidad debe ser entre 0 y 10
 acme.validation.activityLog.flightAssignment-not-published = El vuelo asignado no está publicado
 acme.validation.activityLog.leg.not-finished = Sólo puedes publicar un log una vez el tramo haya comenzado.
 
-acme.validation.manager.flight.delete-has-assignments			   = El vuelo no se puede eliminar porque hay tripulantes asignados a sus tramos.
-acme.validation.manager.flight.no-legs							   = No se puede publicar un vuelo sin tramos.
-acme.validation.manager.flight.legs-not-published				   = Deben publicarse todos los tramos antes de publicar el vuelo.
-acme.validation.manager.flight.invalid-selfTransfer-layovers	   = No se puede establecer a false cuando el vuelo tiene escalas.
+acme.validation.manager.flight.identifier-number.invalid.message = El identificador debe comenzar por tus iniciales.
+acme.validation.manager.flight.delete-has-assignments = El vuelo no se puede eliminar porque hay tripulantes asignados a sus tramos.
+acme.validation.manager.flight.no-legs = No se puede publicar un vuelo sin tramos.
+acme.validation.manager.flight.legs-not-published = Deben publicarse todos los tramos antes de publicar el vuelo.
+acme.validation.manager.flight.invalid-selfTransfer = El autotransbordo no se puede establecer a false cuando el vuelo tiene escalas. 
+
+acme.validation.manager.leg.flight-number.format.message = El número de vuelo debe iniciarse con el código IATA y contener exactamente 4 dígitos.
+acme.validation.manager.leg.flight-number.duplicate.message = Ya existe un tramo con este mismo número de vuelo.
+acme.validation.manager.leg.valid-leg.overlap  = Este tramo se solapa con otro del mismo vuelo.
+acme.validation.manager.leg.valid-leg.time-conflict =  La hora de llegada debe ser posterior en al menos 1 minuto respecto a la salida.
+acme.validation.manager.leg.valid-leg.sequence-order = Las etapas del vuelo deben respetar el orden cronológico: la llegada de una debe preceder la salida de la siguiente.
+acme.validation.manager.leg.departure-equals-arrival = El aeropuerto de origen no puede coincidir con el de destino.
+acme.validation.manager.leg.not-connected-to-previous = El aeropuerto de salida debe coincidir con el de llegada del tramo anterior.
+acme.validation.manager.leg.invalid-status-on-publish = Solo es posible publicar tramos con estado "puntual" o "retrasado".
+acme.validation.manager.leg.legs-not-connected = Los tramos del vuelo no están enlazados correctamente.
+acme.validation.manager.leg.status.required = Es obligatorio indicar un estado para el tramo del vuelo.
+acme.validation.manager.leg.departure-in-the-past = La hora de salida no puede estar en el pasado.
+acme.validation.manager.leg.arrival-in-the-past	= La llegada debe estar programada para un momento posterior al actual.
+acme.validation.manager.leg.cannot-delete-linked-claim = Un tramo no se puede eliminar si tiene una o mas reclamaciones asociadas.
 
 
 acme.validation.header.message  	= Debe tener entre 1 y 75 caracteres

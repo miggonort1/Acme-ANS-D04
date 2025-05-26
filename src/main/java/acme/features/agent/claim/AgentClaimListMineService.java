@@ -41,7 +41,7 @@ public class AgentClaimListMineService extends AbstractGuiService<Agent, Claim> 
 
 		choicesStatus = object.getStatus();
 
-		dataset = super.unbindObject(object, "registrationMoment", "description", "type");
+		dataset = super.unbindObject(object, "registrationMoment", "description", "type", "draftMode");
 		dataset.put("status", choicesStatus);
 		super.getResponse().addData(dataset);
 	}

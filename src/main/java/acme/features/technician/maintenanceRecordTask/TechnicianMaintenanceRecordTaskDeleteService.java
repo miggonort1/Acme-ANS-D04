@@ -23,7 +23,7 @@ public class TechnicianMaintenanceRecordTaskDeleteService extends AbstractGuiSer
 
 		maintenanceRecordTaskId = super.getRequest().getData("id", int.class);
 		maintenanceRecordTask = this.repository.findOneMaintenanceRecordTaskById(maintenanceRecordTaskId);
-		status = maintenanceRecordTask != null && (!maintenanceRecordTask.getMaintenanceRecord().isDraftMode() || super.getRequest().getPrincipal().hasRealm(maintenanceRecordTask.getMaintenanceRecord().getTechnician()));
+		status = maintenanceRecordTask != null && maintenanceRecordTask.getMaintenanceRecord().isDraftMode() && super.getRequest().getPrincipal().hasRealm(maintenanceRecordTask.getMaintenanceRecord().getTechnician());
 
 		super.getResponse().setAuthorised(status);
 	}

@@ -41,8 +41,15 @@ public class CrewMemberFlightAssignmentCreateService extends AbstractGuiService<
 			return;
 		}
 
-		Object legData = super.getRequest().getData().get("leg");
+		if (super.getRequest().hasData("id")) {
+			Integer id = super.getRequest().getData("id", Integer.class, 0);
+			if (id != 0) {
+				super.getResponse().setAuthorised(false);
+				return;
+			}
+		}
 
+		Object legData = super.getRequest().getData().get("leg");
 		if (legData == null || "0".equals(legData.toString().trim())) {
 			super.getResponse().setAuthorised(true);
 			return;
@@ -51,14 +58,12 @@ public class CrewMemberFlightAssignmentCreateService extends AbstractGuiService<
 		String legKey = legData.toString().trim();
 		if (legKey.matches("\\d+")) {
 			int legId = Integer.parseInt(legKey);
-
 			Leg leg = this.repository.findLegById(legId);
 			boolean legIsValid = leg != null && !leg.isDraftMode();
 			super.getResponse().setAuthorised(legIsValid);
 			return;
 		}
 
-		// En cualquier otro caso, no se autoriza
 		super.getResponse().setAuthorised(false);
 	}
 

@@ -72,14 +72,16 @@ public class CrewMemberFlightAssignmentDeleteService extends AbstractGuiService<
 		boolean hasAvailableLegs = false;
 
 		for (Leg leg : legs) {
+			boolean isCurrent = leg.equals(flightAssignment.getLeg());
 			boolean isInFuture = leg.getScheduledDeparture().after(MomentHelper.getCurrentMoment());
 			boolean alreadyAssigned = this.repository.isAlreadyAssignedToLeg(crewMember, leg);
 			boolean overlaps = this.repository.isOverlappingAssignment(crewMember, leg.getScheduledDeparture(), leg.getScheduledArrival());
+			boolean isValid = isInFuture && !alreadyAssigned && !overlaps && !leg.isDraftMode();
 
-			if (isInFuture && !alreadyAssigned && !overlaps && !leg.isDraftMode()) {
+			if (isValid || isCurrent) {
 				String key = Integer.toString(leg.getId());
 				String label = leg.getFlightNumber() + " (" + leg.getFlight().getTag() + ")";
-				boolean selected = leg.equals(flightAssignment.getLeg());
+				boolean selected = isCurrent;
 				legChoices.add(key, label, selected);
 				hasAvailableLegs = true;
 			}

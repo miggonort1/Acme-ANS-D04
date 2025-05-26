@@ -22,15 +22,15 @@ public class AgentDashboard extends AbstractForm {
 
 	Map<String, Integer>		topMonthsWithHighestNumberOfClaims;
 
-	Double						averageNumberOfLogsTheirClaimsHave;
-	Double						minimumNumberOfLogsTheirClaimsHave;
-	Double						maximumNumberOfLogsTheirClaimsHave;
-	Double						deviationNumberOfLogsTheirClaimsHave;
+	double						averageNumberOfLogsTheirClaimsHave;
+	int							minimumNumberOfLogsTheirClaimsHave;
+	int							maximumNumberOfLogsTheirClaimsHave;
+	double						deviationNumberOfLogsTheirClaimsHave;
 
-	Double						averageNumberOfClaimsTheyAssisted;
-	Double						minimumNumberOfClaimsTheyAssisted;
-	Double						maximumNumberOfClaimsTheyAssisted;
-	Double						deviationNumberOfClaimsTheyAssisted;
+	double						averageNumberOfClaimsTheyAssisted;
+	int							minimumNumberOfClaimsTheyAssisted;
+	int							maximumNumberOfClaimsTheyAssisted;
+	double						deviationNumberOfClaimsTheyAssisted;
 
 	// Derived attributes -----------------------------------------------------
 

@@ -43,7 +43,11 @@ public class ManagerFlightShowService extends AbstractGuiService<Manager, Flight
 		Dataset dataset;
 
 		dataset = super.unbindObject(flight, "tag", "selfTransfer", "cost", "description", "draftMode");
-
+		dataset.put("scheduledDeparture", flight.getScheduledDeparture());
+		dataset.put("scheduledArrival", flight.getScheduledArrival());
+		dataset.put("originCity", flight.getOriginCity());
+		dataset.put("destinationCity", flight.getDestinationCity());
+		dataset.put("layovers", flight.getLayovers());
 		dataset.put("id", flight.getId());
 		super.getResponse().addData(dataset);
 	}

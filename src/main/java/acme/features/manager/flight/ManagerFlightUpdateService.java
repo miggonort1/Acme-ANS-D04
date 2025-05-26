@@ -40,20 +40,20 @@ public class ManagerFlightUpdateService extends AbstractGuiService<Manager, Flig
 
 	@Override
 	public void bind(final Flight flight) {
+		assert flight != null;
+
 		super.bindObject(flight, "tag", "selfTransfer", "cost", "description");
 	}
 
 	@Override
 	public void validate(final Flight flight) {
-		if (!super.getBuffer().getErrors().hasErrors("selfTransfer")) {
-			Integer layovers = flight.getLayovers();
-			if (flight.getSelfTransfer() == false && layovers > 0)
-				super.state(false, "selfTransfer", "acme.validation.manager.flight.invalid-selfTransfer-layovers");
-		}
+		assert flight != null;
 	}
 
 	@Override
 	public void perform(final Flight flight) {
+		assert flight != null;
+
 		this.repository.save(flight);
 	}
 

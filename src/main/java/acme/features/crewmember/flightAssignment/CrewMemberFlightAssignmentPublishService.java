@@ -17,16 +17,12 @@ import acme.entities.flightassignment.Duty;
 import acme.entities.flightassignment.FlightAssignment;
 import acme.realms.AvailabilityStatus;
 import acme.realms.CrewMember;
-import acme.realms.CrewMemberRepository;
 
 @GuiService
 public class CrewMemberFlightAssignmentPublishService extends AbstractGuiService<CrewMember, FlightAssignment> {
 
 	@Autowired
-	private CrewMemberFlightAssignmentRepository	repository;
-
-	@Autowired
-	private CrewMemberRepository					crewMemberRepository;
+	private CrewMemberFlightAssignmentRepository repository;
 
 
 	@Override
@@ -74,8 +70,6 @@ public class CrewMemberFlightAssignmentPublishService extends AbstractGuiService
 
 	@Override
 	public void validate(final FlightAssignment object) {
-		int userId = super.getRequest().getPrincipal().getActiveRealm().getId();
-		CrewMember crewMember = this.crewMemberRepository.findCrewMemberById(userId);
 
 		if (object.getLeg() != null) {
 			boolean isLinkedToPastLeg = object.getLeg().getScheduledDeparture().before(MomentHelper.getCurrentMoment());

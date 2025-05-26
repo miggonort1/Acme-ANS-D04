@@ -9,6 +9,7 @@ import acme.client.components.models.Dataset;
 import acme.client.components.views.SelectChoices;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
+import acme.entities.maintenancerecord.MaintenanceRecord;
 import acme.entities.maintenancerecord.MaintenanceRecordTask;
 import acme.entities.maintenancerecord.Task;
 import acme.realms.technician.Technician;
@@ -29,7 +30,7 @@ public class TechnicianMaintenanceRecordTaskShowService extends AbstractGuiServi
 
 		maintenanceRecordTaskId = super.getRequest().getData("id", int.class);
 		maintenanceRecordTask = this.repository.findOneMaintenanceRecordTaskById(maintenanceRecordTaskId);
-		status = maintenanceRecordTask != null && (!maintenanceRecordTask.getMaintenanceRecord().isDraftMode() || super.getRequest().getPrincipal().hasRealm(maintenanceRecordTask.getMaintenanceRecord().getTechnician()));
+		status = maintenanceRecordTask != null && super.getRequest().getPrincipal().hasRealm(maintenanceRecordTask.getMaintenanceRecord().getTechnician());
 
 		super.getResponse().setAuthorised(status);
 	}
@@ -50,10 +51,18 @@ public class TechnicianMaintenanceRecordTaskShowService extends AbstractGuiServi
 		Dataset dataset;
 		SelectChoices choicesTask;
 		Collection<Task> tasks;
+		int maintenanceRecordTaskId;
+		MaintenanceRecordTask maintenanceRecordTask;
+		MaintenanceRecord maintenanceRecord;
+
+		maintenanceRecordTaskId = super.getRequest().getData("id", int.class);
+		maintenanceRecordTask = this.repository.findOneMaintenanceRecordTaskById(maintenanceRecordTaskId);
+		maintenanceRecord = maintenanceRecordTask.getMaintenanceRecord();
 		tasks = this.repository.findManyTasksByTechnicianId(super.getRequest().getPrincipal().getActiveRealm().getId());
 		choicesTask = SelectChoices.from(tasks, "description", object.getTask());
 		dataset = super.unbindObject(object, "version");
 
+		dataset.put("maintenanceRecord", maintenanceRecord);
 		dataset.put("tasks", choicesTask);
 		dataset.put("draftMode", object.getMaintenanceRecord().isDraftMode());
 

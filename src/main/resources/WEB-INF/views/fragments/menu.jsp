@@ -29,9 +29,11 @@
 		<acme:menu-option code="master.menu.administrator" access="hasRealm('Administrator')">
 			<acme:menu-suboption code="master.menu.administrator.list-user-accounts" action="/administrator/user-account/list"/>
 			<acme:menu-suboption code="master.menu.administrator.list-airports" action="/administrator/airport/list"/>
+			<acme:menu-suboption code="master.menu.technician.all-maintenance-record" action="/administrator/maintenance-record/list"/>
 			<acme:menu-suboption code="master.menu.administrator.list-airlines" action="/administrator/airline/list"/>
 			<acme:menu-suboption code="master.menu.administrator.list-aircraft" action="/administrator/aircraft/list"/>
 			<acme:menu-suboption code="master.menu.administrator.list-bookings" action="/administrator/booking/list" />
+			<acme:menu-suboption code="master.menu.administrator.list-claims" action="/administrator/claim/list" />
 			<acme:menu-separator/>
 			<acme:menu-suboption code="master.menu.administrator.populate-db-initial" action="/administrator/system/populate-initial"/>
 			<acme:menu-suboption code="master.menu.administrator.populate-db-sample" action="/administrator/system/populate-sample"/>			
@@ -55,8 +57,9 @@
 			<acme:menu-suboption code="master.menu.technician.my-maintenance-record" action="/technician/maintenance-record/list-mine"/>
 			<acme:menu-suboption code="master.menu.technician.all-maintenance-record" action="/technician/maintenance-record/list-all"/>
 			<acme:menu-separator/>
-			<acme:menu-suboption code="master.menu.technician.my-tasks" action="/technician/task/list-mine"/>
+			<acme:menu-suboption code="master.menu.technician.all-tasks" action="/technician/task/list-all"/>
 			<acme:menu-separator/>	
+			<acme:menu-suboption code="master.menu.technician.dashboard" action="/technician/technician-dashboard/show"/>
 		</acme:menu-option>
 		
 		<acme:menu-option code="master.menu.customer" access="hasRealm('Customer')">
@@ -67,11 +70,7 @@
     
 		<acme:menu-option code="master.menu.agent" access="hasRealm('Agent')">
 			<acme:menu-suboption code="master.menu.agent.my-claim" action="/agent/claim/list-mine"/>
-		</acme:menu-option>
-		<acme:menu-option code="master.menu.user-account" access="isAuthenticated">
-			<acme:menu-suboption code="master.menu.technician.all-maintenance-record" action="/technician/maintenance-record/list-all"/>
-			
-			<acme:menu-separator/>
+			<acme:menu-suboption code="master.menu.agent.dashboard" action="/agent/agent-dashboard/show"/>
 		</acme:menu-option>
 		
 		<acme:menu-option code="master.menu.crew-member" access="hasRealm('CrewMember')">

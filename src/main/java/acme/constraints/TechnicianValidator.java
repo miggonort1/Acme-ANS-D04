@@ -50,7 +50,7 @@ public class TechnicianValidator extends AbstractValidator<ValidTechnician, Tech
 
 				licenseNumberValid = licenseNumber != null && Pattern.matches("^[A-Z]{2,3}\\d{6}$", licenseNumber);
 
-				super.state(context, licenseNumberValid, "licenseNumber", "{acme.validation.technician.license-number.message}");
+				super.state(context, licenseNumberValid, "licenseNumber", "acme.validation.technician.license-number.message");
 			}
 		}
 

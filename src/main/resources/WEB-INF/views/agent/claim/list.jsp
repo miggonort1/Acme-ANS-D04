@@ -17,10 +17,11 @@
 
 <acme:list>
 	<!-- De momento el campo descripcion queda comentado por el bug de la aplicacion con el width -->
-	<%-- <acme:list-column code="agent.claim.list.label.description" path="description" width="25%"/> --%>
-	<acme:list-column code="agent.claim.list.label.registrationMoment" path="registrationMoment" width="25%"/>
-	<acme:list-column code="agent.claim.list.label.type" path="type" width="25%"/>
-	<acme:list-column code="agent.claim.list.label.status" path="status" width="25%"/>
+	<acme:list-column code="agent.claim.list.label.description" path="description" width="30%"/>
+	<acme:list-column code="agent.claim.list.label.registrationMoment" path="registrationMoment" width="20%"/>
+	<acme:list-column code="agent.claim.list.label.type" path="type" width="20%"/>
+	<acme:list-column code="agent.claim.list.label.status" path="status" width="20%"/>
+	<acme:list-column code="agent.claim.list.label.draftMode" path="draftMode" width="10%"/>
 </acme:list>
 
 	<jstl:if test="${_command == 'list-mine'}">

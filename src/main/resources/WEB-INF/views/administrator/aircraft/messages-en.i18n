@@ -24,3 +24,5 @@ administrator.aircraft.list.label.status = Status:
 
 # List Buttons
 administrator.aircraft.list.button.create = Create
+administrator.aircraft.list.button.update = Update
+administrator.aircraft.form.button.disable = Disable

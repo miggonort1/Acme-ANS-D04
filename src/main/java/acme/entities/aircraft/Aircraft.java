@@ -39,12 +39,12 @@ public class Aircraft extends AbstractEntity {
 	private String				registrationNumber;
 
 	@Mandatory
-	@ValidNumber(min = 0, max = 255, message = "255 pasajeros como máximo")
+	@ValidNumber(min = 0, max = 255)
 	@Automapped
 	private int					capacity;
 
 	@Mandatory
-	@ValidNumber(min = 2000.0, max = 50000.0, message = "El peso debe estar entre los 2K Kg y los 50K Kg")
+	@ValidNumber(min = 2000.0, max = 50000.0)
 	@Automapped
 	private Double				cargoWeight;
 
@@ -63,6 +63,6 @@ public class Aircraft extends AbstractEntity {
 	@Mandatory
 	@Valid
 	@ManyToOne(optional = false)
-	private Airline				airline; //muchos aviones pertenecen a una compañia
+	private Airline				airline;
 
 }

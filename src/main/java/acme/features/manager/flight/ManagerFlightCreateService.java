@@ -40,15 +40,19 @@ public class ManagerFlightCreateService extends AbstractGuiService<Manager, Flig
 
 	@Override
 	public void bind(final Flight flight) {
+		assert flight != null;
 		super.bindObject(flight, "tag", "selfTransfer", "cost", "description");
 	}
 
 	@Override
 	public void validate(final Flight flight) {
+		assert flight != null;
+
 	}
 
 	@Override
 	public void perform(final Flight flight) {
+		assert flight != null;
 		this.repository.save(flight);
 	}
 

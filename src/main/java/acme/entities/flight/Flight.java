@@ -5,7 +5,9 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.Index;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.validation.Valid;
 
@@ -17,7 +19,6 @@ import acme.client.components.validation.Optional;
 import acme.client.components.validation.ValidMoney;
 import acme.client.components.validation.ValidString;
 import acme.client.helpers.SpringHelper;
-import acme.constraints.ValidShortText;
 import acme.realms.manager.Manager;
 import lombok.Getter;
 import lombok.Setter;
@@ -25,6 +26,9 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
+@Table(indexes = {
+	@Index(columnList = "draftMode"), @Index(columnList = "manager_id")
+})
 public class Flight extends AbstractEntity {
 
 	// Serialisation identifier
@@ -32,7 +36,7 @@ public class Flight extends AbstractEntity {
 
 	// Attributes
 	@Mandatory
-	@ValidShortText
+	@ValidString(min = 1, max = 50)
 	@Automapped
 	private String				tag;
 

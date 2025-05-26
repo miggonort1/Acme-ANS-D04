@@ -32,10 +32,10 @@
 			<acme:submit  code="agent.claim.form.button.create" action="/agent/claim/create"/>
 		</jstl:when>
 			<jstl:when test="${acme:anyOf(_command, 'show|update|delete|publish') && draftMode==true }">
-			<acme:submit  code="agent.claim.form.button.update" action="/agent/claim/update?masterId=${masterId}"/>
-			<acme:submit  code="agent.claim.form.button.publish" action="/agent/claim/publish"/>
-			<acme:submit  code="agent.claim.form.button.delete" action="/agent/claim/delete"/>
-			<acme:button code="agent.trackingLog.list.title" action="/agent/tracking-log/list-mine?masterId=${id}"/>
+			<acme:submit  code="agent.claim.form.button.update" action="/agent/claim/update?id=${id}"/>
+			<acme:submit  code="agent.claim.form.button.publish" action="/agent/claim/publish?id=${id}"/>
+			<acme:submit  code="agent.claim.form.button.delete" action="/agent/claim/delete?id=${id}"/>
+			<acme:button code="agent.trackingLog.list.title" action="/agent/tracking-log/list-mine?id=${id}"/>
 		</jstl:when>	
 	</jstl:choose>
 </acme:form>
