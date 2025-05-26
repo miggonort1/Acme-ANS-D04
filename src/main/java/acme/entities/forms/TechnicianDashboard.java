@@ -12,12 +12,9 @@
 
 package acme.entities.forms;
 
-import java.util.List;
 import java.util.Map;
 
 import acme.client.components.basis.AbstractForm;
-import acme.entities.aircraft.Aircraft;
-import acme.entities.maintenancerecord.MaintenanceRecord;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -35,9 +32,9 @@ public class TechnicianDashboard extends AbstractForm {
 	Integer						totalMaintenanceInProgress;
 	Integer						totalMaintenanceCompleted;
 
-	MaintenanceRecord			maintentanceRecordWithNearestDueDate;
+	String						maintentanceRecordWithNearestDueDate;
 
-	List<Aircraft>				aircraftHigherNumberOfTask;
+	String						aircraftHigherNumberOfTask;
 
 	Map<String, Double>			averageNumberOfEstimatedCost;
 	Map<String, Double>			minimumNumberOfEstimatedCost;

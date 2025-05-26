@@ -8,19 +8,23 @@
 # purposes.  The copyright owner does not offer any warranties or representations, nor do
 # they accept any liabilities with respect to them.
 
-technician.task.list.label.priority=Prioridad
-technician.task.list.title= Tareas
-technician.task.list.button.create=Crear
-technician.task.form.label.type=Tipo
-technician.task.form.title=Tarea
-technician.task.form.label.description=Descripción
-technician.task.list.label.description=Descripción
-technician.task.form.label.priority=Prioridad
-technician.task.form.label.estimatedDuration=Duración estimada
-technician.task.form.button.update=Actualizar
-technician.task.form.button.create=Crear
-technician.task.form.button.delete=Borrar
-technician.task.form.button.publish=Publicar
+
+technician.technician-dashboard.form.title=  Dashboard Técnico
+
+technician.dashboard.form.title.general-indicators= Dashboard Técnico
+
+technician.dashboard.form.label.totalPending= Registros de maintenimiento pendiente
+technician.dashboard.form.label.totalInProgress=Registros de maintenimiento en progreso
+technician.dashboard.form.label.totalCompleted=Registros de maintenimiento completado
+technician.dashboard.form.label.mr= Registros de maintenimiento con la fecha proxima de inspeccion mas cercana
+technician.dashboard.form.label.higernumber= Top 5 aeronaves con mas tareas
+technician.dashboard.form.label.avg= Media del coste estimado
+technician.dashboard.form.label.min= Minimo del coste estimado
+technician.dashboard.form.label.max= Maximo del coste estimado
+technician.dashboard.form.label.dev= Deviacion del coste estimado
+technician.dashboard.form.label.Navg= Media de la duracion estimada
+technician.dashboard.form.label.Nmin= Minimo de la duracion estimada
+technician.dashboard.form.label.Nmax= Maximo de la duracion estimada
+technician.dashboard.form.label.Ndev= Deviacion de la duracion estimada
 
 
-acme.validation.range= Fuera del rango
