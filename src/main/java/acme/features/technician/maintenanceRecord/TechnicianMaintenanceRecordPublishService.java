@@ -27,21 +27,35 @@ public class TechnicianMaintenanceRecordPublishService extends AbstractGuiServic
 
 	@Override
 	public void authorise() {
-		boolean status;
-		int maintenanceRecordId;
-		MaintenanceRecord maintenanceRecord;
+		boolean status = true;
 
-		maintenanceRecordId = super.getRequest().getData("id", int.class);
-		maintenanceRecord = this.repository.findOneMaintenanceRecordById(maintenanceRecordId);
-		status = maintenanceRecord != null && maintenanceRecord.isDraftMode() && super.getRequest().getPrincipal().hasRealm(maintenanceRecord.getTechnician());
-		if (super.getRequest().hasData("id")) {
-			Integer AircraftId = super.getRequest().getData("aircraft", Integer.class);
-			if (AircraftId == null || AircraftId != 0) {
-				Aircraft aircraft = this.repository.findOneAircraftById(AircraftId);
-				status = aircraft != null && aircraft.getStatus() == AircraftStatus.UNDER_MAINTENANCE;
+		// Obtener ID del registro de mantenimiento
+		int maintenanceRecordId = super.getRequest().getData("id", int.class);
+		MaintenanceRecord maintenanceRecord = this.repository.findOneMaintenanceRecordById(maintenanceRecordId);
+
+		// Validar existencia, modo borrador y que el técnico coincida con el usuario actual
+		if (maintenanceRecord == null || !maintenanceRecord.isDraftMode() || !super.getRequest().getPrincipal().hasRealm(maintenanceRecord.getTechnician()))
+			status = false;
+
+		// Validar estado del avión si se proporciona su ID
+		if (status && super.getRequest().hasData("aircraft")) {
+			Integer aircraftId = super.getRequest().getData("aircraft", Integer.class);
+			if (aircraftId != null && aircraftId != 0) {
+				Aircraft aircraft = this.repository.findOneAircraftById(aircraftId);
+				if (aircraft == null || aircraft.getStatus() != AircraftStatus.UNDER_MAINTENANCE)
+					status = false;
 			}
 		}
-		super.getResponse().setAuthorised(status);
+
+		// Validar que la fecha 'moment' no haya cambiado
+		if (status && super.getRequest().hasData("moment")) {
+			Date requestMoment = super.getRequest().getData("moment", Date.class);
+			if (requestMoment != null && maintenanceRecord.getMoment() != null) {
+				boolean unchanged = maintenanceRecord.getMoment().getTime() == requestMoment.getTime();
+				status = status && unchanged;
+			}
+		}
+
 	}
 
 	@Override
