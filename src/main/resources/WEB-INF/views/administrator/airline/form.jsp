@@ -18,10 +18,10 @@
 <acme:form>
 	<acme:input-textbox code="administrator.airline.form.label.name" path="name"/>
 	<acme:input-textbox code="administrator.airline.form.label.iataCode" path="iataCode"/>
-	<acme:input-textbox code="administrator.airline.form.label.website" path="website"/>
-	<acme:input-textbox code="administrator.airline.form.label.foundationMoment" path="foundationMoment"/>
-	<acme:input-textbox code="administrator.airline.form.label.type" path="type"/>
-	<acme:input-textbox code="administrator.airline.form.label.emailAdress" path="emailAdress"/>
+	<acme:input-url code="administrator.airline.form.label.website" path="website"/>
+	<acme:input-moment code="administrator.airline.form.label.foundationMoment" path="foundationMoment"/>
+	<acme:input-select code="administrator.airline.form.label.type" path="type" choices="${types}" />
+	<acme:input-email code="administrator.airline.form.label.emailAdress" path="emailAdress"/>
 	<acme:input-textbox code="administrator.airline.form.label.phoneNumber" path="phoneNumber"/>
 	
 	

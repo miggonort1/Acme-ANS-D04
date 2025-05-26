@@ -1,7 +1,9 @@
 # validation-en.i18n
 
 
-administrator.airline.list.title = List of Aerolines
+
+administrator.airline.list.title = List of Airlines
+administrator.airline.form.title = List of Airlines
 
 administrator.airline.list.label.name = Name
 administrator.airline.list.label.iataCode = IataCode
