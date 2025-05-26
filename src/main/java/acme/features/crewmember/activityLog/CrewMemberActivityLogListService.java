@@ -28,7 +28,7 @@ public class CrewMemberActivityLogListService extends AbstractGuiService<CrewMem
 	public void authorise() {
 		int assignmentId = super.getRequest().getData("assignmentId", int.class);
 		FlightAssignment flightAssignment = this.flightAssignmentRepository.findFlightAssignmentById(assignmentId);
-		boolean status = super.getRequest().getPrincipal().hasRealm(flightAssignment.getCrewMember()) && flightAssignment != null;
+		boolean status = flightAssignment != null && super.getRequest().getPrincipal().hasRealm(flightAssignment.getCrewMember());
 		super.getResponse().setAuthorised(status);
 	}
 
