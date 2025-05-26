@@ -1,7 +1,7 @@
 # validation-es.i18n
 
-
-administrator.airline.list.title = Lista de aerolineas
+administrator.airline.list.title= Lista de aerolineas
+administrator.airline.form.title = Lista de aerolineas
 
 administrator.airline.list.label.name = Nombre
 administrator.airline.list.label.iataCode = Codigo IATA
