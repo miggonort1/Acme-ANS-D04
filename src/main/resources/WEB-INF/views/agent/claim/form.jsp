@@ -17,7 +17,9 @@
 
 <acme:form>
 	<acme:input-select code="agent.claim.form.label.leg" path="leg" choices="${legs}" />
-	<acme:input-moment code="agent.claim.form.label.registrationMoment" path="registrationMoment" readonly="true"/>
+	<jstl:if test="${_command != 'create'}">
+		<acme:input-moment code="agent.claim.form.label.registrationMoment" path="registrationMoment" readonly="true"/>
+	</jstl:if>
 	<acme:input-email code="agent.claim.form.label.passengerEmail" path="passengerEmail"/>
 	<acme:input-textbox code="agent.claim.form.label.description" path="description"/>
 	<acme:input-select code="agent.claim.form.label.type" path="type" choices="${type}" />
@@ -35,7 +37,7 @@
 			<acme:submit  code="agent.claim.form.button.update" action="/agent/claim/update?id=${id}"/>
 			<acme:submit  code="agent.claim.form.button.publish" action="/agent/claim/publish?id=${id}"/>
 			<acme:submit  code="agent.claim.form.button.delete" action="/agent/claim/delete?id=${id}"/>
-			<acme:button code="agent.trackingLog.list.title" action="/agent/tracking-log/list-mine?id=${id}"/>
+			<acme:button code="agent.trackingLog.list.title" action="/agent/tracking-log/list-mine?masterId=${id}"/>
 		</jstl:when>	
 	</jstl:choose>
 </acme:form>

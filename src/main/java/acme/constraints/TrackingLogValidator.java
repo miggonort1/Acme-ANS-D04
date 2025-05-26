@@ -37,7 +37,7 @@ public class TrackingLogValidator extends AbstractValidator<ValidTrackingLog, Tr
 			super.state(context, false, "TrackingLog", "agent.trackingLog.validator.error.null");
 
 		else if (!trackingLog.isDraftMode())
-			super.state(context, !trackingLog.getClaim().isDraftMode(), "*", "agent.trackingLog.validator.error.claim-not-published");
+			super.state(context, !trackingLog.getClaim().isDraftMode(), "TrackingLog", "agent.trackingLog.validator.error.claim-not-published");
 
 		else if (trackingLog.getStatus() != null && trackingLog.getResolution() != null && trackingLog.getClaim() != null) {
 

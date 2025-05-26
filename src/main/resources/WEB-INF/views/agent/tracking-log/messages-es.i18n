@@ -37,3 +37,5 @@ agent.trackingLog.form.error.badPercentage=El porcentaje de resolución debe ser
 agent.trackingLog.validator.error.null=No hay registros de seguimiento para validar
 agent.trackingLog.validator.error.claim-not-published=El claim debe estar publicado para poder publicar el tracking log
 agent.trackingLog.validator.error.nonIncreasingPercentage=Los porcentajes de resolución deben ser estrictamente crecientes respecto al momento de creación
+agent.trackingLog.form.error.missingResolutionPercentage=El porcentaje de resolución no puede estar vacío.
+

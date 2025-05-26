@@ -3,6 +3,7 @@ package acme.features.agent.trackingLog;
 
 import java.util.Collection;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -33,6 +34,17 @@ public class AgentTrackingLogPublishService extends AbstractGuiService<Agent, Tr
 		trackingLog = this.repository.findTrackingLogById(trackingLogId);
 		status = trackingLog != null && trackingLog.isDraftMode() && super.getRequest().getPrincipal().hasRealm(trackingLog.getClaim().getAgent());
 
+		if (status && super.getRequest().hasData("lastUpdateMoment")) {
+			Date moment = super.getRequest().getData("lastUpdateMoment", Date.class);
+
+			if (moment == null || trackingLog.getLastUpdateMoment() == null)
+				status = false;
+			else {
+				boolean unchanged = trackingLog.getLastUpdateMoment().getTime() == moment.getTime();
+				status = status && unchanged;
+			}
+		}
+
 		super.getResponse().setAuthorised(status);
 	}
 
@@ -59,7 +71,7 @@ public class AgentTrackingLogPublishService extends AbstractGuiService<Agent, Tr
 			Collection<TrackingLog> trackingLogs = this.repository.findTrackingLogsByClaimId(object.getClaim().getId());
 			List<TrackingLog> completedLogs = this.repository.findCompletedTrackingLogsByClaimId(object.getClaim().getId()).stream().sorted(Comparator.comparing(TrackingLog::getCreationMoment)).toList();
 
-			super.state(completedLogs.size() <= 2, "*", "agent.trackingLog.form.error.maxcompletedGlobal");
+			super.state(!object.getClaim().isDraftMode(), "*", "agent.trackingLog.validator.error.claim-not-published");
 
 			Optional<TrackingLog> recentTrackingLogOpt = trackingLogs.stream().filter(t -> t.getId() != object.getId()).sorted(Comparator.comparing(TrackingLog::getCreationMoment).reversed()).findFirst();
 
@@ -68,8 +80,9 @@ public class AgentTrackingLogPublishService extends AbstractGuiService<Agent, Tr
 				Double previous = recentTrackingLog.getResolutionPercentage();
 				Double current = object.getResolutionPercentage();
 
+				boolean previousIsNull = previous == null;
 				boolean bothCompleted = previous != null && previous == 100.0 && current == 100.0;
-				boolean validIncrement = previous == null || previous < current;
+				boolean validIncrement = previousIsNull || previous < current;
 
 				if (bothCompleted)
 					super.state(completedLogs.size() <= 2, "resolutionPercentage", "agent.trackingLog.form.error.maxcompleted");
@@ -77,11 +90,9 @@ public class AgentTrackingLogPublishService extends AbstractGuiService<Agent, Tr
 					super.state(validIncrement, "resolutionPercentage", "agent.trackingLog.form.error.badPercentage");
 			}
 
-			if (completedLogs.size() == 2 && object.getResolutionPercentage() == 100.0) {
+			if (completedLogs.size() == 2 && object.getResolutionPercentage() != null && object.getResolutionPercentage() == 100.0) {
 				TrackingLog first = completedLogs.get(0);
 				TrackingLog second = completedLogs.get(1);
-
-				super.state(!first.isDraftMode(), "resolutionPercentage", "agent.trackingLog.form.error.previousDraft");
 
 				boolean sameStatus = first.getStatus().equals(second.getStatus());
 				super.state(sameStatus, "status", "agent.trackingLog.form.error.mismatchedStatus");
@@ -94,7 +105,6 @@ public class AgentTrackingLogPublishService extends AbstractGuiService<Agent, Tr
 		assert object != null;
 		object.setDraftMode(false);
 		this.repository.save(object);
-		object.getClaim().getStatus();
 	}
 
 	@Override
