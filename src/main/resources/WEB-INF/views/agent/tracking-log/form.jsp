@@ -17,7 +17,9 @@
 
 <acme:form>
 	<acme:input-textbox code="agent.trackingLog.form.label.step" path="step" />
-	<acme:input-moment code="agent.trackingLog.form.label.lastUpdateMoment" path="lastUpdateMoment" readonly="true"/>
+	<jstl:if test="${_command != 'create'}">
+		<acme:input-moment code="agent.trackingLog.form.label.lastUpdateMoment" path="lastUpdateMoment" readonly="true"/>
+	</jstl:if>
 	<acme:input-double code="agent.trackingLog.form.label.resolutionPercentage" path="resolutionPercentage"/>
 	<acme:input-select code="agent.trackingLog.form.label.status" path="status" choices="${status}" />
 	<acme:input-textarea code="agent.trackingLog.form.label.resolution" path="resolution"/>

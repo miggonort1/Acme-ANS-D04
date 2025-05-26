@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
 import acme.client.components.views.SelectChoices;
-import acme.client.helpers.PrincipalHelper;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.claim.Claim;
@@ -37,7 +36,10 @@ public class AgentClaimPublishService extends AbstractGuiService<Agent, Claim> {
 
 		if (status && super.getRequest().hasData("registrationMoment")) {
 			Date registration = super.getRequest().getData("registrationMoment", Date.class);
-			if (registration != null && claim.getRegistrationMoment() != null) {
+
+			if (registration == null || claim.getRegistrationMoment() == null)
+				status = false;
+			else {
 				boolean unchanged = claim.getRegistrationMoment().getTime() == registration.getTime();
 				status = status && unchanged;
 			}
@@ -53,7 +55,7 @@ public class AgentClaimPublishService extends AbstractGuiService<Agent, Claim> {
 
 		if (legId != null && legId != 0) {
 			Leg leg = this.repository.findLegById(legId);
-			status = leg != null && !leg.isDraftMode() && leg.getScheduledDeparture().before(claim.getRegistrationMoment());
+			status = status && leg != null && !leg.isDraftMode() && leg.getScheduledDeparture().before(claim.getRegistrationMoment());
 		}
 
 		super.getResponse().setAuthorised(status);
@@ -73,13 +75,6 @@ public class AgentClaimPublishService extends AbstractGuiService<Agent, Claim> {
 	@Override
 	public void bind(final Claim object) {
 		assert object != null;
-		int legId;
-		Leg leg;
-
-		legId = super.getRequest().getData("leg", int.class);
-		leg = this.repository.findLegById(legId);
-
-		object.setLeg(leg);
 		super.bindObject(object, "description", "passengerEmail", "type", "leg");
 	}
 
@@ -118,11 +113,5 @@ public class AgentClaimPublishService extends AbstractGuiService<Agent, Claim> {
 		dataset.put("leg", choicesLegs.getSelected().getKey());
 
 		super.getResponse().addData(dataset);
-	}
-
-	@Override
-	public void onSuccess() {
-		if (super.getRequest().getMethod().equals("POST"))
-			PrincipalHelper.handleUpdate();
 	}
 }

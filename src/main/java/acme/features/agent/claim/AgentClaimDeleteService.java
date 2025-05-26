@@ -53,13 +53,6 @@ public class AgentClaimDeleteService extends AbstractGuiService<Agent, Claim> {
 	@Override
 	public void bind(final Claim object) {
 		assert object != null;
-		int legId;
-		Leg leg;
-
-		legId = super.getRequest().getData("leg", int.class);
-		leg = this.repository.findLegById(legId);
-
-		object.setLeg(leg);
 		super.bindObject(object, "description", "passengerEmail", "type", "leg");
 	}
 
@@ -88,17 +81,18 @@ public class AgentClaimDeleteService extends AbstractGuiService<Agent, Claim> {
 
 		Collection<Leg> legs;
 		legs = this.repository.findManyLegsPublished();
+		Collection<Leg> validLegs = legs.stream().filter(leg -> leg.getScheduledDeparture().before(object.getRegistrationMoment())).toList();
 
 		choicesType = SelectChoices.from(Type.class, object.getType());
 		choicesStatus = object.getStatus();
-		choicesLegs = SelectChoices.from(legs, "flightNumber", object.getLeg());
+		choicesLegs = SelectChoices.from(validLegs, "flightNumber", object.getLeg());
 
 		dataset = super.unbindObject(object, "registrationMoment", "description", "passengerEmail", "type", "draftMode");
 		dataset.put("type", choicesType);
 		dataset.put("status", choicesStatus);
+		dataset.put("legFlightNumber", object.getLeg().getFlightNumber());
 		dataset.put("legs", choicesLegs);
 		dataset.put("leg", choicesLegs.getSelected().getKey());
-
 		super.getResponse().addData(dataset);
 	}
 }
