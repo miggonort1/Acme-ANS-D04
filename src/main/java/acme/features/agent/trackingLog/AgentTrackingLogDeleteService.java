@@ -58,13 +58,13 @@ public class AgentTrackingLogDeleteService extends AbstractGuiService<Agent, Tra
 	@Override
 	public void unbind(final TrackingLog object) {
 		assert object != null;
-
 		Dataset dataset;
 		SelectChoices choicesStatus;
 
 		choicesStatus = SelectChoices.from(TrackingLogStatus.class, object.getStatus());
 
 		dataset = super.unbindObject(object, "lastUpdateMoment", "step", "resolutionPercentage", "status", "resolution", "draftMode");
+
 		dataset.put("status", choicesStatus);
 
 		super.getResponse().addData(dataset);

@@ -36,7 +36,10 @@ public class AgentClaimUpdateService extends AbstractGuiService<Agent, Claim> {
 
 		if (status && super.getRequest().hasData("registrationMoment")) {
 			Date registration = super.getRequest().getData("registrationMoment", Date.class);
-			if (registration != null && claim.getRegistrationMoment() != null) {
+
+			if (registration == null || claim.getRegistrationMoment() == null)
+				status = false;
+			else {
 				boolean unchanged = claim.getRegistrationMoment().getTime() == registration.getTime();
 				status = status && unchanged;
 			}
@@ -52,7 +55,7 @@ public class AgentClaimUpdateService extends AbstractGuiService<Agent, Claim> {
 
 		if (legId != null && legId != 0) {
 			Leg leg = this.repository.findLegById(legId);
-			status = leg != null && !leg.isDraftMode() && leg.getScheduledDeparture().before(claim.getRegistrationMoment());
+			status = status && leg != null && !leg.isDraftMode() && leg.getScheduledDeparture().before(claim.getRegistrationMoment());
 		}
 
 		super.getResponse().setAuthorised(status);
