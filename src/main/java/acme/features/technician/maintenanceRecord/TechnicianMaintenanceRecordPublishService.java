@@ -48,14 +48,15 @@ public class TechnicianMaintenanceRecordPublishService extends AbstractGuiServic
 		}
 
 		// Validar que la fecha 'moment' no haya cambiado
-		if (status && super.getRequest().hasData("moment")) {
-			Date requestMoment = super.getRequest().getData("moment", Date.class);
-			if (requestMoment != null && maintenanceRecord.getMoment() != null) {
-				boolean unchanged = maintenanceRecord.getMoment().getTime() == requestMoment.getTime();
-				status = status && unchanged;
-			}
-		}
+		//		if (status && super.getRequest().hasData("moment")) {
+		//			Date requestMoment = super.getRequest().getData("moment", Date.class);
+		//			if (requestMoment != null && maintenanceRecord.getMoment() != null) {
+		//				boolean unchanged = maintenanceRecord.getMoment().getTime() == requestMoment.getTime();
+		//				status = status && unchanged;
+		//			}
+		//		}
 
+		super.getResponse().setAuthorised(status);
 	}
 
 	@Override

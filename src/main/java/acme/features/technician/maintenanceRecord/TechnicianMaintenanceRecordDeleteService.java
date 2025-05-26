@@ -66,8 +66,4 @@ public class TechnicianMaintenanceRecordDeleteService extends AbstractGuiService
 		this.repository.delete(object);
 	}
 
-	@Override
-	public void unbind(final MaintenanceRecord object) {
-	}
-
 }

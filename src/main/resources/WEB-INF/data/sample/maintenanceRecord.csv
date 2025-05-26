@@ -13,8 +13,8 @@ maintenance-record-07,2012/07/02 00:00,COMPLETED,2025/03/05 00:00,EUR 500000.00,
 # inspection-due-date - standard variations
 maintenance-record-08,2000/01/01 00:00,PENDING,2025/01/01 00:01,EUR 500000.00,"Lorem ipsum dolor sit amet consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",TRUE,aircraft-30,technician-01
 maintenance-record-08.a,2000/01/01 00:00,PENDING,2025/01/01 00:02,EUR 500000.00,"Lorem ipsum dolor sit amet consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",TRUE,aircraft-30,technician-01
-maintenance-record-09,2012/07/02 00:00,PENDING,2200/12/31 23:58,EUR 500000.00,"Lorem ipsum dolor sit amet consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",TRUE,aircraft-30,technician-01
-maintenance-record-10,2012/07/02 00:00,PENDING,2200/12/31 23:59,EUR 500000.00,"Lorem ipsum dolor sit amet consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",TRUE,aircraft-30,technician-01
+maintenance-record-09,2012/07/02 00:00,PENDING,2200/12/31 23:59,EUR 500000.00,"Lorem ipsum dolor sit amet consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",TRUE,aircraft-30,technician-01
+maintenance-record-10,2012/07/02 00:00,PENDING,2201/01/01 00:00,EUR 500000.00,"Lorem ipsum dolor sit amet consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",TRUE,aircraft-30,technician-01
 # estimated-cost - standard variations
 maintenance-record-11,2012/07/02 00:00,PENDING,2025/03/05 00:00,EUR 0.00,"Lorem ipsum dolor sit amet consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",TRUE,aircraft-30,technician-01
 maintenance-record-12,2012/07/02 00:00,PENDING,2025/03/05 00:00,EUR 0.01,"Lorem ipsum dolor sit amet consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",TRUE,aircraft-30,technician-01
