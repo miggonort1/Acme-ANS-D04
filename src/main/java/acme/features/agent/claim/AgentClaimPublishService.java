@@ -30,7 +30,6 @@ public class AgentClaimPublishService extends AbstractGuiService<Agent, Claim> {
 	public void authorise() {
 		boolean status;
 		int claimId;
-		Date currentMoment = MomentHelper.getCurrentMoment();
 		Claim claim;
 
 		claimId = super.getRequest().getData("id", int.class);
@@ -41,7 +40,7 @@ public class AgentClaimPublishService extends AbstractGuiService<Agent, Claim> {
 			Integer legId = super.getRequest().getData("leg", Integer.class);
 			if (legId == null || legId != 0) {
 				Leg leg = this.repository.findLegById(legId);
-				status = status && leg != null && !leg.isDraftMode() && leg.getScheduledDeparture().before(currentMoment);
+				status = status && leg != null && !leg.isDraftMode() && leg.getScheduledDeparture().before(claim.getRegistrationMoment());
 			}
 		}
 		super.getResponse().setAuthorised(status);

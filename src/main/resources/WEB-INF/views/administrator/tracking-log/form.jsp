@@ -15,18 +15,10 @@
 <%@taglib prefix="jstl" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="acme" uri="http://acme-framework.org/"%>
 
-<acme:form> 
-
-<acme:input-select code="technician.maintenance-record-task.form.label.task" path="task"  choices="${tasks}"/>
-
-<jstl:choose>
-		<jstl:when test="${acme:anyOf(_command, 'show|delete') && draftMode == true}">
-			<acme:submit code="technician.maintenance-record.form.button.delete" action="/technician/maintenance-record-task/delete"/>
-			</jstl:when>
-
-		<jstl:when test="${_command == 'create'}">
-			<acme:submit code="technician.maintenance-record-task.form.button.create" action="/technician/maintenance-record-task/create?masterId=${masterId}"/>
-		</jstl:when>		
-	</jstl:choose>
-
+<acme:form>
+	<acme:input-textbox code="administrator.trackingLog.form.label.step" path="step" />
+	<acme:input-moment code="administrator.trackingLog.form.label.lastUpdateMoment" path="lastUpdateMoment" readonly="true"/>
+	<acme:input-double code="administrator.trackingLog.form.label.resolutionPercentage" path="resolutionPercentage"/>
+	<acme:input-select code="administrator.trackingLog.form.label.status" path="status" choices="${status}" />
+	<acme:input-textarea code="administrator.trackingLog.form.label.resolution" path="resolution"/>
 </acme:form>

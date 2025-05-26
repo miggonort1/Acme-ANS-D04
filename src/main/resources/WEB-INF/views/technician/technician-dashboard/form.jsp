@@ -30,7 +30,7 @@
 	</tr>
 	<tr>
 		<th scope="row">
-			<acme:print code="administrator.dashboard.form.label.totalInProgress"/>
+			<acme:print code="technician.dashboard.form.label.totalInProgress"/>
 		</th>
 		<td>
 			<acme:print value="${totalMaintenanceInProgress}"/>
@@ -38,10 +38,107 @@
 	</tr>
 	<tr>
 		<th scope="row">
-			<acme:print code="administrator.dashboard.form.label.totalCompleted"/>
+			<acme:print code="technician.dashboard.form.label.totalCompleted"/>
 		</th>
 		<td>
 			<acme:print value="${totalMaintenanceCompleted}"/>
+		</td>
+	</tr>	
+	<tr>
+		<th scope="row">
+			<acme:print code="technician.dashboard.form.label.mr"/>
+		</th>
+		<td>
+			<acme:print value="${maintentanceRecordWithNearestDueDate}"/>
+		</td>
+	</tr>	
+	<tr>
+		<th scope="row">
+			<acme:print code="technician.dashboard.form.label.higernumber"/>
+		</th>
+		<td>
+			<acme:print value="${aircraftHigherNumberOfTask}"/>
+		</td>
+	</tr>
+	<tr>
+		<th scope="row">
+			<acme:print code="technician.dashboard.form.label.avg"/>
+		</th>
+		<td>
+			<jstl:forEach var="entry" items="${averageNumberOfEstimatedCost}">
+                        <li><acme:print value="${entry.key}"/>: <acme:print value="${entry.value}"/></li>
+                    </jstl:forEach>
+		</td>
+	</tr>
+	<tr>
+		<th scope="row">
+		
+			<acme:print code="technician.dashboard.form.label.min"/>
+		</th>
+		<td>
+			<jstl:forEach var="entry" items="${minimumNumberOfEstimatedCost}">
+                        <li><acme:print value="${entry.key}"/>: <acme:print value="${entry.value}"/></li>
+                    </jstl:forEach>
+		</td>
+	</tr>
+	<tr>
+		<th scope="row">
+			<acme:print code="technician.dashboard.form.label.max"/>
+		</th>
+		<td>
+			<jstl:forEach var="entry" items="${maximumNumberOfEstimatedCost}">
+                        <li><acme:print value="${entry.key}"/>: <acme:print value="${entry.value}"/></li>
+                    </jstl:forEach>
+		</td>
+	</tr>
+	<tr>
+		<th scope="row">
+			<acme:print code="technician.dashboard.form.label.dev"/>
+		</th>
+		<td>
+			<jstl:forEach var="entry" items="${deviationNumberOfEstimatedCost}">
+                        <li><acme:print value="${entry.key}"/>: <acme:print value="${entry.value}"/></li>
+                    </jstl:forEach>
+		</td>
+	</tr>
+	<tr>
+		<th scope="row">
+			<acme:print code="technician.dashboard.form.label.avg"/>
+		</th>
+		<td>
+		
+			<acme:print value="${averageNumberOfEstimatedDuration}"/>
+			
+		</td>
+	</tr>
+	<tr>
+		<th scope="row">
+			<acme:print code="technician.dashboard.form.label.min"/>
+		</th>
+		<td>
+		
+			<acme:print value="${minimumNumberOfEstimatedDuration}"/>
+			
+		</td>
+	</tr>
+	<tr>
+		<th scope="row">
+			<acme:print code="technician.dashboard.form.label.max"/>
+		</th>
+		<td>
+		
+			<acme:print value="${maximumNumberOfEstimatedDuration}"/>
+			
+		</td>
+	</tr>
+	<tr>
+		<th scope="row">
+			<acme:print code="technician.dashboard.form.label.dev"/>
+		</th>
+		<td>
+		
+			<acme:print value="${deviationNumberOfEstimatedDuration}"/>
+			
 		</td>
 	</tr>	
 </table>

@@ -5,7 +5,9 @@ import java.util.Collection;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.Index;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
@@ -29,6 +31,9 @@ import lombok.Setter;
 @Getter
 @Setter
 @ValidClaim
+@Table(indexes = {
+	@Index(columnList = "draftMode")
+})
 public class Claim extends AbstractEntity {
 
 	// Serialisation version --------------------------------------------------
@@ -66,7 +71,7 @@ public class Claim extends AbstractEntity {
 	@Transient
 	public TrackingLogStatus getStatus() {
 		AgentTrackingLogRepository repository = SpringHelper.getBean(AgentTrackingLogRepository.class);
-		Collection<TrackingLog> trackingLogs = repository.findTrackingLogsByClaimId(this.getId());
+		Collection<TrackingLog> trackingLogs = repository.findTrackingLogsPublishedByClaimId(this.getId());
 
 		if (trackingLogs == null || trackingLogs.isEmpty())
 			return TrackingLogStatus.PENDING;

@@ -29,6 +29,7 @@ agent.claim.form.button.update=Update
 agent.claim.form.button.create=Create
 agent.claim.form.button.delete=Delete
 agent.claim.form.button.publish=Publish
+agent.claim.list.label.draftMode=Draft Mode
 
 agent.claim.validator.error.null=Claim cannot be null
 agent.claim.validator.error.registrationMoment=The registration moment must be after the agent's work start moment
