@@ -13,10 +13,11 @@
 TrackingLog
 --
 + lastUpdateMoment {Mandatory, Temporal(TIMESTAMP), ValidMoment(Past = True)}
++ creationMoment {Mandatory, Temporal(TIMESTAMP), ValidMoment(Past = True)}
 + step: String {Mandatory, ValidString(min = 1, max = 50), Automapped}
 + resolutionPercentage: double {Mandatory, ValidScore, Automapped}
 + status: Status {Mandatory, Valid, Automapped}
-+ resolution: String {Mandatory, ValidLongText, Automapped}
++ resolution: String {Optional, ValidLongText, Automapped}
 + draftMode: Boolean {Mandatory,Automapped}
 
 
@@ -71,7 +72,7 @@ Claim
 + passengerEmail: String {Mandatory, ValidEmail,Automapped}
 + description: String {Mandatory,ValidLongText,Automapped}
 + type: Type {mandatory,Valid,Automapped}
-+ indicator: Boolean {Mandatory,Automapped}
++ //status: Status
 + draftMode: Boolean {Mandatory,Automapped}
 
 bg=green</panel_attributes>
@@ -114,15 +115,15 @@ AgentDashboard
 + ratioOfClaimsResolved: Double
 + ratioOfClaimsRejected: Double
 
-+ averageNumberOfLogsTheirClaimsHave: Double
-+ minimumNumberOfLogsTheirClaimsHave: Double
-+ maximumNumberOfLogsTheirClaimsHave: Double
-+ deviationNumberOfLogsTheirClaimsHave: Double
++ averageNumberOfLogsTheirClaimsHave: double
++ minimumNumberOfLogsTheirClaimsHave: int
++ maximumNumberOfLogsTheirClaimsHave: int
++ deviationNumberOfLogsTheirClaimsHave: double
 
-+ averageNumberOfClaimsTheyAssisted: Double
-+ minimumNumberOfClaimsTheyAssisted: Double
-+ maximumNumberOfClaimsTheyAssisted: Double
-+ deviationNumberOfClaimsTheyAssisted: Double
++ averageNumberOfClaimsTheyAssisted: double
++ minimumNumberOfClaimsTheyAssisted: int
++ maximumNumberOfClaimsTheyAssisted: int
++ deviationNumberOfClaimsTheyAssisted: double
   
 bg=green</panel_attributes>
     <additional_attributes/>
