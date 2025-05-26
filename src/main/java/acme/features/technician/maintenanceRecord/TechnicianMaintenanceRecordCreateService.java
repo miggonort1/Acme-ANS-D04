@@ -37,6 +37,7 @@ public class TechnicianMaintenanceRecordCreateService extends AbstractGuiService
 				status = aircraft != null && aircraft.getStatus() == AircraftStatus.UNDER_MAINTENANCE;
 			}
 		}
+
 		super.getResponse().setAuthorised(status);
 	}
 
