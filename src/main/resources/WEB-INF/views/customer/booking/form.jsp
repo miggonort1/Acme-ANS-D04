@@ -11,7 +11,7 @@
 		<acme:input-select code="customer.booking.form.label.flight" path="flight" choices="${flights}"/>
 	
 		<jstl:choose>
-			<jstl:when test="${acme:anyOf(_command, 'show|update|publish') && draftMode == true}">
+			<jstl:when test="${acme:anyOf(_command, 'show|update|publish|delete') && draftMode == true}">
 				<acme:input-textbox code="customer.booking.form.label.purchase-moment" path="purchaseMoment" readonly="true"/>
 				<acme:input-money code="customer.booking.form.label.price" path="price" readonly="true"/>
 				<acme:button code="customer.booking.form.button.passengers" action="/customer/booking-passenger/list?masterId=${id}"/>			
