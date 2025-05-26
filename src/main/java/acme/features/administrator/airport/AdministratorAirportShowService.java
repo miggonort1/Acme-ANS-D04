@@ -64,10 +64,4 @@ public class AdministratorAirportShowService extends AbstractGuiService<Administ
 		super.getResponse().addData(dataset);
 	}
 
-	@Override
-	public void perform(final Airport airport) {
-		assert airport != null;
-
-		this.repository.save(airport);
-	}
 }
