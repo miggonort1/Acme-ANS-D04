@@ -39,7 +39,10 @@ public class CustomerBookingPublishService extends AbstractGuiService<Customer, 
 		// Comprobación del purchaseMoment
 		if (status && super.getRequest().hasData("purchaseMoment")) {
 			Date requestMoment = super.getRequest().getData("purchaseMoment", Date.class);
-			if (requestMoment != null && booking.getPurchaseMoment() != null) {
+
+			if (requestMoment == null || booking.getPurchaseMoment() == null)
+				status = false;
+			else {
 				boolean unchanged = booking.getPurchaseMoment().getTime() == requestMoment.getTime();
 				status = status && unchanged;
 			}
